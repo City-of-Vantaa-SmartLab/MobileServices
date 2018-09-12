@@ -10,6 +10,17 @@ description
 $ npm install
 ```
 
+## Database setup
+Database is run in docker for local development.
+
+```bash
+# For starting the docker database
+npm run db:start
+
+# For stopping the docker database
+npm run db:stop
+```
+
 ## Running the app
 
 ```bash
