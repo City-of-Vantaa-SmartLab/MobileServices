@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "db:start": "docker run --rm --name vantaa-mobile-services-database -p 5432:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_USER=postgres -d postgres",
-    "db:stop": "docker kill vantaa-mobile-services-database",
+    "db:stop": "docker stop vantaa-mobile-services-database",
+    "db:kill": "docker kill vantaa-mobile-services-database",
     "format": "prettier --write \"**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "nodemon",
