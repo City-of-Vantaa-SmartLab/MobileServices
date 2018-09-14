@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import NavigationPanel from './../navigation/NavigationPanel';
-import Frontpage from './frontpage/Frontpage';
-
+import Header from './Header';
 
 class NewsfeedView extends Component {
     
@@ -9,8 +7,7 @@ class NewsfeedView extends Component {
     render() {
         return (
             <div>
-            <Frontpage/>
-            <NavigationPanel/>
+                <Header />
             </div>
         )
     }

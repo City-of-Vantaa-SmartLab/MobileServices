@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import NavigationPanel from './../navigation/NavigationPanel';
-
 
 class ResourcesView extends Component {
     
@@ -9,7 +7,6 @@ class ResourcesView extends Component {
         return (
             <div>
              Resources are here
-             <NavigationPanel/>
             </div>
         )
     }
