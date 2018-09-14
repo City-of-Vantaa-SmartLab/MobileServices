@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import NavigationPanel from './../navigation/NavigationPanel';
-
 
 class SettingsView extends Component {
     
@@ -9,7 +7,6 @@ class SettingsView extends Component {
         return (
             <div>
              Settings are here
-             <NavigationPanel/>
             </div>
         )
     }
