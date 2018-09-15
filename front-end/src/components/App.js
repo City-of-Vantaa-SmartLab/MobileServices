@@ -12,6 +12,7 @@ class App extends Component {
   render() {
     return (
       <div>
+          Hello
           <Switch>
             <Route path="/newsfeed" component={NewsfeedView} />
             <Route path="/resources" component={ResourcesView} />
