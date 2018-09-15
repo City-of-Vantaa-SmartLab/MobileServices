@@ -1,0 +1,17 @@
+.navigationIcon {
+    text-align: center;
+    font-size: 12px;
+    font-family: Calibri;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(151, 151, 151);
+    margin-bottom: 8px;
+}
+
+.navigationIcon svg {
+    height: 24px;
+}
+
+.active .navigationIcon {
+    color: rgb(60, 143, 222);
+}
