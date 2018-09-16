@@ -12,7 +12,7 @@ class NewsfeedView extends Component {
 
     activateFeed = () => {
         if (!this.state.active) {
-            this.setState({active: true})
+            this.setState({active: true});
         }
     }
 
@@ -24,7 +24,7 @@ class NewsfeedView extends Component {
                 <NewsList active={this.state}/>
                 
             </div>
-        )
+        );
     }
 }
 
