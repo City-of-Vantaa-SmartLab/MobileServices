@@ -1,5 +1,5 @@
 .backgrounds {
-    height: 92%;
+    height: 55em;
     width: 100%;
     position: absolute;
     z-index: -1;
@@ -8,4 +8,5 @@
     background-image: url("../images/bg1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
