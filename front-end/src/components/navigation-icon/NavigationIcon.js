@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router'
 import SvgIcon from "../svg-icon/SvgIcon";
-import "../../assets/stylesheets/NavigationIcon.css"
+import "./NavigationIcon.css"
 
 
 class NavigationIcon extends Component {
