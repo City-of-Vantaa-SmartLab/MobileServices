@@ -1,6 +1,6 @@
 import React from 'react';
-import { getDate, formatDate } from 'utils/utils';
-import "assets/stylesheets/Header.css";
+import { getDate, formatDate } from '../../utils/utils';
+import "./Header.css";
 
 const Header = props => (
     <div className="header">

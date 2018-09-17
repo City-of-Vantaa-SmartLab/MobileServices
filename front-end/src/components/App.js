@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 // import logo from "./../assets/images/logo.svg";
-import './../assets/stylesheets/App.css';
+import "./App.css";
 
 import NewsfeedView from './newsfeed-view/NewsfeedView';
 import ResourcesView from './resources-view/ResourcesView';
