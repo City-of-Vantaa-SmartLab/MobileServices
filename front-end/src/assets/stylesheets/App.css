@@ -1,0 +1,57 @@
+.navigation {
+  display: flex;
+  position: fixed;
+  height: 4em;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding-top: 6px;
+  justify-content: space-around;
+  background-color: rgb(235, 235, 235);
+}
+
+.navigation > a {
+  display: block;
+  text-decoration: none;
+}
+
+.newsfeed {
+  position: absolute;
+  top: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  
+}
+
+.news_card {
+  height: 100px;
+  max-height: 150px;
+  margin: 15px 10px;
+  background: #fff;
+  position: relative;
+}
+
+.news_card.instagram {
+  height: 350px;
+
+}
+
+.news_card .image {
+  height: 100%;
+  width: 100px;
+  float: left;
+  background-size: cover;
+}
+
+.news_card .content {
+  float: left;
+  margin-left: 10px;
+}
+
+.news_card .footer {
+  position: absolute;
+  bottom: 0;
+}
+
+
+
