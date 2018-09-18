@@ -21,8 +21,7 @@ class NewsfeedView extends Component {
             <div>
                 <Backgrounds />
                 <Header />
-                <NewsList active={this.state}/>
-                
+                <NewsList active={this.state.active}/>
             </div>
         );
     }
