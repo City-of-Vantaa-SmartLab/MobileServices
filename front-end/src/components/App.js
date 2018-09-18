@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-// import logo from "./../assets/images/logo.svg";
+import { withCookies } from 'react-cookie';
 import "./App.css";
 
+import CookieView from "./cookie/CookieView";
 import NewsfeedView from './newsfeed-view/NewsfeedView';
 import ResourcesView from './resources-view/ResourcesView';
 import SettingsView from './settings-view/SettingsView';
@@ -12,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <div>
-          Hello
+          <CookieView cookies={this.props.cookies}></CookieView>
           <Switch>
             <Route path="/newsfeed" component={NewsfeedView} />
             <Route path="/resources" component={ResourcesView} />
@@ -25,4 +26,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withCookies(App);
