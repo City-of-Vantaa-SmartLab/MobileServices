@@ -1,0 +1,26 @@
+
+.news_card {
+
+    height: 100px;
+    max-height: 150px;
+    margin: 15px 10px;
+    background: #fff;
+    position: relative;
+    
+    .image {
+        height: 100%;
+        width: 100px;
+        float: left;
+        background-size: cover;
+    }
+  
+    .content {
+        float: left;
+        margin-left: 10px;
+    }
+  
+    .footer {
+        position: absolute;
+        bottom: 0;
+    }
+}

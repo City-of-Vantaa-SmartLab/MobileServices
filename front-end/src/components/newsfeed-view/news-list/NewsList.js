@@ -1,52 +1,56 @@
 import React, {Component} from 'react';
-import NewsCardSwitcher from './news-card/NewsCardSwitcher';
+import  _  from 'lodash';
+import { formatDate } from 'utils/utils';
 import pic from 'assets/images/cutiepie.jpg';
+import './newslist.css';
+import NewsCardGroup from './NewsCardGroup';
 
 const dummyfeed = [
     {
         id: 1,
-        title: 'is there even a title for instagram?',
-        source: 'instagram',
+        title: 'some basic news feed',
+        source: 'vantaa.fi',
         img: pic,
-        timestamp: 1360002924000,
+        timestamp: 1537283957618,
     },
     {
         id: 2,
-        title: 'what is the layout for facebook card?',
-        source: 'facebook',
+        title: 'one more basic news feed card',
+        source: 'vantaansanomat.fi',
         img: pic,
-        timestamp: 1460002924000,
+        timestamp: 1537283957618,
     },
     {
         id: 3,
         title: 'some basic news feed',
         source: 'vantaa.fi',
         img: pic,
-        timestamp: 1370003924000,
+        timestamp: 1537174800000,
     },
     {
         id: 4,
         title: 'one more basic news feed card',
         source: 'vantaansanomat.fi',
         img: pic,
-        timestamp: 1535002924000,
+        timestamp: 1537174800000,
     }
 ];
 
 
 
 class NewsList extends Component {
-    position = {};
-    componentWillReceiveProps() {
-        this.position = this.props.active ? {position: 'relative'} : {};
-    }
-    
+
     render() {
         return (
-            <div className="newsfeed container" style = {this.position}>
-            {
-                dummyfeed.map(item => (<NewsCardSwitcher type = {item.source} data = {item}/>))
-            }
+            <div className = "container">
+                <div className="newsfeed" style = {this.props.active ? {top: '50%'} : {}}>
+                {
+                    _.chain(dummyfeed)
+                        .groupBy((item) => (formatDate(item.timestamp)))
+                        .map((item, date) => (<NewsCardGroup date = {date} data = {item} />))
+                        .value()
+                }
+                </div>
             </div>
         );
     }

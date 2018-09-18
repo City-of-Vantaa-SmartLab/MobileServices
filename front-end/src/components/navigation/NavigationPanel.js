@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import NavigationIcon from '../navigation-icon/NavigationIcon';
+import './navigation.css';
 
 class NavigationPanel extends Component {
     
@@ -12,7 +13,7 @@ class NavigationPanel extends Component {
                 <NavLink to='/resources'><NavigationIcon iconName="resourcesIcon" iconText="RESOURCES" /></NavLink>
                 <NavLink to='/Settings'><NavigationIcon iconName="preferencesIcon" iconText="PREFERENCES" /></NavLink>
             </div>
-        )
+        );
     }
 }
 
