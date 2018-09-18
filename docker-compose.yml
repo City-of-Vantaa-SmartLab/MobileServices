@@ -13,7 +13,6 @@ services:
       - 5000:5000
     volumes:
       - ./backend/src:/backend/src
-    command: npm run start:dev
     depends_on:
       - postgres-dev-db
 
@@ -28,7 +27,6 @@ services:
       - ./front-end/public:/front-end/public
     links:
       - backend
-    command: npm run start
 
   postgres-dev-db:
     image: postgres:10.3
