@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import NewsCardSwitcher from './news-card/NewsCardSwitcher';
+import DateHeader from './../DateHeader';
 
 
 class NewsCardGroup extends Component {
 
     render() {
-        console.log(this.props.date);
         return (
             <div className = "container">
-                <h3>{this.props.date}</h3>
+                <DateHeader date = {this.props.date} />
                 <div className="newsgroup">
                 {
                     this.props.data.map(item => (<NewsCardSwitcher type = {item.source} data = {item}/>))

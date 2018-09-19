@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import NewsCard from './NewsCard';
 import InstagramNewsCard from './InstagramNewsCard';
 import TwitterNewsCard from './TwitterNewsCard';
