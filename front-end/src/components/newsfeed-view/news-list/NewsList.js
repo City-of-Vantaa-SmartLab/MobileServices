@@ -8,13 +8,16 @@ import NewsCardGroup from './NewsCardGroup';
 const dummyfeed = [
     {
         id: 1,
+        author: 'authorname',
         title: 'some basic news feed',
-        source: 'vantaa.fi',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+        source: 'instagram',
         img: pic,
         timestamp: 1537283957618,
     },
     {
         id: 2,
+        author: 'authorname',
         title: 'one more basic news feed card',
         source: 'vantaansanomat.fi',
         img: pic,
@@ -22,13 +25,16 @@ const dummyfeed = [
     },
     {
         id: 3,
+        author: 'authorname',
         title: 'some basic news feed',
-        source: 'vantaa.fi',
+        source: 'twitter',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         img: pic,
         timestamp: 1537174800000,
     },
     {
         id: 4,
+        author: 'authorname',
         title: 'one more basic news feed card',
         source: 'vantaansanomat.fi',
         img: pic,

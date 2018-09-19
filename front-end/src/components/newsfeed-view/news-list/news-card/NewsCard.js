@@ -7,8 +7,13 @@ const NewsCard = ({data}) => (
     <div className="news_card">
         <div className = "image" style={{ backgroundImage: `url(${data.img})` }}></div>
         <div className = "content">
-            <span className="source">{data.source}</span>
-            <p>{data.title}</p>
+            <div className="source">
+                <span>{data.source}</span>
+            </div>
+            <div className="description">
+                <p>{data.title}</p>
+                <span>by @authorname</span>
+            </div>
             <div className="footer">
                 <Timestamp time = {data.timestamp} />
             </div>
