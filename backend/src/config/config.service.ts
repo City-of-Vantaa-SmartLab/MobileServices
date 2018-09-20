@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import * as dotenv from 'dotenv';
-import * as fs from 'fs';
 import * as Joi from 'joi';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 export interface EnvConfig {
   [prop: string]: string;
@@ -12,12 +12,7 @@ export class ConfigService {
   private readonly envConfig: EnvConfig;
 
   constructor() {
-    try {
-      const config = dotenv.parse(fs.readFileSync('.env'));
-      this.envConfig = this.validateInput({ ...config, ...process.env });
-    } catch (e) {
-      this.envConfig = this.validateInput(process.env);
-    }
+    this.envConfig = this.validateInput(process.env);
   }
 
   get(key: string): string {
@@ -56,6 +51,14 @@ export class ConfigService {
     return this.envConfig.NODE_ENV;
   }
 
+  get vantaaNewsPath(): string {
+    return this.envConfig.VANTAA_NEWS_PATH;
+  }
+
+  get vantaaStoriesPath(): string {
+    return this.envConfig.VANTAA_STORIES_PATH;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -70,6 +73,8 @@ export class ConfigService {
       DATABASE_PASSWORD: Joi.string().default('password'),
       DROP_DATABASE_SCHEMA: Joi.boolean().default(false),
       NODE_ENV: Joi.string().allow('local', 'dev', 'test', 'production').default('local'),
+      VANTAA_NEWS_PATH: Joi.string(),
+      VANTAA_STORIES_PATH: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(

@@ -26,7 +26,7 @@ export class RssFeedController {
                 return response.status(404).json(`Could not find any rss feeds in the system.`);
             }
         } catch (error) {
-            this.logger.error(error);
+            this.logger.error(`Failed to get rss feeds: ${error}`);
             return response.status(500).json(`Failed to get rss feeds: ${error.message}`);
         }
     }
