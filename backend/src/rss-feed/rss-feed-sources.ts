@@ -1,5 +1,8 @@
+import { ConfigService } from '../config/config.service';
+const config = new ConfigService();
+
 const sources = {
-    news: 'http://www.vantaa.fi/RSS/fi/101/0/uutisia/kaikki_uutiset',
-    stories: 'http://www.vantaa.fi/RSS/fi/101/0/tarinoita_vantaalta',
+    news: config.vantaaNewsPath,
+    stories: config.vantaaStoriesPath
 };
 export default sources;
