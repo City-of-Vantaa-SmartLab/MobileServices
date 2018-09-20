@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import sources from './rss-feed-sources';
 import { RssFeed } from './rss-feed.entity';
-import { Repository } from 'typeorm';
+import { Repository, Transaction, TransactionRepository } from 'typeorm';
 const Parser = require('rss-parser');
 const parser = new Parser();
 
@@ -12,6 +12,7 @@ export class RssFeedService {
 
     constructor(
         @InjectRepository(RssFeed)
+        @TransactionRepository(RssFeed)
         private readonly rssFeedRepository: Repository<RssFeed>,
         private readonly logger: Logger) {
         this.logger = new Logger('RssFeedService');
@@ -21,6 +22,7 @@ export class RssFeedService {
         await this.fetchAndSaveRssFeeds();
     }
 
+    @Transaction()
     async fetchAndSaveRssFeeds() {
         try {
             const [news, stories] = await Promise.all([parser.parseURL(sources.news), parser.parseURL(sources.stories)]);
