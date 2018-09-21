@@ -49,7 +49,7 @@ class NewsList extends Component {
     render() {
         return (
             <div className = "container">
-                <div className="newsfeed" style = {this.props.active ? {top: '50%'} : {}}>
+                <div className="newsfeed">
                 {
                     _.chain(dummyfeed)
                         .groupBy((item) => (formatDate(item.timestamp)))
