@@ -3,9 +3,8 @@ import { Modal, Button } from "react-bootstrap";
 
 import "./CookieView.css";
 
-const isCookieSet = cookiePolicy => cookiePolicy && cookiePolicy === true ? true : false;
-
 class CookieView extends Component {
+
     constructor(props) {
         super(props);
 
@@ -14,15 +13,22 @@ class CookieView extends Component {
         };
     
         this.handleClose = this.handleClose.bind(this);
+        this.isCookieSet = cookiePolicy => cookiePolicy && cookiePolicy === "true" ? true : false;
+        this.cookies = this.props.cookies;
     }
 
-    handleClose() {
+    handleClose(isPolicyAccepted) {
         this.setState({ show: false });
+        if (isPolicyAccepted && isPolicyAccepted === true) {
+            if (this.cookies) {
+                this.cookies.set("policy", isPolicyAccepted, { maxAge: (10 * 365 * 24 * 60 * 60 )});
+            }
+        }
     }
 
     render() {
-        const cookiePolicy = this.props.cookies.get('policy');
-        const showCookieDiv = !isCookieSet(cookiePolicy) && this.state.show;
+        const cookiePolicy = this.cookies.get('policy');
+        const showCookieDiv = !this.isCookieSet(cookiePolicy) && this.state.show;
 
         return (
             <Modal show={showCookieDiv} onHide={this.handleClose} bsClass="cookie-modal">
@@ -35,7 +41,7 @@ class CookieView extends Component {
                     <a href="http://www.vantaa.fi/tietoa_sivustosta"> Privacy Policy</a> to learn more.
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.handleClose}>ACCEPT</Button>
+                    <Button onClick={() => this.handleClose(true)}>ACCEPT</Button>
                 </Modal.Footer>
             </Modal>
         )
