@@ -17,7 +17,7 @@ export class RssFeed {
     content: string;
 
     @Column()
-    contentSnippet: string;
+    source: string;
 
     @Column()
     guid: string;
