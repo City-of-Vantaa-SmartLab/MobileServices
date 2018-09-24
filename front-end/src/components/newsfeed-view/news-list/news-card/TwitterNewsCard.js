@@ -7,7 +7,7 @@ const TwitterNewsCard = ({data}) => (
     <div className = "content">
         <div className="source">
             <div className="author">
-                <img src = "https://pbs.twimg.com/profile_images/559709902990348288/NwYEyKfg_400x400.jpeg" />
+                <img src = "https://pbs.twimg.com/profile_images/559709902990348288/NwYEyKfg_400x400.jpeg" alt="Placeholder for twitter" />
                 <p>{data.author}</p>
             </div>
             <span>{data.source}</span>

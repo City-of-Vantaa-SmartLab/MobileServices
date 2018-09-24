@@ -11,7 +11,7 @@ class NewsCardGroup extends Component {
                 <DateHeader date = {this.props.date} />
                 <div className="newsgroup">
                 {
-                    this.props.data.map(item => (<NewsCardSwitcher type = {item.source} data = {item}/>))
+                    this.props.data.map(item => (<NewsCardSwitcher key={item.id} type={item.source} data={item}/>))
                 }
                 </div>
             </div>
