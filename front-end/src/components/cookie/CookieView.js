@@ -12,12 +12,11 @@ class CookieView extends Component {
             show: true
         };
     
-        this.handleClose = this.handleClose.bind(this);
         this.isCookieSet = cookiePolicy => cookiePolicy && cookiePolicy === "true" ? true : false;
         this.cookies = this.props.cookies;
     }
 
-    handleClose(isPolicyAccepted) {
+    handleClose = (isPolicyAccepted) => {
         this.setState({ show: false });
         if (isPolicyAccepted && isPolicyAccepted === true) {
             if (this.cookies) {
@@ -41,7 +40,12 @@ class CookieView extends Component {
                     <a href="http://www.vantaa.fi/tietoa_sivustosta"> Privacy Policy</a> to learn more.
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => this.handleClose(true)}>ACCEPT</Button>
+                    <div className="footer-container">
+                        <div className="reject-text">
+                            <a onClick={this.handleClose}>REJECT</a>
+                        </div>
+                        <Button onClick={() => this.handleClose(true)}>ACCEPT</Button>
+                    </div>
                 </Modal.Footer>
             </Modal>
         )
