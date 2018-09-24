@@ -53,7 +53,7 @@ class NewsList extends Component {
                 {
                     _.chain(dummyfeed)
                         .groupBy((item) => (formatDate(item.timestamp)))
-                        .map((item, date) => (<NewsCardGroup date = {date} data = {item} />))
+                        .map((item, date) => (<NewsCardGroup key={date} date={date} data={item} />))
                         .value()
                 }
                 </div>
