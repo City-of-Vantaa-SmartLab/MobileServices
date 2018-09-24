@@ -4,7 +4,7 @@ import SvgIcon from "../svg-icon/SvgIcon";
 import "./NavigationIcon.css"
 
 
-class NavigationIcon extends Component {
+export class NavigationIcon extends Component {
 
     render() {
 
