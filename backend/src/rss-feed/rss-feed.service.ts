@@ -3,10 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import sources from './rss-feed-sources';
 import { RssFeed } from './rss-feed.entity';
 import { Repository, Transaction, TransactionRepository } from 'typeorm';
-
+import * as converter from 'json-style-converter/es5';
 const Parser = require('rss-parser');
 const parser = new Parser();
-
 
 @Injectable()
 export class RssFeedService {
@@ -26,30 +25,27 @@ export class RssFeedService {
     @Transaction()
     async fetchAndSaveRssFeeds() {
         try {
-            const [
-                news,
-                stories,
-                aikuisopisto,
-                nuorten,
-                kaupunginmuseo,
-                events] = await Promise.all([
-                    parser.parseURL(sources.news),
-                    parser.parseURL(sources.stories),
-                    parser.parseURL(sources.aikuisopisto),
-                    parser.parseURL(sources.nuorten),
-                    parser.parseURL(sources.kaupunginmuseo),
-                    parser.parseURL(sources.events)
-                ]);
             await Promise.all([
-                this.rssFeedRepository.save(news.items.map(item => { return { ...item, source: 'rss_news' } })),
-                this.rssFeedRepository.save(stories.items.map(item => { return { ...item, source: 'rss_stories' } })),
-                this.rssFeedRepository.save(aikuisopisto.items.map(item => { return { ...item, source: 'rss_aikuisopisto' } })),
-                this.rssFeedRepository.save(nuorten.items.map(item => { return { ...item, source: 'rss_nuorten' } })),
-                this.rssFeedRepository.save(kaupunginmuseo.items.map(item => { return { ...item, source: 'rss_kaupunginmuseo' } })),
-                this.rssFeedRepository.save(events.items.map(item => { return { ...item, source: 'rss_events' } })),
+                parser.parseURL(sources.news).then(this.addSourceName('rss_news')).then(this.persistIntoDb),
+                parser.parseURL(sources.stories).then(this.addSourceName('rss_stories')).then(this.persistIntoDb),
+                parser.parseURL(sources.aikuisopisto).then(this.addSourceName('rss_aikuisopisto')).then(this.persistIntoDb),
+                parser.parseURL(sources.nuorten).then(this.addSourceName('rss_nuorten')).then(this.persistIntoDb),
+                parser.parseURL(sources.kaupunginmuseo).then(this.addSourceName('rss_kaupunginmuseo')).then(this.persistIntoDb),
+                parser.parseURL(sources.events).then(this.addSourceName('rss_events')).then(this.persistIntoDb)
             ]);
         } catch (error) {
             this.logger.error(`Error in fetching and saving Rss feed: ${error.message}`);
+        }
+    }
+
+    persistIntoDb = data => this.rssFeedRepository.save(data.items);
+
+    addSourceName = name => {
+        return (data) => {
+            data = converter.camelToSnakeCase(data);
+            data.items.map(item => item.source = name);
+            data.source = name;
+            return data;
         }
     }
 
