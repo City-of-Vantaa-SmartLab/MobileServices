@@ -6,7 +6,6 @@ script:
 - cd backend
 - npm install
 - npm test
-- npm run test:e2e
 - cd ..
 after_success:
 - docker login -u _ -p "$HEROKU_API_KEY" registry.heroku.com
