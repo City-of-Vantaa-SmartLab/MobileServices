@@ -59,6 +59,22 @@ export class ConfigService {
     return this.envConfig.VANTAA_STORIES_PATH;
   }
 
+  get vantaaAikuisopistoPath(): string {
+    return this.envConfig.VANTAA_AIKUISOPISTO_PATH;
+  }
+
+  get vantaaNuorten(): string {
+    return this.envConfig.VANTAA_NUORTEN_PATH;
+  }
+
+  get vantaaKaupunginmuseo(): string {
+    return this.envConfig.VANTAA_KAUPUNGINMUSEO_PATH;
+  }
+
+  get vantaaEvents(): string {
+    return this.envConfig.VANTAA_EVENTS_PATH;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
