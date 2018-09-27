@@ -1,53 +1,26 @@
-@font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Thin.otf') format('opentype');
-    font-weight: 200;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Light.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Medium.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Bold-Oblique.otf') format('opentype');
-    font-weight: 700;
-    font-style: italic;
-  }
-  
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Ultra-Bold.otf') format('opentype');
-    font-weight: 800;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Black.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-  }
+@import "./variables";
+
+.font-s {
+    font: 1rem $font-primary-ui;
+    letter-spacing: 0;
+}
+
+.font-r {
+    font: 1.6rem $font-primary-ui;
+    letter-spacing: 0;
+}
+
+.font-l {
+    font: 2rem $font-primary-ui;
+    letter-spacing: 0;
+}
+
+.font-xl {
+    font: 2.4rem $font-primary-ui;
+    letter-spacing: 0;
+}
+
+.font-xxl {
+    font: 3rem $font-primary-ui;
+    letter-spacing: 0;
+}
