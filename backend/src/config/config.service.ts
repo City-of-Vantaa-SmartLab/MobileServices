@@ -75,6 +75,18 @@ export class ConfigService {
     return this.envConfig.VANTAA_EVENTS_PATH;
   }
 
+  get youTubeApiKey(): string {
+    return this.envConfig.YOUTUBE_API_KEY;
+  }
+
+  get youTubeChannelID(): string {
+    return this.envConfig.YOUTUBE_CHANNEL_ID;
+  }
+
+  get youTubeChannelListLimit(): number {
+    return Number(this.envConfig.YOUTUBE_CHANNEL_LIST_LIMIT);
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -91,6 +103,9 @@ export class ConfigService {
       NODE_ENV: Joi.string().allow('local', 'dev', 'test', 'production').default('local'),
       VANTAA_NEWS_PATH: Joi.string(),
       VANTAA_STORIES_PATH: Joi.string(),
+      YOUTUBE_API_KEY: Joi.string(),
+      YOUTUBE_CHANNEL_ID: Joi.string(),
+      YOUTUBE_CHANNEL_LIST_LIMIT: Joi.number().default(20)
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
