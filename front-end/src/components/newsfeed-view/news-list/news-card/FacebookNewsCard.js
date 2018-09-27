@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from "./news-card.module.scss";
 
 const FacebookNewsCard = ({data}) => (
-    <div className="news_card facebook">
+    <div className={`${styles["news-card"]} ${styles["facebook"]}`}>
     
     </div>
  );

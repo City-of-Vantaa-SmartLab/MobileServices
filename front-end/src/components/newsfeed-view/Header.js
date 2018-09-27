@@ -1,11 +1,11 @@
 import React from 'react';
 import { getDate, formatDate } from '../../utils/utils';
 import DateHeader from './DateHeader';
-import './header.scss';
+import styles from './header.module.scss';
 
 
 const Header = props => (
-    <div className="header">
+    <div className={styles["header"]}>
         <h2>TODAY IN VANTAA</h2>
         <DateHeader date={formatDate(getDate())} />
     </div>
