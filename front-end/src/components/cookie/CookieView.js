@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from "react-bootstrap";
 
-import "./CookieView.css";
+import "./CookieView.scss";
 
 class CookieView extends Component {
 

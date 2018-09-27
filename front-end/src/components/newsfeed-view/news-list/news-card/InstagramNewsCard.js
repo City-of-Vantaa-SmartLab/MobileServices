@@ -1,6 +1,6 @@
 import React from 'react';
 import Timestamp from './elements/Timestamp';
-import './newscard.css';
+import './newscard.scss';
 
 const InstagramNewsCard = ({data}) => (
     <div className="news_card instagram">
