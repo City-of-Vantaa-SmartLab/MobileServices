@@ -1,3 +1,11 @@
+/*** 
+    Cookie view uses Bootstrap modal to display the view. As such, it uses some style overrides 
+    that come from the Bootstrap css.
+***/
+
+@import "src/assets/stylesheets/fonts";
+@import "src/assets/stylesheets/variables";
+
 %common-position-rule {
     position: fixed;
     top: 0;
@@ -9,22 +17,20 @@
 .cookie-modal-backdrop {
     @extend %common-position-rule;
 
-    z-index: 1040;
+    z-index: map-get($map: $z-index, $key: cookieModalBackdrop);
     background-color: rgba(74, 74, 74, 0.7);
 }
 
 .cookie-modal {
     @extend %common-position-rule;
 
-    z-index: 1050;
+    z-index: map-get($map: $z-index, $key: cookieModal);
     background-color: rgb(228, 239, 248);
     
-    height: 14.5em;
+    height: 19rem;
+    font-size: $cookie-view-font-size;
     margin: 12em 1em 0 1em;
-
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.14;
+    padding: 2rem;
 
     :global(.modal-content) {
         background-color: transparent;
@@ -33,66 +39,67 @@
         border: 0;
     }
 
-    :global(.modal) {
-        &-header {
-            padding: 0.7em;
-            border-bottom: none;
-            font-size: 20px;
-            line-height: normal;
-            letter-spacing: -0.6px;
+    :global(.modal-header) {
+        @extend .font-l;
 
-            .close {
-                font-size: 32px;
-                margin-top: -9px;
-                font-weight: 200;
-                opacity: 0.4;
-            }
+        padding: 0;
+        border-bottom: none;
+
+        h2 {
+            font-weight: normal;
+            padding: 0;
+            height: 2.5rem;
+            line-height: 2.5rem;
         }
 
-        &-body {
-            padding: 0 1em 1em 1em;
-            letter-spacing: -0.5px;
-
-            a {
-                color: #3c8fde;
-                text-decoration: none;
-            }
+        :global(.close) {
+            font-size: $cookie-close-button-font-size;
+            font-weight: 200;
+            opacity: 0.4;
+            line-height: 2.5rem;
         }
+    }
 
-        &-footer {
-            padding: 1em;
-            border-top: none;
+    :global(.modal-body) {
+        padding: 0;
+        margin-top: 1.5rem;
+        letter-spacing: $cookie-body-letter-spacing;
+    }
 
-            .footer-container {
-                display: flex;
-                justify-content: space-between;
+    :global(.modal-footer) {
+        padding: 0;
+        border-top: none;
+        margin-top: 1.6rem;
 
-                :global(.btn), .reject-text {
-                    width: 75px;
-                    height: 30px;
-                    border: none;
-                    border-radius: 0;
-                    font-size: 10px;
-                    font-weight: bold;
-                }
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
 
-                :global(.btn) {
-                    background-color: #ffffff;
-                    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-                }
+            :global(.btn), .reject-text {
+                @extend .font-s;
 
-                .reject-text {
-                    padding: 6px 12px;
-                    text-align: center;
-                    text-decoration: underline;
+                width: 7.5rem;
+                height: 3rem;
+                border: none;
+                border-radius: 0;
+                font-weight: bold;
+            }
 
-                    a {
-                        color: #4a4a4a;
-                        opacity: 0.8;
-                    }
+            :global(.btn) {
+                background-color: rgb(255, 255, 255);
+                box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.25);
+            }
+
+            .reject-text {
+                padding: 0.6rem 1rem;
+                text-align: left;
+                text-decoration: underline;
+
+                a {
+                    color: rgb(74, 74, 74);
+                    opacity: 0.8;
                 }
             }
         }
     }
 }
-
