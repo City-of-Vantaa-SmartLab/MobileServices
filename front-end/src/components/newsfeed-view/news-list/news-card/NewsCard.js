@@ -1,10 +1,10 @@
 import React from 'react';
 import Timestamp from './elements/Timestamp';
-import './newscard.scss';
+import './news-card.scss';
 
 
 const NewsCard = ({data}) => (
-    <div className="news_card">
+    <div className="news-card">
         <div className = "image" style={{ backgroundImage: `url(${data.img})` }}></div>
         <div className = "content">
             <div className="source">

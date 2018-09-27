@@ -1,9 +1,9 @@
 import React from 'react';
 import Timestamp from './elements/Timestamp';
-import './newscard.scss';
+import './news-card.scss';
 
 const TwitterNewsCard = ({data}) => (
-    <div className="news_card twitter">
+    <div className="news-card twitter">
     <div className = "content">
         <div className="source">
             <div className="author">

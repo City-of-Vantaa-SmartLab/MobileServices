@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import  _  from 'lodash';
 import { formatDate } from 'utils/utils';
 import pic from 'assets/images/cutiepie.jpg';
-import './newslist.scss';
+import './news-list.scss';
 import NewsCardGroup from './NewsCardGroup';
 
 const dummyfeed = [
