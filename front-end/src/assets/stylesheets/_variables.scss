@@ -3,3 +3,15 @@ $font-primary-ui: "GT-Walsheim";
 
 // Colors
 $color-primary: rgba(74, 74, 74, 1);
+
+// Cookie view related constants
+$cookie-view-font-size: 1.4rem;
+$cookie-body-letter-spacing: -0.05rem;
+$cookie-close-button-font-size: 3.2rem;
+
+// Z-Indices
+$z-index: (
+    cookieModalBackdrop: 1040,
+    cookieModal: 1050,
+    backgrounds: -1
+);

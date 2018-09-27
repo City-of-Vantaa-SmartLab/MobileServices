@@ -31,7 +31,7 @@ class CookieView extends Component {
         return (
             <Modal show={showCookieDiv} onHide={this.handleClose} dialogClassName={styles["cookie-modal"]} backdropClassName={styles["cookie-modal-backdrop"]}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Cookie Policy</Modal.Title>
+                    <Modal.Title componentClass="h2">Cookie Policy</Modal.Title>
                 </Modal.Header>
                 <Modal.Body >
                     The Vantaa Feed website uses cookies to ensure you receive the best experience on our awesome site! 
