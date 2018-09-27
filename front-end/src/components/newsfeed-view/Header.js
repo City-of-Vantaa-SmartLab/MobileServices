@@ -1,7 +1,7 @@
 import React from 'react';
 import { getDate, formatDate } from '../../utils/utils';
 import DateHeader from './DateHeader';
-import './Header.scss';
+import './header.scss';
 
 
 const Header = props => (
