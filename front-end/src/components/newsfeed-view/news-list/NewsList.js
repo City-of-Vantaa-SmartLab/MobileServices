@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import  _  from 'lodash';
 import { formatDate } from 'utils/utils';
 import pic from 'assets/images/cutiepie.jpg';
-import './news-list.scss';
+import styles from './news-list.module.scss';
 import NewsCardGroup from './NewsCardGroup';
 
 const dummyfeed = [
@@ -48,8 +48,8 @@ class NewsList extends Component {
 
     render() {
         return (
-            <div className = "container">
-                <div className="newsfeed">
+            <div className={styles["container"]}>
+                <div className={styles["newsfeed"]}>
                 {
                     _.chain(dummyfeed)
                         .groupBy((item) => (formatDate(item.timestamp)))
