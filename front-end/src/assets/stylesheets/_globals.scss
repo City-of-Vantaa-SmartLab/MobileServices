@@ -12,7 +12,7 @@ body {
 h1 {
     @extend .font-xxl;
 
-    padding: 0.5em 0 0.5em 0;
+    padding: 0;
     margin: 0;
     font-weight: bold;
 }
@@ -20,7 +20,7 @@ h1 {
 h2 {
     @extend .font-xl;
 
-    padding: 0.5em 0 0.5em 0;
+    padding: 0;
     margin: 0;
     font-weight: bold;
 }
@@ -28,7 +28,7 @@ h2 {
 h3 {
     @extend .font-l;
 
-    padding: 0.5em 0 0.5em 0;
+    padding: 0;
     margin: 0;
     font-weight: bold;
     color: $color-primary;
@@ -37,7 +37,7 @@ h3 {
 h4 {
     @extend .font-r;
 
-    padding: 0.5em 0 0.5em 0;
+    padding: 0;
     margin: 0;
     font-weight: bold;
     color: $color-primary;
@@ -46,7 +46,7 @@ h4 {
 h5 {
     @extend .font-s;
 
-    padding: 0.5em 0 0.5em 0;
+    padding: 0;
     margin: 0;
     font-weight: bold;
     color: $color-primary;
