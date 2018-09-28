@@ -6,8 +6,8 @@ import styles from './header.module.scss';
 
 const Header = props => (
     <div className={styles["header"]}>
-        <h2>TODAY IN VANTAA</h2>
         <DateHeader date={formatDate(getDate())} />
+        <h1>TODAY IN VANTAA</h1>
     </div>
  );
 

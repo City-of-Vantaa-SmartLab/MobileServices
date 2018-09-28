@@ -1,10 +1,17 @@
+@import "src/assets/stylesheets/variables";
+@import "src/assets/stylesheets/fonts";
+
 .header {
-    color: #ffffff;
+    color: $color-white;
     position: fixed;
-    padding-left: 15px;
+    margin-top: 3rem;
+    margin-left: 2rem;
 }
 
 .date {
+    h4 {
+        color: $color-white;
+        font-weight: normal;
+    }
     text-transform: uppercase;
-    font-size: 1em;
 }
