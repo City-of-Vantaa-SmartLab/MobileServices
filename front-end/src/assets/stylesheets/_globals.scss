@@ -51,3 +51,11 @@ h5 {
     font-weight: bold;
     color: $color-primary;
 }
+
+.common-fixed-position-rules {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

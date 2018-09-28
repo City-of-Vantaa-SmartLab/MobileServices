@@ -5,27 +5,21 @@
 
 @import "src/assets/stylesheets/fonts";
 @import "src/assets/stylesheets/variables";
-
-%common-position-rule {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
+@import "src/assets/stylesheets/globals";
 
 .cookie-modal-backdrop {
-    @extend %common-position-rule;
+    @extend .common-fixed-position-rules;
 
     z-index: map-get($map: $z-index, $key: cookieModalBackdrop);
-    background-color: rgba(74, 74, 74, 0.7);
+    background-color: $color-primary;
+    opacity: 0.7;
 }
 
 .cookie-modal {
-    @extend %common-position-rule;
+    @extend .common-fixed-position-rules;
 
     z-index: map-get($map: $z-index, $key: cookieModal);
-    background-color: rgb(228, 239, 248);
+    background-color: $color-cookie-view-bg;
     
     height: 19rem;
     font-size: $cookie-view-font-size;
@@ -86,7 +80,7 @@
             }
 
             :global(.btn) {
-                background-color: rgb(255, 255, 255);
+                background-color: $color-white;
                 box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.25);
             }
 
@@ -96,7 +90,7 @@
                 text-decoration: underline;
 
                 a {
-                    color: rgb(74, 74, 74);
+                    color: $color-primary;
                     opacity: 0.8;
                 }
             }

@@ -1,17 +1,22 @@
+@import "src/assets/stylesheets/fonts";
+@import "src/assets/stylesheets/variables";
+
 .navigation-icon {
     text-align: center;
-    font-size: 12px;
-    font-family: Calibri;
-    font-weight: bold;
-    text-decoration: none;
     color: rgb(151, 151, 151);
-    margin-bottom: 8px;
+    text-decoration: none;
 
     svg {
-        height: 24px;
+        height: 2rem;
     }
 
-    .active & {
-        color: rgb(60, 143, 222);
+    :global(.active) & {
+        color: $color-active-link;
+    }
+
+    .navigation-icon-text {
+        @extend .font-s;
+
+        font-weight: bold;
     }
 }
