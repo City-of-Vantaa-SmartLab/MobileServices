@@ -1,11 +1,19 @@
+@import "src/assets/stylesheets/variables";
+@import "src/assets/stylesheets/globals";
+
 .navigation {
-    display: flex;
     position: fixed;
-    height: 4em;
-    width: 100%;
     bottom: 0;
-    left: 0;
-    padding-top: 6px;
+    display: flex;
+    height: $navigation-height;
+    width: 100%;
+    padding-top: 0.8rem;
+    padding-bottom: 0.6rem;
     justify-content: space-around;
-    background-color: rgb(235, 235, 235);
+    background-color: $color-white;
+    opacity: 0.9;
+
+    a {
+        text-decoration: none;
+    }
 }

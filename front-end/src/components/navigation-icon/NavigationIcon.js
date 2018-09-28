@@ -11,7 +11,7 @@ export class NavigationIcon extends Component {
         return (
             <div className={styles["navigation-icon"]}>
                 <SvgIcon isActive={this.props.match && this.props.match.isExact ? true : false} name={this.props.iconName} />
-                <div>{this.props.iconText}</div>
+                <div className={styles["navigation-icon-text"]}>{this.props.iconText}</div>
             </div>
         )
     }
