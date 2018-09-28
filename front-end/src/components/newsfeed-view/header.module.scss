@@ -6,12 +6,15 @@
     position: fixed;
     margin-top: 3rem;
     margin-left: 2rem;
+
+    .date {
+        h4 {
+            color: $color-white;
+            font-weight: normal;
+        }
+    }
 }
 
 .date {
-    h4 {
-        color: $color-white;
-        font-weight: normal;
-    }
     text-transform: uppercase;
 }

@@ -1,3 +1,4 @@
+@import "src/assets/stylesheets/variables";
 
 .newsfeed {
     position: absolute;
@@ -5,6 +6,8 @@
     left: 0;
     width: 100%;
     margin: 0 auto;
-    background: #eff1f1;
-    padding-top: 15px;
-  }
+    background: $color-news-feed-bg;
+    padding-top: 1.5rem;
+    // Padding bottom is set here so that the navigation bar doesn't hide the end of the news list
+    padding-bottom: $navigation-height;
+}
