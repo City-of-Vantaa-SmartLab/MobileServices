@@ -1,4 +1,7 @@
-
+@mixin avatar_dim($size) {
+    height: $size;
+    width: $size;
+}
 .news_card {
 
     margin: 15px 0px;
@@ -38,6 +41,7 @@
             color: #fff;
             font-size: 0.9em;
             }
+        }
 
             .author {
                 float: left;
@@ -45,15 +49,13 @@
                 flex-direction: row;
                 align-items: center;
                 img {
-                    height: 70px;
-                    width: 70px;
                     border-radius: 50%;
                 }
                 p {
-                    margin: 4px 0 0 5px;
+                    margin: 3px 0 0 5px;
                 }
             }
-        }
+        
 
         .description {
             padding: 10px;
@@ -79,26 +81,13 @@
         }
     }
 
-    &.twitter {
-        .content {
-            padding: 0;
-            height: auto;
-        }
-    }
-
-    &.instagram {
+    &.vertical {
         .content {
             padding: 0;
             height: auto;
         }
         .source {
             padding-bottom: 10px;
-            .author {
-                img {
-                    height: 30px;
-                    width: 30px; 
-                }
-            }
         }
         .image {
             position: relative;
@@ -106,5 +95,23 @@
             border-radius: 0;
             width: 100%;
         }
-    }    
+    }
+
+    &.twitter {
+        .source .author img {
+            @include avatar_dim(70px);
+        }
+    }
+    
+    &.facebook {
+        .source .author img {
+            @include avatar_dim(50px);
+        }
+    }
+
+    &.instagram {
+        .source .author img {
+            @include avatar_dim(30px);
+        }
+    }
 }

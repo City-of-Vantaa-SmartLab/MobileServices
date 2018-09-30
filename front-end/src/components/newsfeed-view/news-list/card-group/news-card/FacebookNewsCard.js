@@ -2,20 +2,21 @@ import React from 'react';
 import Timestamp from './elements/Timestamp';
 import './newscard.css';
 
-const InstagramNewsCard = ({data}) => (
-    <div className="news_card instagram">
+const FacebookNewsCard = ({data}) => (
+    <div className="news_card vertical facebook">
         <div className = "content">
             <div className="source">
                 <div className="author">
-                    <img src = "https://pbs.twimg.com/profile_images/559709902990348288/NwYEyKfg_400x400.jpeg" />
+                    <img src = {data.thumbnail} />
                     <p>{data.author}</p>
                 </div>
                 <span>{data.source}</span>
             </div>
-            <div className = "image" style={{ backgroundImage: `url(${data.img})` }}></div>
             <div className="description">
-                <p><b>{data.author}</b> {data.description}</p>
+                <p>{data.description}</p>
             </div>
+            <div className = "image" style={{ backgroundImage: `url(${data.img})` }}></div>
+            
             <div className="footer">
                 <Timestamp time = {data.timestamp} />
             </div>
@@ -23,4 +24,4 @@ const InstagramNewsCard = ({data}) => (
     </div>
  );
 
- export default InstagramNewsCard;
+ export default FacebookNewsCard;

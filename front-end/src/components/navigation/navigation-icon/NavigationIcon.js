@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { withRouter } from 'react-router'
-import SvgIcon from "../svg-icon/SvgIcon";
-import "./NavigationIcon.css"
+import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+import SvgIcon from '../../svg-icon/SvgIcon';
+import './NavigationIcon.css';
 
 
 class NavigationIcon extends Component {
@@ -13,7 +13,7 @@ class NavigationIcon extends Component {
                 <SvgIcon isActive={this.props.match && this.props.match.isExact ? true : false} name={this.props.iconName} />
                 <div>{this.props.iconText}</div>
             </div>
-        )
+        );
     }
 }
 
