@@ -9,9 +9,9 @@ class SettingsView extends Component {
         return (
             <div>
                 <p>Choose language:</p>
-                <button value='en' onClick = {() => this.props.onClick('en')}>{i18n.enname}</button>
-                <button value='fi' onClick = {() => this.props.onClick('fi')}>{i18n.finame}</button>
-                <button value='se' onClick = {() => this.props.onClick('se')}>{i18n.sename}</button>
+                <button onClick = {() => this.props.onClick('en')}>{i18n.enname}</button>
+                <button onClick = {() => this.props.onClick('fi')}>{i18n.finame}</button>
+                <button onClick = {() => this.props.onClick('sv')}>{i18n.sename}</button>
             </div>
         );
     }
