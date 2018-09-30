@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDate, formatDate } from '../../utils/utils';
+import { getDate, formatDate } from 'utils/utils';
 import DateHeader from './DateHeader';
 import './Header.css';
 
