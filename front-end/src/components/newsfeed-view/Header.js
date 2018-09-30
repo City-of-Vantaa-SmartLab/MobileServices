@@ -1,5 +1,6 @@
 import React from 'react';
-import { getDate, formatDate } from 'utils/utils';
+import { connect } from 'react-redux';
+import { formatDate } from 'utils/utils';
 import DateHeader from './DateHeader';
 import './Header.css';
 
@@ -7,8 +8,15 @@ import './Header.css';
 const Header = props => (
     <div className="header">
         <h2>TODAY IN VANTAA</h2>
-        <DateHeader date={formatDate(getDate())} />
+        <DateHeader date={formatDate(new Date(), props.i18n.locale)} />
     </div>
  );
 
- export default Header;
+ const mapStateToProps = state => ({
+    i18n: state.i18n,
+});
+
+
+export default connect(
+    mapStateToProps,
+)(Header);

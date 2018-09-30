@@ -21,8 +21,8 @@ const translations = {
             settings: 'Asetukset',
         },
     },
-    se: {
-        locale: 'se',
+    sv: {
+        locale: 'sv',
         enname: 'English',
         finame: 'Finnish',
         sename: 'Swedish',

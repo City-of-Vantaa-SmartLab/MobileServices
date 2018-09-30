@@ -7,7 +7,6 @@ import FacebookNewsCard from './FacebookNewsCard';
 
 
 const NewsCardSwitcher = ({type, data}) => {
-    console.log(type);
     switch (type) {
         case 'twitter':
             return <TwitterNewsCard data = {data} />;
