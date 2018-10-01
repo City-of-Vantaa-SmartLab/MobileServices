@@ -5,9 +5,6 @@ $font-primary-ui: "GT-Walsheim";
 $color-primary: rgba(74, 74, 74, 1);
 $color-white: rgba(255, 255, 255, 1);
 $color-active-link: rgba(60, 143, 222, 1);
-$color-cookie-view-bg: rgba(228, 239, 248, 1);
-$color-navigation-icon: rgba(151, 151, 151, 1);
-$color-news-feed-bg: rgba(239,241,241, 1);
 
 // Cookie view related constants
 $cookie-view-font-size: 1.4rem;
@@ -17,9 +14,9 @@ $cookie-close-button-font-size: 3.2rem;
 
 // Z-Indices
 $z-index: (
-    cookieModalBackdrop: 1040,
-    cookieModal: 1050,
-    backgrounds: -1
+    modal: 1050,
+    overlay: 1040,
+    background: -1
 );
 
 // Container static heights

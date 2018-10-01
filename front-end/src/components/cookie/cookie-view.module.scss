@@ -7,10 +7,12 @@
 @import "src/assets/stylesheets/variables";
 @import "src/assets/stylesheets/globals";
 
+$color-cookie-view-bg: rgba(228, 239, 248, 1);
+
 .cookie-modal-backdrop {
     @extend .common-fixed-position-rules;
 
-    z-index: map-get($map: $z-index, $key: cookieModalBackdrop);
+    z-index: map-get($map: $z-index, $key: overlay);
     background-color: $color-primary;
     opacity: 0.7;
 }
@@ -18,7 +20,7 @@
 .cookie-modal {
     @extend .common-fixed-position-rules;
 
-    z-index: map-get($map: $z-index, $key: cookieModal);
+    z-index: map-get($map: $z-index, $key: modal);
     background-color: $color-cookie-view-bg;
     
     height: 19rem;

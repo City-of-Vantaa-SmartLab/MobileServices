@@ -1,6 +1,8 @@
 @import "src/assets/stylesheets/fonts";
 @import "src/assets/stylesheets/variables";
 
+$color-navigation-icon: rgba(151, 151, 151, 1);
+
 .navigation-icon {
     text-align: center;
     color: $color-navigation-icon;
