@@ -7,6 +7,11 @@
 @import "src/assets/stylesheets/variables";
 @import "src/assets/stylesheets/globals";
 
+// Cookie view related constants
+$cookie-view-font-size: 1.4rem;
+$cookie-body-letter-spacing: -0.05rem;
+$cookie-close-button-font-size: 3.2rem;
+
 $color-cookie-view-bg: rgba(228, 239, 248, 1);
 
 .cookie-modal-backdrop {
