@@ -1,11 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { formatDate } from 'utils/utils';
 
-const DateHeader = ({date}) => {
+const DateHeader = ({timestamp, i18n}) => {
     return (
         <div className="date">
-            <p>{date}</p>
+            <p>{formatDate(new Date(), i18n.locale)}</p>
         </div>
     );
 };
 
-export default DateHeader;
+const mapStateToProps = state => ({
+    i18n: state.i18n,
+});
+
+export default connect(
+    mapStateToProps,
+)(DateHeader);

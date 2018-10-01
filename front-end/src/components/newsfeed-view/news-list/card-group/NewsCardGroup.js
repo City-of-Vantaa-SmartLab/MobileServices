@@ -12,7 +12,7 @@ class NewsCardGroup extends Component {
 
         return (
             <div className = "container">
-                <DateHeader date = {this.props.date} />
+                <DateHeader timestamp = {this.props.data.timestamp} />
                 <div className="newsgroup">
                     {CardGroup}
                 </div>

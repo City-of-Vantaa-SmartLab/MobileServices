@@ -1,9 +1,9 @@
 const translations = {
     en: {
         locale: 'en',
-        enname: 'English',
-        finame: 'Finnish',
-        sename: 'Swedish',
+        enButton: 'English',
+        fiButton: 'Finnish',
+        seButton: 'Swedish',
         navigation: {
             news: 'Newsfeed',
             links: 'Resources',
@@ -12,9 +12,9 @@ const translations = {
     },
     fi: {
         locale: 'fi',
-        enname: 'Englanti',
-        finame: 'Suomi',
-        sename: 'Ruotsi',
+        enButton: 'Englanti',
+        fiButton: 'Suomi',
+        seButton: 'Ruotsi',
         navigation: {
             news: 'Uutiset',
             links: 'Linkit',
@@ -23,9 +23,9 @@ const translations = {
     },
     sv: {
         locale: 'sv',
-        enname: 'English',
-        finame: 'Finnish',
-        sename: 'Swedish',
+        enButton: 'English',
+        fiButton: 'Finnish',
+        seButton: 'Swedish',
         navigation: {
             news: 'Newsfeed',
             links: 'Resources',
