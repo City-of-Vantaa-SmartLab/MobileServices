@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
-import sources from './facebook-feed-sources';
+import { sources, queryParams } from './facebook-utils';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TransactionRepository, Repository, Transaction } from 'typeorm';
 import { FacebookFeed } from './facebook-feed.entity';
@@ -25,14 +25,13 @@ export class FacebookFeedService {
     @Transaction()
     async fetchFacebookFeeds() {
         try {
-            const vantaaFacebookDataUrl = `https://graph.facebook.com/v3.1/${sources.vantaa}/posts?`
-                + `fields=id,name,message,story,picture,message_tags,story_tags,caption,`
-                + `created_time,description,place,properties,status_type,type,comments,reactions`
+            const vantaaFacebookDataUrl = `${config.facebookGraphApi}${sources.vantaa}/posts?`
+                + `fields=${queryParams.join(',')}`
                 + `&access_token=${config.facebookPageToken}`;
             const facebookFeeds = this.transformData((await axios.get(vantaaFacebookDataUrl)).data.data);
             await this.facebookFeedRepository.save(facebookFeeds);
         } catch (error) {
-            this.logger.error(`Failed to get facebook feeds: ${error.message}`)
+            this.logger.error(`Failed to get facebook feeds: ${error}`)
         }
     }
 
