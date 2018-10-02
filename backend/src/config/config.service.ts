@@ -91,6 +91,10 @@ export class ConfigService {
     return this.envConfig.FACEBOOK_PAGE_TOKEN;
   }
 
+  get facebookGraphApi(): string {
+    return this.envConfig.FACEBOOK_GRAPH_API;
+  }
+
   get vantaaFacebookPage(): string {
     return this.envConfig.VANTAA_FACEBOOK_PAGE;
   }
@@ -117,6 +121,7 @@ export class ConfigService {
       FACEBOOK_APP_ID: Joi.string(),
       FACEBOOK_APP_SECRET: Joi.string(),
       VANTAA_FACEBOOK_PAGE: Joi.string(),
+      FACEBOOK_GRAPH_API: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
