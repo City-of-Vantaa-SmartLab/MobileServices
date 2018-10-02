@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router'
 import SvgIcon from "../svg-icon/SvgIcon";
-import "./NavigationIcon.css"
+import styles from "./navigation-icon.module.scss"
 
 
 export class NavigationIcon extends Component {
@@ -9,9 +9,9 @@ export class NavigationIcon extends Component {
     render() {
 
         return (
-            <div className="navigationIcon">
+            <div className={styles["navigation-icon"]}>
                 <SvgIcon isActive={this.props.match && this.props.match.isExact ? true : false} name={this.props.iconName} />
-                <div>{this.props.iconText}</div>
+                <div className={styles["navigation-icon-text"]}>{this.props.iconText}</div>
             </div>
         )
     }

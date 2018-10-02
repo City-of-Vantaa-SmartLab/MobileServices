@@ -1,0 +1,19 @@
+@import "src/assets/stylesheets/variables";
+@import "src/assets/stylesheets/globals";
+
+.navigation {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    height: $navigation-height;
+    width: 100%;
+    padding-top: 0.8rem;
+    padding-bottom: 0.6rem;
+    justify-content: space-around;
+    background-color: $color-white;
+    opacity: 0.9;
+
+    a {
+        text-decoration: none;
+    }
+}

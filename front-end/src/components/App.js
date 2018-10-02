@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { withCookies } from 'react-cookie';
-import "./App.css";
 
 import CookieView from "./cookie/CookieView";
 import NewsfeedView from './newsfeed-view/NewsfeedView';
