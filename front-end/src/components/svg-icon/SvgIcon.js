@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "./svg-icon.module.scss";
 
 const preferencesIcon = (
-    <svg width="2.4rem" height="2.4rem" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg className={styles["preferences-icon"]} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         {/* Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch */}
         <title>Glyphs / Activity View Action / Contact</title>
         <desc>Created with Sketch.</desc>
@@ -15,7 +16,7 @@ const preferencesIcon = (
 );
 
 const preferencesIconActive = (
-    <svg width="2.4rem" height="2.4rem" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg className={styles["preferences-icon"]} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         {/* Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch */}
         <title>Glyphs / Activity View Action / Contact clicked</title>
         <desc>Created with Sketch.</desc>
@@ -29,7 +30,7 @@ const preferencesIconActive = (
 );
 
 const resourcesIcon = (
-    <svg width="3.2rem" height="2.2rem" viewBox="0 0 32 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg className={styles["resources-icon"]} viewBox="0 0 32 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         {/* Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch */}
         <title>Glyphs / Bar Button / Resources / Off</title>
         <desc>Created with Sketch.</desc>
@@ -44,7 +45,7 @@ const resourcesIcon = (
 );
 
 const resourcesIconActive = (
-    <svg width="3.2rem" height="2.2rem" viewBox="0 0 32 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg className={styles["resources-icon"]} viewBox="0 0 32 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         {/* Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch */}
         <title>Glyphs / Bar Button / Resources / Off Copy</title>
         <desc>Created with Sketch.</desc>
@@ -59,7 +60,7 @@ const resourcesIconActive = (
 );
 
 const newsIcon = (
-    <svg width="1.9rem" height="2rem" viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg className={styles["news-icon"]} viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         {/* Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch */}
         <title>Glyphs / Bar Button / news icon/ unselected</title>
         <desc>Created with Sketch.</desc>
@@ -81,7 +82,7 @@ const newsIcon = (
 );
 
 const newsIconActive = (
-    <svg width="1.9rem" height="2rem" viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+    <svg className={styles["news-icon"]} viewBox="0 0 19 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         {/* Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch */}
         <title>Glyphs / Bar Button / news icon/ selected</title>
         <desc>Created with Sketch.</desc>

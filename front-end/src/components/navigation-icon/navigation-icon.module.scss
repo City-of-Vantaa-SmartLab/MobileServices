@@ -8,10 +8,6 @@ $color-navigation-icon: rgba(151, 151, 151, 1);
     color: $color-navigation-icon;
     text-decoration: none;
 
-    svg {
-        height: 2rem;
-    }
-
     :global(.active) & {
         color: $color-active-link;
     }
