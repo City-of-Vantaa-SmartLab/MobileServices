@@ -87,6 +87,18 @@ export class ConfigService {
     return Number(this.envConfig.YOUTUBE_CHANNEL_LIST_LIMIT);
   }
 
+  get facebookPageToken(): string {
+    return this.envConfig.FACEBOOK_PAGE_TOKEN;
+  }
+
+  get facebookGraphApi(): string {
+    return this.envConfig.FACEBOOK_GRAPH_API;
+  }
+
+  get vantaaFacebookPage(): string {
+    return this.envConfig.VANTAA_FACEBOOK_PAGE;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -105,7 +117,11 @@ export class ConfigService {
       VANTAA_STORIES_PATH: Joi.string(),
       YOUTUBE_API_KEY: Joi.string(),
       YOUTUBE_CHANNEL_ID: Joi.string(),
-      YOUTUBE_CHANNEL_LIST_LIMIT: Joi.number().default(20)
+      YOUTUBE_CHANNEL_LIST_LIMIT: Joi.number().default(20),
+      FACEBOOK_APP_ID: Joi.string(),
+      FACEBOOK_APP_SECRET: Joi.string(),
+      VANTAA_FACEBOOK_PAGE: Joi.string(),
+      FACEBOOK_GRAPH_API: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
