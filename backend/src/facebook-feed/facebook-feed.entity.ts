@@ -17,7 +17,7 @@ export class FacebookFeed {
     picture: string;
 
     @Column()
-    pub_date: string;
+    pub_date: Date;
 
     @Column()
     status_type: string;

@@ -52,8 +52,13 @@ export class FacebookFeedService {
         });
     }
 
-    async findAll(): Promise<FacebookFeed[]> {
-        return await this.facebookFeedRepository.find();
+    async find(limit: number): Promise<FacebookFeed[]> {
+        return await this.facebookFeedRepository.find({
+            order: {
+                pub_date: 'DESC'
+            },
+            take: limit
+        });
     }
 
 }

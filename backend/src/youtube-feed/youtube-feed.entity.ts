@@ -14,10 +14,10 @@ export class YouTubeFeed {
     video_id: string;
 
     @Column({ nullable: true })
-    playlist_idd: string;
+    playlist_id: string;
 
     @Column()
-    pub_date: string;
+    pub_date: Date;
 
     @Column()
     title: string;
