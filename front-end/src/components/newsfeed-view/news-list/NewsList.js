@@ -59,15 +59,15 @@ const dummyfeed = [
 class NewsList extends Component {
 
     render() {
-        const Newsfeed = _.chain(dummyfeed)
+        const newsfeed = _.chain(dummyfeed)
             .groupBy((item) => (formatDate(item.timestamp)))
-            .map((item, date) => (<NewsCardGroup data = {item} />))
+            .map((item, date) => (<NewsCardGroup data={item} />))
             .value();
 
         return (
             <div className = "container">
                 <div className="newsfeed">
-                    {Newsfeed}
+                    {newsfeed}
                 </div>
             </div>
         );

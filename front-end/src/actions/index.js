@@ -1,6 +1,8 @@
+import * as actions from './actionTypes';
+
 export const changeLanguage = (lang) => {
     return {
-        type: 'CHANGE_LANGUAGE',
+        type: actions.CHANGE_LANGUAGE,
         lang,
     };
 };

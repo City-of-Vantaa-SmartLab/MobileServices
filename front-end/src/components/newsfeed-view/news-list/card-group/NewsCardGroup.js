@@ -6,7 +6,7 @@ import DateHeader from './../../DateHeader';
 class NewsCardGroup extends Component {
 
     render() {
-        const CardGroup = this.props.data.map(item => (
+        const cardGroup = this.props.data.map(item => (
             <NewsCardSwitcher type = {item.source} data = {item}/>
         ));
 
@@ -14,7 +14,7 @@ class NewsCardGroup extends Component {
             <div className = "container">
                 <DateHeader timestamp = {this.props.data.timestamp} />
                 <div className="newsgroup">
-                    {CardGroup}
+                    {cardGroup}
                 </div>
             </div>
         );
