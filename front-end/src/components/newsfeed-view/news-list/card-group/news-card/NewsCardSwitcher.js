@@ -9,13 +9,13 @@ import FacebookNewsCard from './FacebookNewsCard';
 const NewsCardSwitcher = ({type, data}) => {
     switch (type) {
         case 'twitter':
-            return <TwitterNewsCard data = {data} />
+            return <TwitterNewsCard data = {data} />;
         case 'instagram':
-            return <InstagramNewsCard data = {data} />
+            return <InstagramNewsCard data = {data} />;
         case 'facebook':
-            return <FacebookNewsCard data = {data} />
+            return <FacebookNewsCard data = {data} />;
         default:
-            return <NewsCard data = {data} />
+            return <NewsCard data = {data} />;
     }
 };
 
