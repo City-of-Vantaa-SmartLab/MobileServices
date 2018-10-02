@@ -61,7 +61,7 @@ class NewsList extends Component {
     render() {
         const newsfeed = _.chain(dummyfeed)
             .groupBy((item) => (formatDate(item.timestamp)))
-            .map((item, date) => (<NewsCardGroup data={item} />))
+            .map((item, date) => (<NewsCardGroup date={date} data={item} />))
             .value();
 
         return (

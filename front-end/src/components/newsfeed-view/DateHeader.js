@@ -4,9 +4,10 @@ import { formatDate } from 'utils/utils';
 import styles from './header.module.scss';
 
 const DateHeader = ({timestamp, i18n}) => {
+    let date = timestamp ? new Date(timestamp) : new Date();
     return (
         <div className={styles['date']}>
-            <h4>{formatDate(new Date(), i18n.locale)}</h4>
+            <h4>{formatDate(date, i18n.locale)}</h4>
         </div>
     );
 };
