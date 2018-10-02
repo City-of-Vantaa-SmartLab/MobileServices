@@ -1,0 +1,124 @@
+@import "src/assets/stylesheets/variables";
+@import "src/assets/stylesheets/fonts";
+
+$content-source-font-size: 1.2rem;
+$content-source-bg: rgba(10, 89, 126, 1);
+$content-author-font-size: 1.2rem;
+
+@mixin avatar_dim($size) {
+    height: $size;
+    width: $size;
+}
+
+.news-card {
+    margin: 1.5rem 0;
+    background: $color-white;
+    position: relative;
+    display: block;
+    border-radius: 0.5rem;
+    box-shadow: 0.2rem 0.3rem 0.5rem -0.1rem rgba(0, 0, 0, 0.24);
+
+    .image {
+        border-radius: 0.5rem 0 0 0.5rem;
+        height: 100%;
+        width: 15rem;
+        position: absolute;
+        left: 0;
+        background-size: cover;
+        overflow: hidden;
+    }
+  
+    .content {
+        height: 15rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 15rem;
+        position: relative;
+
+        .source {
+            right: 0;
+            padding: 1rem 0 0 1rem;
+            position: relative;
+    
+            span {
+                float: right;
+                padding: 0.5rem 1rem;
+                background: $content-source-bg;
+                color: $color-white;
+                font-size: $content-source-font-size;
+            }
+        }
+
+        .author {
+            float: left;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            img {
+                border-radius: 50%;
+            }
+            p {
+                margin: 0.3rem 0 0 0.5rem;
+            }
+        }
+        
+
+        .description {
+            padding: 1rem;
+
+            p {
+                margin: 0;
+            }
+            & > span {
+                font-size: $content-author-font-size;
+                color: $color-primary;
+            }
+        }
+    }
+  
+    .footer {
+        bottom: 0;
+        right: 0;
+        padding: 1rem;
+
+        h5 {
+            opacity: 0.5;
+            font-weight: normal;
+        }
+    }
+
+    &.vertical {
+        .content {
+            padding: 0;
+            height: auto;
+        }
+        .source {
+            padding-bottom: 1rem;
+        }
+        .image {
+            position: relative;
+            height: 20rem;
+            border-radius: 0;
+            width: 100%;
+        }
+    }
+
+    &.twitter {
+        .source .author img {
+            @include avatar_dim(7rem);
+        }
+    }
+    
+    &.facebook {
+        .source .author img {
+            @include avatar_dim(5rem);
+        }
+    }
+
+    &.instagram {
+        .source .author img {
+            @include avatar_dim(3rem);
+        }
+    }   
+}

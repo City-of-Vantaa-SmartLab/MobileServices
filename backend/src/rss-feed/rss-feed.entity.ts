@@ -11,17 +11,17 @@ export class RssFeed {
     link: string;
 
     @Column()
-    pubDate: string;
+    pub_date: string;
 
     @Column()
     content: string;
 
     @Column()
-    contentSnippet: string;
+    source: string;
 
     @Column()
     guid: string;
 
     @Column()
-    isoDate: string;
+    iso_date: string;
 }

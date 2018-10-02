@@ -1,0 +1,26 @@
+@import "./variables";
+
+.font-s {
+    font: 1rem $font-primary-ui;
+    letter-spacing: 0;
+}
+
+.font-r {
+    font: 1.6rem $font-primary-ui;
+    letter-spacing: 0;
+}
+
+.font-l {
+    font: 2rem $font-primary-ui;
+    letter-spacing: 0;
+}
+
+.font-xl {
+    font: 2.4rem $font-primary-ui;
+    letter-spacing: 0;
+}
+
+.font-xxl {
+    font: 3rem $font-primary-ui;
+    letter-spacing: 0;
+}

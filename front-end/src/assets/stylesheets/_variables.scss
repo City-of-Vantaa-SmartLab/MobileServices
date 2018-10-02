@@ -1,0 +1,18 @@
+// Fonts
+$font-primary-ui: "GT-Walsheim";
+
+// Colors
+$color-primary: rgba(74, 74, 74, 1);
+$color-white: rgba(255, 255, 255, 1);
+$color-active-link: rgba(60, 143, 222, 1);
+
+
+// Z-Indices
+$z-index: (
+    modal: 1050,
+    overlay: 1040,
+    background: -1
+);
+
+// Container static heights
+$navigation-height: 5.6rem;

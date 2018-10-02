@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import  _  from 'lodash';
 import { formatDate } from 'utils/utils';
 import pic from 'assets/images/cutiepie.jpg';
-import './newslist.css';
 import NewsCardGroup from './card-group/NewsCardGroup';
+import styles from './news-list.module.scss';
 
 const dummyfeed = [
     {
@@ -65,8 +65,8 @@ class NewsList extends Component {
             .value();
 
         return (
-            <div className = "container">
-                <div className="newsfeed">
+            <div className={styles['container']}>
+                <div className={styles['newsfeed']}>
                     {newsfeed}
                 </div>
             </div>
