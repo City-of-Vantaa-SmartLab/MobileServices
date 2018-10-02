@@ -1,0 +1,20 @@
+@import "src/assets/stylesheets/variables";
+@import "src/assets/stylesheets/fonts";
+
+.header {
+    color: $color-white;
+    position: fixed;
+    margin-top: 3rem;
+    margin-left: 2rem;
+
+    .date {
+        h4 {
+            color: $color-white;
+            font-weight: normal;
+        }
+    }
+}
+
+.date {
+    text-transform: uppercase;
+}

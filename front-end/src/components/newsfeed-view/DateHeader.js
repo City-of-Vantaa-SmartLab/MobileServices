@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from "./header.module.scss";
 
 const DateHeader = ({date}) => {
     return (
-        <div className="date">
-            <p>{date}</p>
+        <div className={styles["date"]}>
+            <h4>{date}</h4>
         </div>
     );
 };
