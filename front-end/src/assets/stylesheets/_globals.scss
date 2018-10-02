@@ -1,0 +1,61 @@
+@import "./variables";
+@import "./fonts";
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $font-primary-ui;
+    line-height: 1.8rem;
+}
+
+// Headers
+h1 {
+    @extend .font-xxl;
+
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+h2 {
+    @extend .font-xl;
+
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+h3 {
+    @extend .font-l;
+
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    color: $color-primary;
+}
+
+h4 {
+    @extend .font-r;
+
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    color: $color-primary;
+}
+
+h5 {
+    @extend .font-s;
+
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    color: $color-primary;
+}
+
+.common-fixed-position-rules {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
