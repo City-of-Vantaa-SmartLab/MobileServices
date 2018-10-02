@@ -11,7 +11,7 @@ export class RssFeed {
     link: string;
 
     @Column()
-    pub_date: string;
+    pub_date: Date;
 
     @Column()
     content: string;

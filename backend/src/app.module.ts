@@ -6,13 +6,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { connectionDetails } from './connection';
 import { YouTubeFeedModule } from './youtube-feed/youtube-feed.module';
 import { FacebookFeedModule } from './facebook-feed/facebook-feed.module';
+import { FeedModule } from './feeds/feed.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(connectionDetails),
     RssFeedModule,
     YouTubeFeedModule,
-    FacebookFeedModule
+    FacebookFeedModule,
+    FeedModule
   ],
   controllers: [AppController],
   providers: [AppService]

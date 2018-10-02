@@ -49,7 +49,12 @@ export class RssFeedService {
         }
     }
 
-    async findAll(): Promise<RssFeed[]> {
-        return await this.rssFeedRepository.find();
+    async find(limit: number): Promise<RssFeed[]> {
+        return await this.rssFeedRepository.find({
+            order: {
+                pub_date: 'DESC'
+            },
+            take: limit
+        });
     }
 }

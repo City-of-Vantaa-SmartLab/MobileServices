@@ -63,7 +63,12 @@ export class YouTubeFeedService {
         }
     }
 
-    async findAll(): Promise<YouTubeFeed[]> {
-        return await this.youTubeFeedRepository.find();
+    async find(limit: number): Promise<YouTubeFeed[]> {
+        return await this.youTubeFeedRepository.find({
+            order: {
+                pub_date: 'DESC'
+            },
+            take: limit
+        });
     }
 }
