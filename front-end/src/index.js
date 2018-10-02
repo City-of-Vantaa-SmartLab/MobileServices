@@ -2,15 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
+import { Provider } from 'react-redux';
+
+import registerServiceWorker from './registerServiceWorker';
+import getStore from './store/getStore';
+
+const store = getStore();
 
 ReactDOM.render(
-    <CookiesProvider>
-        <Router>
-            <App />
-        </Router>
-    </CookiesProvider>,
+    <Provider store={store}>
+        <CookiesProvider>
+            <Router>
+                <App />
+            </Router>
+        </CookiesProvider>
+    </Provider>,
+    
     document.getElementById('root'));
+    
 registerServiceWorker();

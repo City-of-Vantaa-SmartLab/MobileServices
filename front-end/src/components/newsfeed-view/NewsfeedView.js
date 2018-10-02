@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import Backgrounds from './Backgrounds';
+import Backgrounds from './carousel/Backgrounds';
 import NewsList from './news-list/NewsList';
 
 class NewsfeedView extends Component {

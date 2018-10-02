@@ -1,12 +1,21 @@
 import React from 'react';
-import styles from "./header.module.scss";
+import { connect } from 'react-redux';
+import { formatDate } from 'utils/utils';
+import styles from './header.module.scss';
 
-const DateHeader = ({date}) => {
+const DateHeader = ({timestamp, i18n}) => {
+    let date = timestamp ? new Date(timestamp) : new Date();
     return (
-        <div className={styles["date"]}>
-            <h4>{date}</h4>
+        <div className={styles['date']}>
+            <h4>{formatDate(date, i18n.locale)}</h4>
         </div>
     );
 };
 
-export default DateHeader;
+const mapStateToProps = state => ({
+    i18n: state.i18n,
+});
+
+export default connect(
+    mapStateToProps,
+)(DateHeader);
