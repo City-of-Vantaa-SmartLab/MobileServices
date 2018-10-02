@@ -11,6 +11,9 @@ const translations = {
             links: 'Resources',
             settings: 'Settings',
         },
+        newsfeed: {
+            header: 'TODAY IN VANTAA'
+        },
     },
     fi: {
         locale: 'fi',
@@ -22,6 +25,9 @@ const translations = {
             links: 'Linkit',
             settings: 'Asetukset',
         },
+        newsfeed: {
+            header: 'TODAY IN VANTAA'
+        },
     },
     sv: {
         locale: 'sv',
@@ -32,6 +38,9 @@ const translations = {
             news: 'Newsfeed',
             links: 'Resources',
             settings: 'Settings',
+        },
+        newsfeed: {
+            header: 'TODAY IN VANTAA'
         },
     },
 };
