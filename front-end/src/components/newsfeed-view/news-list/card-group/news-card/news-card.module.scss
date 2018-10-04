@@ -46,7 +46,7 @@ $content-author-font-size: 1.2rem;
         padding: 2.4rem 1.2rem 1.2rem 1.2rem;
 
         .description {
-            p {
+            :global(.content-text) {
                 line-height: 1.19;
                 font-weight: 600;
                 font-size: 1.6rem;
