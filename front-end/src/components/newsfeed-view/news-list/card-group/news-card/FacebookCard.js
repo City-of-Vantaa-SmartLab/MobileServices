@@ -9,14 +9,14 @@ const FacebookCard = ({data}) => (
         </div>
         <div className={styles['content']}>
             <div className={styles['content-source']}>
-                <img src = {data.thumbnail} />
+                <img src={data.thumbnail} alt='Facebook thumbnail' />
                 <div>{data.author}</div>
             </div>
             <div className={styles['description']}>
                 <div>{data.description}</div>
             </div>
             <div className={styles['image']}>
-                <img src = {data.img} />
+                <img src={data.img} alt='Facebook' />
             </div>
             <div className={styles['footer']}>
                 <Timestamp time = {data.timestamp} />

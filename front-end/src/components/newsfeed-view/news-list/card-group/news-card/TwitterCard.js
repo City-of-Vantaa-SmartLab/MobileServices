@@ -9,7 +9,7 @@ const TwitterCard = ({data}) => (
         </div>
         <div className={styles['content']}>
             <div className={styles['content-source']}>
-                <img src = {data.thumbnail} />
+                <img src={data.thumbnail} alt='Twitter thumbnail' />
                 <div>
                     {data.author}
                     <br />
