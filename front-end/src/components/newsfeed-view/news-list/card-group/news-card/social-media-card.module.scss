@@ -36,14 +36,18 @@ $content-author-font-size: 1.2rem;
         .content-source {
             display: flex;
             position: relative;
-            margin: 1.2rem;
+            margin: 1.2rem 1.2rem 0.6rem 1.2rem;
 
             div {
+                margin: auto 0 auto 0.8rem;
                 margin-left: 0.8rem;
+                font-weight: bold;
+                font-size: 1.6rem;
             }
         }
 
         .image {
+            margin: 0.6rem 0;
             img {
                 width: 100%;
                 height: 16rem;
@@ -52,7 +56,7 @@ $content-author-font-size: 1.2rem;
         
         .description {
             font-size: 1.4rem;
-            margin: 1.2rem;
+            margin: 0.6rem 1.2rem;
 
             .likes {
                 margin-bottom: 1.2rem;
@@ -67,7 +71,7 @@ $content-author-font-size: 1.2rem;
         .footer {
             bottom: 0;
             right: 0;
-            margin: 0 1.2rem 1.2rem;
+            margin: 0.6rem 1.2rem 1.2rem 1.2rem;
     
             h5 {
                 opacity: 0.5;
@@ -99,8 +103,8 @@ $content-author-font-size: 1.2rem;
     }
     
     &.facebook {
-        .content-source .author img {
-            @include avatar_dim(5rem);
+        .content-source img {
+            @include avatar_dim(3.2rem);
         }
     }
 

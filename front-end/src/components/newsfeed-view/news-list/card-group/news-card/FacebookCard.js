@@ -3,20 +3,21 @@ import Timestamp from './elements/Timestamp';
 import styles from './social-media-card.module.scss';
 
 const FacebookCard = ({data}) => (
-    <div className={`${styles['social-media-card']} ${styles['vertical']} ${styles['facebook']}`}>
+    <div className={`${styles['social-media-card']} ${styles['facebook']}`}>
+        <div className={styles["service-source"]}>
+            {data.source}
+        </div>
         <div className={styles['content']}>
-            <div className={styles['source']}>
-                <div className={styles['author']}>
-                    <img src = {data.thumbnail} />
-                    <p>{data.author}</p>
-                </div>
-                <span>{data.source}</span>
+            <div className={styles['content-source']}>
+                <img src = {data.thumbnail} />
+                <div>{data.author}</div>
             </div>
             <div className={styles['description']}>
-                <p>{data.description}</p>
+                <div>{data.description}</div>
             </div>
-            <div className={styles['image']} style={{ backgroundImage: `url(${data.img})` }}></div>
-            
+            <div className={styles['image']}>
+                <img src = {data.img} />
+            </div>
             <div className={styles['footer']}>
                 <Timestamp time = {data.timestamp} />
             </div>
