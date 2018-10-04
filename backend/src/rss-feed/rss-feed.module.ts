@@ -1,11 +1,12 @@
 import { Module, Logger } from '@nestjs/common';
-import { RssFeedService } from './rss-feed.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { RssFeed } from './rss-feed.entity';
+import { FeedService } from '../feeds/feed.service';
+import { Feed } from '../feeds/feed.entity';
+import { RssFeedService } from './rss-feed.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([RssFeed])],
-    providers: [RssFeedService, Logger],
+    imports: [TypeOrmModule.forFeature([Feed])],
+    providers: [RssFeedService, FeedService, Logger],
     exports: [RssFeedService],
 })
 export class RssFeedModule { }
