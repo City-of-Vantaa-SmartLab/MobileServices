@@ -10,79 +10,69 @@ $content-author-font-size: 1.2rem;
     width: $size;
 }
 
-.news-card {
+.social-media-card {
     margin: 0.9rem 1.2rem;
     background: $color-white;
+    display: flex;
     position: relative;
-    display: block;
 
-    .image {
-        border-radius: 0.5rem 0 0 0.5rem;
-        height: 100%;
-        width: 15rem;
+    .service-source {
         position: absolute;
-        left: 0;
-        background-size: cover;
-        overflow: hidden;
+        right: 0.6rem;
+        top: -0.6rem;
+        padding: 0 1rem;
+        background-color: $content-source-bg;
+        color: $color-white;
+        font-size: $content-source-font-size;
+        height: 2rem;
     }
   
     .content {
-        height: 15rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding-left: 15rem;
         position: relative;
 
-        .source {
-            right: 0;
-            padding: 1rem 0 0 1rem;
+        .content-source {
+            display: flex;
             position: relative;
-    
-            span {
-                float: right;
-                padding: 0.5rem 1rem;
-                background: $content-source-bg;
-                color: $color-white;
-                font-size: $content-source-font-size;
+            margin: 1.2rem;
+
+            div {
+                margin-left: 0.8rem;
             }
         }
 
-        .author {
-            float: left;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+        .image {
             img {
-                border-radius: 50%;
-            }
-            p {
-                margin: 0.3rem 0 0 0.5rem;
+                width: 100%;
+                height: 16rem;
             }
         }
         
-
         .description {
-            padding: 1rem;
+            font-size: 1.4rem;
+            margin: 1.2rem;
 
-            p {
-                margin: 0;
+            .likes {
+                margin-bottom: 1.2rem;
             }
-            & > span {
-                font-size: $content-author-font-size;
-                color: $color-primary;
+
+            .likes, b {
+                font-weight: bold;
             }
+
         }
-    }
-  
-    .footer {
-        bottom: 0;
-        right: 0;
-        padding: 1rem;
 
-        h5 {
-            opacity: 0.5;
-            font-weight: normal;
+        .footer {
+            bottom: 0;
+            right: 0;
+            margin: 0 1.2rem 1.2rem;
+    
+            h5 {
+                opacity: 0.5;
+                font-weight: normal;
+            }
         }
     }
 
@@ -103,20 +93,20 @@ $content-author-font-size: 1.2rem;
     }
 
     &.twitter {
-        .source .author img {
+        .content-source .author img {
             @include avatar_dim(7rem);
         }
     }
     
     &.facebook {
-        .source .author img {
+        .content-source .author img {
             @include avatar_dim(5rem);
         }
     }
 
     &.instagram {
-        .source .author img {
-            @include avatar_dim(3rem);
+        .content-source img {
+            @include avatar_dim(2.3rem);
         }
     }   
 }

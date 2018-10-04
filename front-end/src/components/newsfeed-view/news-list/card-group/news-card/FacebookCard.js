@@ -3,7 +3,7 @@ import Timestamp from './elements/Timestamp';
 import styles from './social-media-card.module.scss';
 
 const FacebookCard = ({data}) => (
-    <div className={`${styles['news-card']} ${styles['vertical']} ${styles['facebook']}`}>
+    <div className={`${styles['social-media-card']} ${styles['vertical']} ${styles['facebook']}`}>
         <div className={styles['content']}>
             <div className={styles['source']}>
                 <div className={styles['author']}>

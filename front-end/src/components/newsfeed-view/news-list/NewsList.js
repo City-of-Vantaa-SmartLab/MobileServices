@@ -15,6 +15,7 @@ const dummyfeed = [
         source: 'instagram',
         img: pic,
         timestamp: 1537283957618,
+        likes: 34
     },
     {
         id: 2,
