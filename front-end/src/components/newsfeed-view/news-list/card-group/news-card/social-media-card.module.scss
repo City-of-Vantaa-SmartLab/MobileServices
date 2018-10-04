@@ -4,6 +4,9 @@
 $content-source-font-size: 1.2rem;
 $content-source-bg: rgba(10, 89, 126, 1);
 $content-author-font-size: 1.2rem;
+$twitter-source-bg: #007b5f;
+$instagram-source-bg: #450099;
+$facebook-source-bg: #ba0d2e;
 
 @mixin avatar_dim($size) {
     height: $size;
@@ -21,7 +24,6 @@ $content-author-font-size: 1.2rem;
         right: 0.6rem;
         top: -0.6rem;
         padding: 0 1rem;
-        background-color: $content-source-bg;
         color: $color-white;
         font-size: $content-source-font-size;
         height: 2rem;
@@ -81,6 +83,10 @@ $content-author-font-size: 1.2rem;
     }
 
     &.twitter {
+        .service-source {
+            background-color: $twitter-source-bg;
+        }
+
         .content-source {
             img {
                 @include avatar_dim(5.7rem);
@@ -95,12 +101,20 @@ $content-author-font-size: 1.2rem;
     }
     
     &.facebook {
+        .service-source {
+            background-color: $facebook-source-bg;
+        }
+
         .content-source img {
             @include avatar_dim(3.2rem);
         }
     }
 
     &.instagram {
+        .service-source {
+            background-color: $instagram-source-bg;
+        }
+
         .content-source img {
             @include avatar_dim(2.3rem);
         }
