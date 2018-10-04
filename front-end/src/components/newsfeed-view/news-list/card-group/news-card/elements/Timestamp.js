@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getTimeDelta } from 'utils/utils';
 
 const Timestamp = ({time, i18n}) => (
-    <span className="timestamp">{getTimeDelta(time, i18n.locale)}</span>
+    <h5>{getTimeDelta(time, i18n.locale)}</h5>
  );
 
  const mapStateToProps = state => ({

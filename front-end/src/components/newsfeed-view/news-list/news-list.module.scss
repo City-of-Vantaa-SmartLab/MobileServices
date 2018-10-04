@@ -1,8 +1,9 @@
 @import "src/assets/stylesheets/variables";
 
-$color-news-feed-bg: rgba(239,241,241, 1);
+$color-news-feed-bg: rgba(237, 237, 237, 1);
 
 .newsfeed {
+    font-family: "OpenSans";
     position: absolute;
     top: 100%;
     left: 0;

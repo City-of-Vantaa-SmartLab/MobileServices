@@ -18,8 +18,8 @@ const dummyfeed = [
     },
     {
         id: 2,
-        author: 'authorname',
-        title: 'one more basic news feed card',
+        author: 'Author / page headline',
+        title: 'Trump decides to resign from office after  scandel debacle now this is even more content that can be occupied here',
         source: 'vantaansanomat.fi',
         img: pic,
         timestamp: 1537283957618,
@@ -65,7 +65,7 @@ class NewsList extends Component {
             .value();
 
         return (
-            <div className={styles['container']}>
+            <div>
                 <div className={styles['newsfeed']}>
                     {newsfeed}
                 </div>

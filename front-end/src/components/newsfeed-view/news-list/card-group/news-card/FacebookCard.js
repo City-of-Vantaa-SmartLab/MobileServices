@@ -1,8 +1,8 @@
 import React from 'react';
 import Timestamp from './elements/Timestamp';
-import styles from './news-card.module.scss';
+import styles from './social-media-card.module.scss';
 
-const FacebookNewsCard = ({data}) => (
+const FacebookCard = ({data}) => (
     <div className={`${styles['news-card']} ${styles['vertical']} ${styles['facebook']}`}>
         <div className={styles['content']}>
             <div className={styles['source']}>
@@ -24,4 +24,4 @@ const FacebookNewsCard = ({data}) => (
     </div>
  );
 
- export default FacebookNewsCard;
+ export default FacebookCard;
