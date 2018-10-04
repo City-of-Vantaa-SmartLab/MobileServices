@@ -80,25 +80,17 @@ $content-author-font-size: 1.2rem;
         }
     }
 
-    &.vertical {
-        .content {
-            padding: 0;
-            height: auto;
-        }
-        .source {
-            padding-bottom: 1rem;
-        }
-        .image {
-            position: relative;
-            height: 20rem;
-            border-radius: 0;
-            width: 100%;
-        }
-    }
-
     &.twitter {
-        .content-source .author img {
-            @include avatar_dim(7rem);
+        .content-source {
+            img {
+                @include avatar_dim(5.7rem);
+            }
+
+            .twitter-handle {
+                font-size: 1.4rem;
+                font-weight: 300;
+                letter-spacing: -0.05rem;
+            }
         }
     }
     
