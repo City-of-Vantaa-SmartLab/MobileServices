@@ -1,59 +1,49 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { RssFeedService } from '../rss-feed/rss-feed.service';
-import { YouTubeFeedService } from '../youtube-feed/youtube-feed.service';
-import { FacebookFeedService } from '../facebook-feed/facebook-feed.service';
 import { compareDesc } from 'date-fns';
+import { Feed } from './feed.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class FeedService {
 
     constructor(
-        private readonly rssFeedService: RssFeedService,
-        private readonly youTubeService: YouTubeFeedService,
-        private readonly facebookService: FacebookFeedService,
+        @InjectRepository(Feed)
+        private readonly feedRepository: Repository<Feed>,
         private readonly logger: Logger) {
         this.logger = new Logger('FeedService');
     }
 
     async getFeeds(type: string, limit: number) {
         try {
-            let feeds = [];
-            type ? await this.getFeedsByType(type, limit).then(data => feeds.push(...data)) :
-                await Promise.all([
-                    this.getFacebookFeeds(limit).then(facebookFeeds => feeds.push(...facebookFeeds)),
-                    this.getRssFeeds(limit).then(rssFeeds => feeds.push(...rssFeeds)),
-                    this.getYouTubeFeeds(limit).then(youTubeFeeds => feeds.push(...youTubeFeeds))
-                ]);
+            const feeds = type ? await this.getFeedsByType(type, limit) : await this.getAll(limit);
             return feeds.sort((a, b) => compareDesc(a.pub_date, b.pub_date)).slice(0, limit);
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`)
         }
     }
 
-    async getFeedsByType(type: string, limit: number) {
+    async getAll(limit: number) {
         try {
-            switch (type) {
-                case 'facebook':
-                    return await this.getFacebookFeeds(limit);
-                case 'youtube':
-                    return await this.getYouTubeFeeds(limit);
-                case 'rss-feeds':
-                    return await this.getRssFeeds(limit);
-            }
+            return await this.feedRepository.find({ take: limit })
         } catch (error) {
-            this.logger.error(`Failed to get feeds for type: ${type}: ${error}`)
+            this.logger.error(`Failed to get feeds: ${error}`)
         }
     }
 
-    async getFacebookFeeds(limit: number) {
-        return await this.facebookService.find(limit);
+    async getFeedsByType(source: string, limit: number) {
+        try {
+            return await this.feedRepository.find({ where: { source }, take: limit })
+        } catch (error) {
+            this.logger.error(`Failed to get feeds for type: ${source}: ${error}`)
+        }
     }
 
-    async getYouTubeFeeds(limit: number) {
-        return await this.youTubeService.find(limit);
+    saveFeed(feed: Feed) {
+        return this.feedRepository.save(feed);
     }
 
-    async getRssFeeds(limit: number) {
-        return await this.rssFeedService.find(limit);
+    saveFeeds(feeds: Feed[]) {
+        return this.feedRepository.save(feeds);
     }
 }

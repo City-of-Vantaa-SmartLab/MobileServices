@@ -1,11 +1,12 @@
 import { Module, Logger } from '@nestjs/common';
-import { FacebookFeedService } from './facebook-feed.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { FacebookFeed } from './facebook-feed.entity';
+import { Feed } from '../feeds/feed.entity';
+import { FacebookFeedService } from './facebook-feed.service';
+import { FeedService } from '../feeds/feed.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([FacebookFeed])],
-    providers: [FacebookFeedService, Logger],
-    exports: [FacebookFeedService],
+    imports: [TypeOrmModule.forFeature([Feed])],
+    providers: [FacebookFeedService, FeedService, Logger],
+    exports: [FacebookFeedService]
 })
 export class FacebookFeedModule { }

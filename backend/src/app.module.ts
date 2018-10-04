@@ -7,6 +7,7 @@ import { connectionDetails } from './connection';
 import { YouTubeFeedModule } from './youtube-feed/youtube-feed.module';
 import { FacebookFeedModule } from './facebook-feed/facebook-feed.module';
 import { FeedModule } from './feeds/feed.module';
+import { EventModule } from 'event/event.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { FeedModule } from './feeds/feed.module';
     RssFeedModule,
     YouTubeFeedModule,
     FacebookFeedModule,
-    FeedModule
+    FeedModule,
+    EventModule
   ],
   controllers: [AppController],
   providers: [AppService]

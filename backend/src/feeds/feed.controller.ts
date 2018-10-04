@@ -23,11 +23,7 @@ export class FeedController {
         try {
             const limit = request.query.limit || config.numberOfFeeds;
             const feeds = await this.feedService.getFeeds(request.query.type, limit);
-            if (feeds) {
-                return response.status(200).json(feeds);
-            } else {
-                return response.status(404).json(`Could not find any feeds in the system.`);
-            }
+            return response.status(200).json(feeds);
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             return response.status(500).json(`Failed to get feeds: ${error.message}`);
