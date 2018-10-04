@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import NewsCardSwitcher from './news-card/NewsCardSwitcher';
 import DateHeader from './../../DateHeader';
+import styles from './news-card-group.module.scss';
 
 
 class NewsCardGroup extends Component {
@@ -11,9 +12,9 @@ class NewsCardGroup extends Component {
         ));
 
         return (
-            <div className = "container">
+            <div>
                 <DateHeader timestamp = {this.props.date} />
-                <div className="newsgroup">
+                <div className={styles['news-group']}>
                     {cardGroup}
                 </div>
             </div>
