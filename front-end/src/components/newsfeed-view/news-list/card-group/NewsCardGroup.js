@@ -8,7 +8,7 @@ class NewsCardGroup extends Component {
 
     render() {
         const cardGroup = this.props.data.map(item => (
-            <NewsCardSwitcher type = {item.source} data = {item}/>
+            <NewsCardSwitcher key={item.id} type={item.source} data={item}/>
         ));
 
         return (

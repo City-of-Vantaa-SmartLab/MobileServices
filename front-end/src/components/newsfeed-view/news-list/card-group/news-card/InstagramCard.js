@@ -16,7 +16,7 @@ const InstagramCard = ({data}) => (
                 <img src={data.img} alt='Instagram' />
             </div>
             <div className={styles['description']}>
-                <div class={styles['likes']}>{data.likes} likes</div>
+                <div className={styles['likes']}>{data.likes} likes</div>
                 <div>
                     <b>{data.author}</b> {data.description}
                 </div>
