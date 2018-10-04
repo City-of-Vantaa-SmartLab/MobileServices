@@ -9,11 +9,11 @@ const InstagramCard = ({data}) => (
         </div>
         <div className={styles['content']}>
             <div className={styles['content-source']}>
-                <img src={data.thumbnail} />
+                <img src={data.thumbnail} alt='Instagram thumbnail' />
                 <div>{data.author}</div>
             </div>
             <div className={styles['image']}>
-                <img src = {data.img} />
+                <img src={data.img} alt='Instagram' />
             </div>
             <div className={styles['description']}>
                 <div class={styles['likes']}>{data.likes} likes</div>
