@@ -3,44 +3,83 @@ import { CHANGE_LANGUAGE } from 'actions/actionTypes';
 const translations = {
     en: {
         locale: 'en',
-        enButton: 'English',
-        fiButton: 'Finnish',
-        seButton: 'Swedish',
         navigation: {
             news: 'Newsfeed',
             links: 'Resources',
             settings: 'Settings',
         },
         newsfeed: {
-            header: 'TODAY IN VANTAA'
+            header: 'Today in Vantaa',
+        },
+        settings: {
+            header: 'My preferences',
+            languageHeader: 'My language',
+            feedHeader: 'My feed',
+            notificationsHeader: 'Push notifications',
+            langButtons: {
+                en: 'English',
+                fi: 'Finnish',
+                sv: 'Swedish',
+            },
+            notificationButtons: {
+                always: 'Always',
+                never: 'Never',
+                alerts: 'Alerts only',
+            },
         },
     },
     fi: {
         locale: 'fi',
-        enButton: 'Englanti',
-        fiButton: 'Suomi',
-        seButton: 'Ruotsi',
-        navigation: {
-            news: 'Uutiset',
-            links: 'Linkit',
-            settings: 'Asetukset',
-        },
-        newsfeed: {
-            header: 'TODAY IN VANTAA'
-        },
-    },
-    sv: {
-        locale: 'sv',
-        enButton: 'English',
-        fiButton: 'Finnish',
-        seButton: 'Swedish',
         navigation: {
             news: 'Newsfeed',
             links: 'Resources',
             settings: 'Settings',
         },
         newsfeed: {
-            header: 'TODAY IN VANTAA'
+            header: 'Today in Vantaa',
+        },
+        settings: {
+            header: 'My preferences',
+            languageHeader: 'My language',
+            feedHeader: 'My feed',
+            notificationsHeader: 'Push notifications',
+            langButtons: {
+                en: 'Englanti',
+                fi: 'Suomi',
+                sv: 'Ruotsi',
+            },
+            notificationButtons: {
+                always: 'Always',
+                never: 'Never',
+                alerts: 'Alerts only',
+            },
+        },
+    },
+    sv: {
+        locale: 'sv',
+        navigation: {
+            news: 'Newsfeed',
+            links: 'Resources',
+            settings: 'Settings',
+        },
+        newsfeed: {
+            header: 'Today in Vantaa',
+        },
+        settings: {
+            header: 'My preferences',
+            languageHeader: 'My language',
+            feedHeader: 'My feed',
+            notificationsHeader: 'Push notifications',
+            langButtons: {
+                en: 'English',
+                fi: 'Finnish',
+                sv: 'Swedish',
+            },
+            notificationButtons: {
+                always: 'Always',
+                never: 'Never',
+                alerts: 'Alerts only',
+            },
         },
     },
 };
