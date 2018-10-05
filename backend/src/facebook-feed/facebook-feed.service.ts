@@ -14,8 +14,8 @@ export class FacebookFeedService {
         this.logger = new Logger('FacebookFeedService');
     }
 
-    async onModuleInit() {
-        await this.fetchFacebookFeeds();
+    onModuleInit() {
+        this.fetchFacebookFeeds();
     }
 
     async fetchFacebookFeeds() {

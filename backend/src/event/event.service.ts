@@ -13,8 +13,8 @@ export class EventFeedService {
         this.logger = new Logger('EventFeedService');
     }
 
-    async onModuleInit() {
-        await this.fetchEventFeeds();
+    onModuleInit() {
+        this.fetchEventFeeds();
     }
 
     async fetchEventFeeds() {

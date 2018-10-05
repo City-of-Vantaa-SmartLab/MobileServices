@@ -28,8 +28,8 @@ export class YouTubeFeedService {
         this.logger = new Logger('YouTubeFeedService');
     }
 
-    async onModuleInit() {
-        await this.fetchAndSaveYouTubeFeed();
+    onModuleInit() {
+        this.fetchAndSaveYouTubeFeed();
     }
 
     async fetchAndSaveYouTubeFeed() {
