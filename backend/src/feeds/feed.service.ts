@@ -19,7 +19,8 @@ export class FeedService {
             const feeds = type ? await this.getFeedsByType(type, limit) : await this.getAll(limit);
             return feeds.sort((a, b) => compareDesc(a.pub_date, b.pub_date)).slice(0, limit);
         } catch (error) {
-            this.logger.error(`Failed to get feeds: ${error}`)
+            this.logger.error(`Failed to get feeds: ${error}`);
+            throw error;
         }
     }
 
@@ -27,7 +28,8 @@ export class FeedService {
         try {
             return await this.feedRepository.find({ take: limit })
         } catch (error) {
-            this.logger.error(`Failed to get feeds: ${error}`)
+            this.logger.error(`Failed to get feeds: ${error}`);
+            throw error;
         }
     }
 
@@ -35,7 +37,8 @@ export class FeedService {
         try {
             return await this.feedRepository.find({ where: { source }, take: limit })
         } catch (error) {
-            this.logger.error(`Failed to get feeds for type: ${source}: ${error}`)
+            this.logger.error(`Failed to get feeds for type: ${source}: ${error}`);
+            throw error;
         }
     }
 

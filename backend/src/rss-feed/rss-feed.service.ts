@@ -15,25 +15,36 @@ export class RssFeedService {
         this.logger = new Logger('RssFeedService');
     }
 
-    async onModuleInit() {
-        await this.fetchAndSaveRssFeeds();
+    onModuleInit() {
+        this.fetchAndSaveRssFeeds();
     }
 
     @Transaction()
     async fetchAndSaveRssFeeds() {
         this.logger.log('Fetching Rss feeds Started');
-        try {
-            await Promise.all([
-                parser.parseURL(sources.news).then(this.addSourceName('Rss_News')).then(this.persistIntoDb),
-                parser.parseURL(sources.stories).then(this.addSourceName('Rss_Stories')).then(this.persistIntoDb),
-                parser.parseURL(sources.aikuisopisto).then(this.addSourceName('Rss_Aikuisopisto')).then(this.persistIntoDb),
-                parser.parseURL(sources.nuorten).then(this.addSourceName('Rss_Nuorten')).then(this.persistIntoDb),
-                parser.parseURL(sources.kaupunginmuseo).then(this.addSourceName('Rss_Kaupunginmuseo')).then(this.persistIntoDb),
-            ]);
-        } catch (error) {
-            this.logger.error(`Error in fetching and saving Rss feed: ${error.message}`);
-        }
-        this.logger.log('Fetching Rss feeds Completed');
+
+        parser.parseURL(sources.news)
+            .then(this.addSourceName('Rss_News'))
+            .then(this.persistIntoDb)
+            .catch(error => this.logger.error(`Failed to fetch Rss_News :${error}`)),
+            parser.parseURL(sources.stories)
+                .then(this.addSourceName('Rss_Stories'))
+                .then(this.persistIntoDb)
+                .catch(error => this.logger.error(`Failed to fetch Rss_Stories :${error}`)),
+            parser.parseURL(sources.aikuisopisto)
+                .then(this.addSourceName('Rss_Aikuisopisto'))
+                .then(this.persistIntoDb)
+                .catch(error => this.logger.error(`Failed to fetch Rss_Aikuisopisto :${error}`)),
+            parser.parseURL(sources.nuorten)
+                .then(this.addSourceName('Rss_Nuorten'))
+                .then(this.persistIntoDb)
+                .catch(error => this.logger.error(`Failed to fetch Rss_Nuorten :${error}`)),
+            parser.parseURL(sources.kaupunginmuseo)
+                .then(this.addSourceName('Rss_Kaupunginmuseo'))
+                .then(this.persistIntoDb)
+                .catch(error => this.logger.error(`Failed to fetch Rss_Kaupunginmuseo :${error}`)),
+
+            this.logger.log('Fetching Rss feeds Completed');
     }
 
     persistIntoDb = data => this.feedService.saveFeeds(data.items);
