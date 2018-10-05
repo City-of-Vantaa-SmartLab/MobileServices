@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-import { changeLanguage } from 'actions';
 import { connect } from 'react-redux';
+import styles from './settings.module.scss';
+import LanguageSection from './LanguageSection';
+import FeedsSection from './FeedsSection';
+import NotificationsSection from './NotificationsSection';
 
 class SettingsView extends Component {
     
     render() {
         let {i18n} = this.props;
         return (
-            <div>
-                <p>Choose language:</p>
-                <button onClick = {() => this.props.onClick('en')}>{i18n.enButton}</button>
-                <button onClick = {() => this.props.onClick('fi')}>{i18n.fiButton}</button>
-                <button onClick = {() => this.props.onClick('sv')}>{i18n.seButton}</button>
+            <div className={styles['settings-container']}>
+            <h1>{i18n.settings.header}</h1>
+                <LanguageSection/>
+                <FeedsSection />
+                <NotificationsSection />
             </div>
         );
     }
@@ -20,11 +23,7 @@ const mapStateToProps = state => ({
     i18n: state.i18n,
 });
 
-const mapDispatchToProps = dispatch => ({
-    onClick: lang => dispatch(changeLanguage(lang))
-});
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(SettingsView);
