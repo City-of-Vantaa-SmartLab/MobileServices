@@ -99,6 +99,10 @@ export class ConfigService {
     return this.envConfig.VANTAA_FACEBOOK_PAGE;
   }
 
+  get numberOfFeeds(): number {
+    return Number(this.envConfig.NUMBER_OF_FEEDS);
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -117,11 +121,12 @@ export class ConfigService {
       VANTAA_STORIES_PATH: Joi.string(),
       YOUTUBE_API_KEY: Joi.string(),
       YOUTUBE_CHANNEL_ID: Joi.string(),
-      YOUTUBE_CHANNEL_LIST_LIMIT: Joi.number().default(20),
+      YOUTUBE_CHANNEL_LIST_LIMIT: Joi.number(),
       FACEBOOK_APP_ID: Joi.string(),
       FACEBOOK_APP_SECRET: Joi.string(),
       VANTAA_FACEBOOK_PAGE: Joi.string(),
       FACEBOOK_GRAPH_API: Joi.string(),
+      NUMBER_OF_FEEDS: Joi.number(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
