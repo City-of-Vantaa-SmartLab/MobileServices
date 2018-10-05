@@ -1,10 +1,8 @@
 
 import { ConfigService } from '../config/config.service';
 import { Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { YouTubeFeed } from './youtube-feed.entity';
-import { TransactionRepository, Repository, Transaction } from 'typeorm';
 import axios from 'axios';
+import { FeedService } from '../feeds/feed.service';
 
 const config = new ConfigService();
 
@@ -25,19 +23,17 @@ const youtube_video_details_url = `https://www.googleapis.com/youtube/v3/videos?
 export class YouTubeFeedService {
 
     constructor(
-        @InjectRepository(YouTubeFeed)
-        @TransactionRepository(YouTubeFeed)
-        private readonly youTubeFeedRepository: Repository<YouTubeFeed>,
+        private readonly feedService: FeedService,
         private readonly logger: Logger) {
         this.logger = new Logger('YouTubeFeedService');
     }
 
-    async onModuleInit() {
-        await this.fetchAndSaveYouTubeFeed();
+    onModuleInit() {
+        this.fetchAndSaveYouTubeFeed();
     }
 
-    @Transaction()
     async fetchAndSaveYouTubeFeed() {
+        this.logger.log('Fetching Youtube feeds Started');
         try {
             const feed = await axios.get(youtube_fetch_url);
             const videoIds = feed.data.items.map(item => item.id.videoId);
@@ -45,25 +41,22 @@ export class YouTubeFeedService {
             const youTubeFeeds = feed.data.items.map(item => {
                 const details = videoDetails.data.items.find(videoItem => videoItem.id === item.id.videoId);
                 return {
-                    etag: item.etag,
-                    kind: item.id.kind,
                     video_id: item.id.videoId,
                     playlist_id: item.id.playlistId,
                     pub_date: item.snippet.publishedAt,
                     title: item.snippet.title,
-                    content: item.snippet.description,
-                    thumbnails: item.snippet.thumbnails,
+                    source: 'Youtube',
+                    description: item.snippet.description,
+                    image_url: item.snippet.thumbnails ? item.snippet.thumbnails.medium.url : null,
                     channel_title: item.snippet.channelTitle,
-                    statistics: details ? details.statistics : null
+                    likes: details ? (details.statistics ? details.statistics.likeCount : null) : null,
+                    views: details ? (details.statistics ? details.statistics.viewCount : null) : null
                 }
             });
-            await this.youTubeFeedRepository.save(youTubeFeeds);
+            await this.feedService.saveFeeds(youTubeFeeds);
+            this.logger.log('Fetching Youtube feeds Completed');
         } catch (error) {
             this.logger.error(`Error in fetching and saving You Tube feed: ${error.message}`);
         }
-    }
-
-    async findAll(): Promise<YouTubeFeed[]> {
-        return await this.youTubeFeedRepository.find();
     }
 }

@@ -1,9 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
 import { sources, queryParams } from './facebook-utils';
-import { InjectRepository } from '@nestjs/typeorm';
-import { TransactionRepository, Repository, Transaction } from 'typeorm';
-import { FacebookFeed } from './facebook-feed.entity';
+import { FeedService } from '../feeds/feed.service';
 const config = new ConfigService();
 const axios = require('axios');
 
@@ -11,25 +9,24 @@ const axios = require('axios');
 export class FacebookFeedService {
 
     constructor(
-        @InjectRepository(FacebookFeed)
-        @TransactionRepository(FacebookFeed)
-        private readonly facebookFeedRepository: Repository<FacebookFeed>,
+        private readonly feedService: FeedService,
         private readonly logger: Logger) {
         this.logger = new Logger('FacebookFeedService');
     }
 
-    async onModuleInit() {
-        await this.fetchFacebookFeeds();
+    onModuleInit() {
+        this.fetchFacebookFeeds();
     }
 
-    @Transaction()
     async fetchFacebookFeeds() {
         try {
+            this.logger.log('Fetching facebook feeds Started');
             const vantaaFacebookDataUrl = `${config.facebookGraphApi}${sources.vantaa}/posts?`
                 + `fields=${queryParams.join(',')}`
                 + `&access_token=${config.facebookPageToken}`;
             const facebookFeeds = this.transformData((await axios.get(vantaaFacebookDataUrl)).data.data);
-            await this.facebookFeedRepository.save(facebookFeeds);
+            await this.feedService.saveFeeds(facebookFeeds);
+            this.logger.log('Fetching facebook feeds Completed');
         } catch (error) {
             this.logger.error(`Failed to get facebook feeds: ${error}`)
         }
@@ -42,18 +39,14 @@ export class FacebookFeedService {
             return {
                 ...feed,
                 comments: feed.comments ? feed.comments.data : null,
-                reactions: feed.reactions ? feed.reactions.data : null,
-                content: feed.story ? feed.story : feed.message,
-                source: 'facebook',
+                likes: feed.reactions ? feed.reactions.data.length : null,
+                description: feed.story ? feed.story : feed.message,
+                source: 'Facebook',
                 title: feed.status_type,
                 pub_date: feed.created_time,
+                image_url: feed.picture,
                 feed_id
             }
         });
     }
-
-    async findAll(): Promise<FacebookFeed[]> {
-        return await this.facebookFeedRepository.find();
-    }
-
 }
