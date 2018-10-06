@@ -11,6 +11,14 @@ Execute the below command
 ```
 Navigate to http://localhost:3000
 
+### Swagger
+
+Swagger has been configured to get the api details.
+
+Navigate to the below url to get the api details.
+
+http://localhost:5000/swagger
+
 
 # Deploying changes to heroku
 Execute the below command
