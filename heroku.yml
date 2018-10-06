@@ -3,3 +3,6 @@ build:
     web: Dockerfile
 release:
   image: web
+  command: echo 'Completed Release'
+run:
+  command: echo 'Completed Run'
