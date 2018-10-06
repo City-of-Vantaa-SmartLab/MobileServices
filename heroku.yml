@@ -3,4 +3,5 @@ build:
     web: Dockerfile
 release:
   image: web
-  command: ./deploy.sh
+  command: 
+    - ./deploy.sh
