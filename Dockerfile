@@ -6,6 +6,7 @@ RUN npm install
 
 ADD ./front-end /front-end
 WORKDIR /front-end
+RUN npm install git
 RUN npm install
 RUN npm run build
 
