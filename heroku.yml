@@ -4,4 +4,4 @@ build:
 release:
   image: web
   command: 
-    - ./deploy.sh
+    - echo 'Hello';
