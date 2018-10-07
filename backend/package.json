@@ -32,7 +32,9 @@
     "pg": "^7.4.3",
     "reflect-metadata": "^0.1.12",
     "rss-parser": "^3.4.3",
+    "rss-parser-browser": "^2.2.2",
     "rxjs": "^6.0.0",
+    "typeorm": "^0.2.7",
     "typescript": "^2.6.2"
   },
   "devDependencies": {
