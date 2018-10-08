@@ -7,3 +7,7 @@ export const NotificationFilters = {
     ALERTS_ONLY: 'ALERTS_ONLY',
     ALWAYS: 'ALWAYS',
   };
+
+export const FETCH_REQUEST = 'FETCH_REQUEST';
+export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+export const FETCH_FAILED = 'FETCH_FAILED';
