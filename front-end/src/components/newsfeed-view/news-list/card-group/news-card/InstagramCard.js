@@ -1,5 +1,6 @@
 import React from 'react';
 import Timestamp from './elements/Timestamp';
+import ExpandableContent from './elements/ExpandableContent';
 import styles from './social-media-card.module.scss';
 
 const InstagramCard = ({data}) => (
@@ -18,7 +19,7 @@ const InstagramCard = ({data}) => (
             <div className={styles['description']}>
                 <div className={styles['likes']}>{data.likes} likes</div>
                 <div>
-                    <b>{data.author}</b> {data.description}
+                    <ExpandableContent maxLine={3} author={data.author} description={data.description} />
                 </div>
             </div>
             <div className={styles['footer']}>

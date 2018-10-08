@@ -67,10 +67,8 @@ class NewsList extends Component {
             .value();
 
         return (
-            <div>
-                <div className={styles['newsfeed']}>
-                    {newsfeed}
-                </div>
+            <div className={styles['newsfeed']}>
+                {newsfeed}
             </div>
         );
     }

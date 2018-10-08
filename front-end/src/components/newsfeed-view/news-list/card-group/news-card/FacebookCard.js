@@ -1,6 +1,7 @@
 import React from 'react';
 import Timestamp from './elements/Timestamp';
 import styles from './social-media-card.module.scss';
+import ExpandableContent from './elements/ExpandableContent';
 
 const FacebookCard = ({data}) => (
     <div className={`${styles['social-media-card']} ${styles['facebook']}`}>
@@ -13,7 +14,7 @@ const FacebookCard = ({data}) => (
                 <div>{data.author}</div>
             </div>
             <div className={styles['description']}>
-                <div>{data.description}</div>
+                <ExpandableContent maxLine={4} description={data.description} />
             </div>
             <div className={styles['image']}>
                 <img src={data.img} alt='Facebook' />
