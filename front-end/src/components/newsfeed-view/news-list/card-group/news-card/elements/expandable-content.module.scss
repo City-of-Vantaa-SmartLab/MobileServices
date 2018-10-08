@@ -1,0 +1,33 @@
+$line-height: 1.7rem;
+
+.more-text {
+    color: rgba(74, 74, 74, 0.5);
+}
+
+.expandable-div {
+    overflow: hidden;
+    position: relative;
+
+    /*
+    &::after {
+        content: '... more';
+        background-color: white;
+        width: 10 * 0.95rem;
+        height: $line-height;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+    }
+    */
+
+    .more-text  {
+        background: #fff;
+        bottom: 0;
+        position: absolute;
+        right: 0;
+        content: '\2026 more';
+        width: 8 * 10.4px;  
+        height: $line-height;
+    }
+}
