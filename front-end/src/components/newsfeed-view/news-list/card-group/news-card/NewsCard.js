@@ -12,10 +12,9 @@ const NewsCard = ({data}) => (
             </div>
             <div className={styles["description"]}>
                 <p>{data.title}</p>
-                <span>by @authorname</span>
             </div>
             <div className={styles["footer"]}>
-                <Timestamp time={data.timestamp} />
+                <Timestamp time={data.pub_date} />
             </div>
         </div>
     </div>
