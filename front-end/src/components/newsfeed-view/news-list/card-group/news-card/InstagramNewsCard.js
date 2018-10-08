@@ -17,7 +17,7 @@ const InstagramNewsCard = ({data}) => (
                 <p><b>{data.author}</b> {data.description}</p>
             </div>
             <div className={styles['footer']}>
-                <Timestamp time = {data.timestamp} />
+                <Timestamp time = {data.pub_date} />
             </div>
         </div>
     </div>

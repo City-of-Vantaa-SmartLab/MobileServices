@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Backgrounds from './carousel/Backgrounds';
-import NewsList from './news-list/NewsList';
+import NewsListContainer from './news-list/NewsListContainer';
 
 class NewsfeedView extends Component {
 
@@ -10,7 +10,7 @@ class NewsfeedView extends Component {
             <div>
                 <Backgrounds />
                 <Header />
-                <NewsList/>
+                <NewsListContainer/>
             </div>
         );
     }

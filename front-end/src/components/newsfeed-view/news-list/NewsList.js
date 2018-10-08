@@ -58,20 +58,31 @@ const dummyfeed = [
 
 class NewsList extends Component {
 
-    render() {
-        const newsfeed = _.chain(dummyfeed)
-            .groupBy((item) => (formatDate(item.timestamp)))
-            .map((item, date) => (<NewsCardGroup date={date} data={item} />))
-            .value();
+    componentWillMount() {
+        this.props.onRequest(); 
+    }
 
-        return (
-            <div className={styles['container']}>
-                <div className={styles['newsfeed']}>
-                    {newsfeed}
+    render() {
+        if (this.props.feed) {
+            const newsfeed = _.chain(this.props.feed)
+                .groupBy((item) => (formatDate(item.pub_date)))
+                .map((item, date) => (<NewsCardGroup date={date} data={item} />))
+                .value();
+
+            return (
+                <div className={styles['container']}>
+                    <div className={styles['newsfeed']}>
+                        {newsfeed}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+            
+        }
+        else return;
     }
 }
+
+
+
 
 export default NewsList;

@@ -18,7 +18,7 @@ const FacebookNewsCard = ({data}) => (
             <div className={styles['image']} style={{ backgroundImage: `url(${data.img})` }}></div>
             
             <div className={styles['footer']}>
-                <Timestamp time = {data.timestamp} />
+                <Timestamp time = {data.pub_date} />
             </div>
         </div>
     </div>
