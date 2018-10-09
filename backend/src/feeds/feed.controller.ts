@@ -24,8 +24,14 @@ export class FeedController {
     @ApiImplicitQuery({
         name: 'type',
         required: false,
-        description: 'source type of the feed to be fetched. If Empty/null returns all feeds.',
-        type: Number,
+        description: `source type of the feed to be fetched. If Empty/null returns all feeds.`
+            + `supported values are`
+            + `1. vantaa`
+            + `2. sivistysvantaa`
+            + `3. events`
+            + `4. Facebook`
+            + `5. Youtube`,
+        type: String,
     })
     @ApiImplicitQuery({
         name: 'limit',
