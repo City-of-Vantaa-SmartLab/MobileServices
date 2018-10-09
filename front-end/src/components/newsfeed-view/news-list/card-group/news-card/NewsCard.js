@@ -12,7 +12,13 @@ const NewsCard = ({data}) => (
         <div className={styles['content']}>
             <div className={styles['description']}>
                 <span>Author / page headline</span>
-                <ExpandableContent maxLine={3} description={data.title} ellipsis='...' lineHeight={1.9} className={styles['content-text']} clickable={false} />
+                <ExpandableContent
+                    maxLine={3} 
+                    description={data.title} 
+                    ellipsis='...' 
+                    lineHeight={1.9} 
+                    className={styles['content-text']} 
+                    ellipsisClickable={false} />
             </div>
             <div className={styles['footer']}>
                 <Timestamp time={data.timestamp} />

@@ -14,7 +14,12 @@ const FacebookCard = ({data}) => (
                 <div>{data.author}</div>
             </div>
             <div className={styles['description']}>
-                <ExpandableContent maxLine={4} description={data.description} ellipsis='... more' lineHeight={1.7} clickable={true} />
+                <ExpandableContent 
+                    maxLine={4} 
+                    description={data.description} 
+                    ellipsis='... more'
+                    lineHeight={1.7} 
+                    ellipsisClickable={true} />
             </div>
             <div className={styles['image']}>
                 <img src={data.img} alt='Facebook' />
