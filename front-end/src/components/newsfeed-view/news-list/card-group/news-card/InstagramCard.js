@@ -5,7 +5,7 @@ import styles from './social-media-card.module.scss';
 
 const InstagramCard = ({data}) => (
     <div className={`${styles['social-media-card']} ${styles['instagram']}`}>
-        <div className={styles["service-source"]}>
+        <div className={styles['service-source']}>
             {data.source}
         </div>
         <div className={styles['content']}>
@@ -19,7 +19,7 @@ const InstagramCard = ({data}) => (
             <div className={styles['description']}>
                 <div className={styles['likes']}>{data.likes} likes</div>
                 <div>
-                    <ExpandableContent maxLine={3} author={data.author} description={data.description} />
+                    <ExpandableContent maxLine={3} author={data.author} description={data.description} ellipsis='... more' lineHeight={1.7} clickable={true} />
                 </div>
             </div>
             <div className={styles['footer']}>

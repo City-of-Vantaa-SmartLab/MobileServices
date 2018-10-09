@@ -10,7 +10,7 @@ class ExpandableContent extends Component {
             showMore: false
         }
 
-        this.desiredHeight = this.props.maxLine * 1.7;
+        this.desiredHeight = this.props.maxLine * this.props.lineHeight;
     }
 
     expandText = () => {
@@ -18,20 +18,25 @@ class ExpandableContent extends Component {
     }
 
     divHeight = {
-        height: 'calc(' + this.props.maxLine + ' * 1.7rem'
+        height: 'calc(' + this.props.maxLine + ' * ' + this.props.lineHeight + 'rem',
+    }
+
+    moreTextHeight = {
+        height: this.props.lineHeight + 'rem',
     }
 
     componentDidMount() {
-        console.log(this.target.clientHeight);
-        if (this.target.clientHeight > this.desiredHeight) {
+        console.log(this.target.clientHeight, this.desiredHeight);
+        if (this.target.clientHeight > (this.desiredHeight * 10)) {
             this.setState({showMore: true});
         }
     }
 
     render() {
         return (
-            <div className={styles['expandable-div']} style={{height: this.state.showMore ? `${this.desiredHeight}rem` : 'auto'}} ref={ node => (this.target = node)}>
-                <b>{this.props.author || ''}</b> {this.props.description} <span className={styles['more-text']} onClick={this.expandText} style={{display: this.state.showMore ? 'inline' : 'none'}}>... more</span>
+            <div className={`${styles['expandable-div']} ${this.props.className}`} style={{height: this.state.showMore ? `${this.desiredHeight}rem` : 'auto'}} ref={ node => (this.target = node)}>
+                <b>{this.props.author || ''}</b> {this.props.description} 
+                <span className={styles['more-text']} onClick={this.props.clickable && this.expandText} style={{display: this.state.showMore ? 'inline' : 'none', ...this.moreTextHeight}}>{this.props.ellipsis}</span>
             </div>
         );
     }
