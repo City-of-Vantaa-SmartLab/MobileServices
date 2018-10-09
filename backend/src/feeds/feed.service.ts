@@ -17,7 +17,7 @@ export class FeedService {
     async getFeeds(type: string, limit: number) {
         try {
             const feeds = type ? await this.getFeedsByType(type, limit) : await this.getAll(limit);
-            return feeds.sort((a, b) => compareDesc(a.pub_date, b.pub_date)).slice(0, limit);
+            return feeds.slice(0, limit);
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
@@ -26,7 +26,7 @@ export class FeedService {
 
     async getAll(limit: number) {
         try {
-            return await this.feedRepository.find({ take: limit })
+            return await this.feedRepository.find({ take: limit, order: { pub_date: 'DESC' } })
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
