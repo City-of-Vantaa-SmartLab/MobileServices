@@ -35,6 +35,7 @@
     "rss-parser": "^3.4.3",
     "rss-parser-browser": "^2.2.2",
     "rxjs": "^6.0.0",
+    "twitter": "^1.7.1",
     "typeorm": "^0.2.7",
     "typescript": "^2.6.2"
   },

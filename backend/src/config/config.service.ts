@@ -103,6 +103,22 @@ export class ConfigService {
     return Number(this.envConfig.NUMBER_OF_FEEDS);
   }
 
+  get twitterConsumerKey(): string {
+    return this.envConfig.TWITTER_CONSUMER_KEY;
+  }
+
+  get twitterConsumerSecret(): string {
+    return this.envConfig.TWITTER_CONSUMER_SECRET;
+  }
+
+  get twitterTokenKey(): string {
+    return this.envConfig.TWITTER_ACCESS_KEY;
+  }
+
+  get twitterTokenSecret(): string {
+    return this.envConfig.TWITTER_SECRET_ACCESS_KEY;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -127,6 +143,10 @@ export class ConfigService {
       VANTAA_FACEBOOK_PAGE: Joi.string(),
       FACEBOOK_GRAPH_API: Joi.string(),
       NUMBER_OF_FEEDS: Joi.number(),
+      TWITTER_CONSUMER_KEY: Joi.string(),
+      TWITTER_CONSUMER_SECRET: Joi.string(),
+      TWITTER_ACCESS_KEY: Joi.string(),
+      TWITTER_SECRET_ACCESS_KEY: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
