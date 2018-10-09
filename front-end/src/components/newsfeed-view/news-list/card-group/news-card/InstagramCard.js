@@ -19,7 +19,13 @@ const InstagramCard = ({data}) => (
             <div className={styles['description']}>
                 <div className={styles['likes']}>{data.likes} likes</div>
                 <div>
-                    <ExpandableContent maxLine={3} author={data.author} description={data.description} ellipsis='... more' lineHeight={1.7} clickable={true} />
+                    <ExpandableContent 
+                        maxLine={3} 
+                        author={data.author} 
+                        description={data.description} 
+                        ellipsis='... more' 
+                        lineHeight={1.7} 
+                        ellipsisClickable={true} />
                 </div>
             </div>
             <div className={styles['footer']}>
