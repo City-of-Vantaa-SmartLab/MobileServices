@@ -1,12 +1,16 @@
-import { Get, Controller } from '@nestjs/common';
+import { Get, Res, Controller } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ApiUseTags } from '@nestjs/swagger';
+const path = require('path');
 
-@Controller()
+@ApiUseTags('app')
+@Controller('app')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @Get()
-  root(): string {
-    return this.appService.root();
+  root(@Res() response): void {
+    // the homepage will load our index.html which contains React logic
+    response.sendFile(path.resolve(__dirname + '/../public/index.html'));
   }
 }

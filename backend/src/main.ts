@@ -8,7 +8,9 @@ const PORT = process.env.PORT;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  app.use(/^\/$/, (_, res) => {
+    res.redirect('/app/');
+  });
   const options = new DocumentBuilder()
     .setTitle('Vantaa Mobile Services')
     .setDescription('API description')
