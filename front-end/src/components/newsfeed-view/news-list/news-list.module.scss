@@ -3,7 +3,7 @@
 $color-news-feed-bg: rgba(237, 237, 237, 1);
 
 .newsfeed {
-    font-family: "OpenSans";
+    font-family: $font-feed-cards;
     position: absolute;
     top: 100%;
     left: 0;
