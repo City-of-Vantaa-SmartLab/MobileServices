@@ -1,0 +1,55 @@
+@import "src/assets/stylesheets/variables";
+
+$button-height: 3.5em;
+$active-button-color: #3c8fde;
+
+.settings-container {
+    padding: 4rem 2rem;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: $bg-color;
+}
+
+.settings-section {
+    margin-top: 2.4rem;
+    h4 {
+        margin-bottom: 0.9rem;
+        font-size: 1.4rem;
+    }
+    .button-row { 
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        a {
+            background: #fff;
+            padding: 0 1.5em;
+            margin: 0 0.5rem 0.5rem 0;
+            height: $button-height;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            line-height: $button-height;
+            text-transform: uppercase;
+            
+            &.active {
+                background: $active-button-color;
+                color: #fff;
+                box-shadow: 0.1rem 0.1rem 0.3rem -0.1rem rgba(0, 0, 0, 0.24);
+            }
+        }
+        .instagram.active {
+            background: #43368d;
+        }
+        .youtube.active {
+            background: #ff8f1c;
+        }
+        .facebook.active {
+            background: #ba0d2e;
+        }
+        .twitter.active {
+            background: #007b5f;
+        }
+
+    }
+}
