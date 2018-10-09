@@ -1,0 +1,17 @@
+$more-text-width: 12 * 1.04rem;
+
+.expandable-div {
+    overflow: hidden;
+    position: relative;
+
+    .more-text  {
+        // !! Important !! background: the gradient color relies on the news feed background color
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 40%);
+        color: rgba(74, 74, 74, 0.5);
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: $more-text-width;
+        padding-left: 5rem;
+    }
+}

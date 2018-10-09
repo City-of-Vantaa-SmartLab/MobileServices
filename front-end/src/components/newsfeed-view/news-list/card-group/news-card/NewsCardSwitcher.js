@@ -1,19 +1,19 @@
 import React from 'react';
 import NewsCard from './NewsCard';
-import InstagramNewsCard from './InstagramNewsCard';
-import TwitterNewsCard from './TwitterNewsCard';
-import FacebookNewsCard from './FacebookNewsCard';
+import InstagramCard from './InstagramCard';
+import TwitterCard from './TwitterCard';
+import FacebookCard from './FacebookCard';
 
 
 
 const NewsCardSwitcher = ({type, data}) => {
     switch (type) {
         case 'twitter':
-            return <TwitterNewsCard data = {data} />;
+            return <TwitterCard data = {data} />;
         case 'instagram':
-            return <InstagramNewsCard data = {data} />;
+            return <InstagramCard data = {data} />;
         case 'facebook':
-            return <FacebookNewsCard data = {data} />;
+            return <FacebookCard data = {data} />;
         default:
             return <NewsCard data = {data} />;
     }

@@ -2,7 +2,7 @@
 @import "src/assets/stylesheets/fonts";
 
 $content-source-font-size: 1.2rem;
-$content-source-bg: rgba(10, 89, 126, 1);
+$content-source-bg: rgba(0, 66, 165, 1);
 $content-author-font-size: 1.2rem;
 
 @mixin avatar_dim($size) {
@@ -11,63 +11,47 @@ $content-author-font-size: 1.2rem;
 }
 
 .news-card {
-    margin: 1.5rem 0;
+    margin: 0.9rem 1.2rem;
     background: $color-white;
+    display: flex;
+    height: 14.8rem;
     position: relative;
-    display: block;
-    border-radius: 0.5rem;
-    box-shadow: 0.2rem 0.3rem 0.5rem -0.1rem rgba(0, 0, 0, 0.24);
+
+    .source {
+        position: absolute;
+        right: 0.6rem;
+        top: -0.6rem;
+        padding: 0 1rem;
+        background-color: $content-source-bg;
+        color: $color-white;
+        font-size: $content-source-font-size;
+        height: 2rem;
+        line-height: 2rem;
+    }
 
     .image {
-        border-radius: 0.5rem 0 0 0.5rem;
         height: 100%;
-        width: 15rem;
-        position: absolute;
-        left: 0;
+        width: 14.8rem;
         background-size: cover;
         overflow: hidden;
+        flex-shrink: 0;
     }
   
     .content {
         height: 15rem;
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding-left: 15rem;
         position: relative;
-
-        .source {
-            right: 0;
-            padding: 1rem 0 0 1rem;
-            position: relative;
-    
-            span {
-                float: right;
-                padding: 0.5rem 1rem;
-                background: $content-source-bg;
-                color: $color-white;
-                font-size: $content-source-font-size;
-            }
-        }
-
-        .author {
-            float: left;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            img {
-                border-radius: 50%;
-            }
-            p {
-                margin: 0.3rem 0 0 0.5rem;
-            }
-        }
-        
+        padding: 2.4rem 1.2rem 1.2rem 1.2rem;
 
         .description {
-            padding: 1rem;
-
-            p {
+            .content-text {
+                line-height: 1.9rem;
+                font-weight: 600;
+                font-size: 1.6rem;
+                color: #4a4a4a;
                 margin: 0;
             }
             & > span {
@@ -80,45 +64,11 @@ $content-author-font-size: 1.2rem;
     .footer {
         bottom: 0;
         right: 0;
-        padding: 1rem;
 
         h5 {
+            font-family: inherit;
             opacity: 0.5;
             font-weight: normal;
         }
     }
-
-    &.vertical {
-        .content {
-            padding: 0;
-            height: auto;
-        }
-        .source {
-            padding-bottom: 1rem;
-        }
-        .image {
-            position: relative;
-            height: 20rem;
-            border-radius: 0;
-            width: 100%;
-        }
-    }
-
-    &.twitter {
-        .source .author img {
-            @include avatar_dim(7rem);
-        }
-    }
-    
-    &.facebook {
-        .source .author img {
-            @include avatar_dim(5rem);
-        }
-    }
-
-    &.instagram {
-        .source .author img {
-            @include avatar_dim(3rem);
-        }
-    }   
 }
