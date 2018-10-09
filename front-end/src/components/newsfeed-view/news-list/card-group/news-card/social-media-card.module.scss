@@ -11,6 +11,7 @@ $facebook-source-bg: #ba0d2e;
 @mixin avatar_dim($size) {
     height: $size;
     width: $size;
+    border-radius: 50%;
 }
 
 .social-media-card {
@@ -28,6 +29,7 @@ $facebook-source-bg: #ba0d2e;
         color: $color-white;
         font-size: $content-source-font-size;
         height: 2rem;
+        line-height: 2rem;
     }
   
     .content {

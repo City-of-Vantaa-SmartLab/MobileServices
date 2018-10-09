@@ -4,7 +4,7 @@ import styles from './social-media-card.module.scss';
 
 const TwitterCard = ({data}) => (
     <div className={`${styles['social-media-card']} ${styles['twitter']}`}>
-        <div className={styles["service-source"]}>
+        <div className={styles['service-source']}>
             {data.source}
         </div>
         <div className={styles['content']}>
@@ -17,7 +17,7 @@ const TwitterCard = ({data}) => (
                 </div>
             </div>
             <div className={styles['description']}>
-                <p>{data.description}</p>
+                <div>{data.description}</div>
             </div>
             <div className={styles['footer']}>
                 <Timestamp time = {data.timestamp} />
