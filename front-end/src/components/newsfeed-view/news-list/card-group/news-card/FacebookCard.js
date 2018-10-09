@@ -5,7 +5,7 @@ import ExpandableContent from './elements/ExpandableContent';
 
 const FacebookCard = ({data}) => (
     <div className={`${styles['social-media-card']} ${styles['facebook']}`}>
-        <div className={styles["service-source"]}>
+        <div className={styles['service-source']}>
             {data.source}
         </div>
         <div className={styles['content']}>
