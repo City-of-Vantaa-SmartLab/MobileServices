@@ -30,7 +30,8 @@ export class FeedController {
             + `2. sivistysvantaa`
             + `3. events`
             + `4. Facebook`
-            + `5. Youtube`,
+            + `5. Youtube`
+            + `6. Twitter`,
         type: String,
     })
     @ApiImplicitQuery({
