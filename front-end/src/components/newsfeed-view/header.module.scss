@@ -4,18 +4,33 @@
 .header {
     color: $color-white;
     position: fixed;
-    margin-top: 3rem;
+    margin-top: 4rem;
     margin-left: 2rem;
 
-    .date {
-        h4 {
-            color: $color-white;
-            font-weight: normal;
-        }
+    h1 {
+        letter-spacing: -0.03rem;
     }
 }
 
 .date {
     text-transform: uppercase;
     margin: 0.6rem 1.2rem;
+
+    h4 {
+        color: $color-white;
+        font-weight: normal;
+        letter-spacing: -0.03rem;
+    }
+}
+
+.front-page-date {
+    text-transform: uppercase;
+    margin: 0;
+
+    h4 {
+        color: $color-white;
+        font-weight: 300;
+        font-size: 1.4rem;
+        letter-spacing: -0.03rem;
+    }
 }
