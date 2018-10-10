@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './settings.module.scss';
-
+import PropTypes from 'prop-types';
 
 const Checkbox = (props) => (
     <a 
@@ -13,5 +13,11 @@ const Checkbox = (props) => (
         {props.children}
     </a>
  );
+
+ Checkbox.propTypes = {
+    active: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
+ };
+
 
  export default Checkbox;
