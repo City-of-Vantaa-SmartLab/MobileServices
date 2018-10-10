@@ -59,7 +59,7 @@ const dummyfeed = [
 class NewsList extends Component {
 
     componentWillMount() {
-        this.props.onRequest(); 
+        this.props.onRequest();   
     }
 
     render() {

@@ -1,6 +1,6 @@
 import * as actions from './actionTypes';
 import get from 'apis';
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 export const toggleFeed = (feedType) => {
     return {
@@ -27,9 +27,15 @@ export function* watcher() {
     yield takeLatest(actions.FETCH_REQUEST, fetchFeed);
 }
 
-function* fetchFeed() {
+
+function* fetchFeed(params) {
     try {
-        const response = yield call(get, '/api/feeds');
+        const filter = yield select((state) => (
+            Object.keys(state.feeds).filter(
+                key => state.feeds[key]
+            )
+        ));
+        const response = yield call(get, '/api/feeds', {type: filter});
         const feed = yield response.json();
 
         yield put({type: actions.FETCH_SUCCESS, feed});
@@ -38,6 +44,9 @@ function* fetchFeed() {
         yield put({type: actions.FETCH_FAILED, error});
     }
 }
+
+
+
 
 
 
