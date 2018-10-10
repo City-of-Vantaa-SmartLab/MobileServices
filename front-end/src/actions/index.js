@@ -7,7 +7,7 @@ export const toggleFeed = (feedType) => {
         type: actions.TOGGLE_FEED,
         feedType,
     };
-}; 
+};
 
 export const changeLanguage = (lang) => {
     return {
@@ -27,26 +27,14 @@ export function* watcher() {
     yield takeLatest(actions.FETCH_REQUEST, fetchFeed);
 }
 
-
 function* fetchFeed(params) {
     try {
-        const filter = yield select((state) => (
-            Object.keys(state.feeds).filter(
-                key => state.feeds[key]
-            )
-        ));
-        const response = yield call(get, '/api/feeds', {type: filter});
+        const filter = yield select((state) => Object.keys(state.feeds).filter((key) => state.feeds[key]));
+        const response = yield call(get, '/api/feeds', { type: ['Facebook', 'sivistysvantaa'] });
         const feed = yield response.json();
 
-        yield put({type: actions.FETCH_SUCCESS, feed});
-
+        yield put({ type: actions.FETCH_SUCCESS, feed });
     } catch (error) {
-        yield put({type: actions.FETCH_FAILED, error});
+        yield put({ type: actions.FETCH_FAILED, error });
     }
 }
-
-
-
-
-
-
