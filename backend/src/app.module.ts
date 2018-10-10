@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RssFeedModule } from './rss-feed/rss-feed.module'
@@ -7,7 +7,8 @@ import { connectionDetails } from './connection';
 import { YouTubeFeedModule } from './youtube-feed/youtube-feed.module';
 import { FacebookFeedModule } from './facebook-feed/facebook-feed.module';
 import { FeedModule } from './feeds/feed.module';
-import { EventModule } from 'event/event.module';
+import { EventModule } from './event/event.module';
+import { FrontendMiddleware } from './middleware/frontend.middleware';
 
 @Module({
   imports: [
@@ -21,4 +22,8 @@ import { EventModule } from 'event/event.module';
   controllers: [AppController],
   providers: [AppService]
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(FrontendMiddleware).forRoutes('/**');
+  }
+}

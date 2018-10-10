@@ -15,11 +15,12 @@ const dummyfeed = [
         source: 'instagram',
         img: pic,
         timestamp: 1537283957618,
+        likes: 34
     },
     {
         id: 2,
-        author: 'authorname',
-        title: 'one more basic news feed card',
+        author: 'Author / page headline',
+        title: 'Trump decides to resign from office after  scandel debacle now this is even more content that can be occupied here',
         source: 'vantaansanomat.fi',
         img: pic,
         timestamp: 1537283957618,
@@ -33,6 +34,7 @@ const dummyfeed = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         img: pic,
         timestamp: 1537174800000,
+        userhandle: 'authorname'
     },
     {
         id: 4,

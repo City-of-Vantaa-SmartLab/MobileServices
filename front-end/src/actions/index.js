@@ -35,7 +35,7 @@ function* fetchFeed(params) {
                 key => state.feeds[key]
             )
         ));
-        const response = yield call(get, '/api/feeds', {type: filter});
+        const response = yield call(get, '/api/feeds', {type: ['Facebook','sivistysvantaa']});
         const feed = yield response.json();
 
         yield put({type: actions.FETCH_SUCCESS, feed});
