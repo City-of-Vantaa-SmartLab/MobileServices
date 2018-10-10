@@ -7,7 +7,7 @@ import FacebookCard from './FacebookCard';
 
 
 const NewsCardSwitcher = ({type, data}) => {
-    switch (type) {
+    switch (type.toLowerCase()) {
         case 'twitter':
             return <TwitterCard data = {data} />;
         case 'instagram':
