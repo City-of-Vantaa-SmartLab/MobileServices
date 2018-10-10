@@ -7,7 +7,7 @@ export const toggleFeed = (feedType) => {
         type: actions.TOGGLE_FEED,
         feedType,
     };
-}; 
+};
 
 export const changeLanguage = (lang) => {
     return {
@@ -32,10 +32,9 @@ function* fetchFeed() {
         const response = yield call(get, '/api/feeds');
         const feed = yield response.json();
 
-        yield put({type: actions.FETCH_SUCCESS, feed});
-
+        yield put({ type: actions.FETCH_SUCCESS, feed });
     } catch (error) {
-        yield put({type: actions.FETCH_FAILED, error});
+        yield put({ type: actions.FETCH_FAILED, error });
     }
 }
 
