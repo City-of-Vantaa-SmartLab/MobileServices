@@ -49,7 +49,7 @@ export class EventFeedService {
             ...feed,
             description: feed.content,
             page_link: feed.link,
-            source: 'Rss_Events',
+            source: 'events',
         }
     }
 }

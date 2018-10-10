@@ -1,7 +1,7 @@
 import React from 'react';
 import Timestamp from './elements/Timestamp';
 import styles from './news-card.module.scss';
-
+import ExpandableContent from './elements/ExpandableContent';
 
 const NewsCard = ({data}) => (
     <div className={styles["news-card"]}>
