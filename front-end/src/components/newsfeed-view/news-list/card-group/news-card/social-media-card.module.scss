@@ -20,6 +20,7 @@ $facebook-source-bg: #ba0d2e;
     display: flex;
     position: relative;
     line-height: 1.7rem;
+    z-index: 300;
 
     .service-source {
         position: absolute;

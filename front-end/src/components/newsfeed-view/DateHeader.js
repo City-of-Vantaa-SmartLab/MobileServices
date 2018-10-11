@@ -3,19 +3,40 @@ import { connect } from 'react-redux';
 import { formatDate } from 'utils/utils';
 import styles from './header.module.scss';
 
-const DateHeader = ({timestamp, i18n}) => {
-    let date = timestamp ? new Date(timestamp) : new Date();
-    return (
-        <div className={styles['date']}>
-            <h4>{formatDate(date, i18n.locale)}</h4>
-        </div>
-    );
-};
+class DateHeader extends React.Component {
+    constructor(props) {
+        super(props);
 
-const mapStateToProps = state => ({
+        this.headerRef = React.createRef();
+    }
+
+    componentDidMount() {
+        if (this.props.newsfeedHeader)
+            this.headerRef.current.parentNode.parentNode.addEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll = () => {
+        console.log(this.headerRef.current.getBoundingClientRect().top);
+        this.headerRef.current.style['width'] =
+            this.headerRef.current.getBoundingClientRect().top < 50 ? '100%' : 'auto';
+    };
+
+    render() {
+        let date = this.props.timestamp ? new Date(this.props.timestamp) : new Date();
+
+        return (
+            <div
+                className={`${styles['date']} ${this.props.newsfeedHeader ? styles['newsfeed-date'] : ''}`}
+                ref={this.headerRef}
+            >
+                <h4>{formatDate(date, this.props.i18n.locale)}</h4>
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = (state) => ({
     i18n: state.i18n,
 });
 
-export default connect(
-    mapStateToProps,
-)(DateHeader);
+export default connect(mapStateToProps)(DateHeader);
