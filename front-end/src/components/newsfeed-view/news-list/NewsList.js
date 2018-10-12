@@ -165,10 +165,12 @@ class NewsList extends Component {
 
         this.newsFeedRef = React.createRef();
         this.containerRef = React.createRef();
+        this.NewsFeedContainerScrollingEvent = new Event('NewsFeedContainerScrolling');
     }
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
+        this.containerRef.current.addEventListener('scroll', this.dispatchCustomEvent);
     }
 
     componentWillUnmount() {
@@ -182,6 +184,10 @@ class NewsList extends Component {
             });
             this.containerRef.current.style['overflow'] = 'scroll';
         }
+    };
+
+    dispatchCustomEvent = () => {
+        window.dispatchEvent(this.NewsFeedContainerScrollingEvent);
     };
 
     fixedPosition = {

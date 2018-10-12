@@ -11,12 +11,10 @@ class DateHeader extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.newsfeedHeader)
-            this.headerRef.current.parentNode.parentNode.addEventListener('scroll', this.handleScroll);
+        if (this.props.newsfeedHeader) window.addEventListener('NewsFeedContainerScrolling', this.handleScroll);
     }
 
     handleScroll = () => {
-        console.log(this.headerRef.current.getBoundingClientRect().top);
         this.headerRef.current.style['width'] =
             this.headerRef.current.getBoundingClientRect().top < 50 ? '100%' : 'auto';
     };

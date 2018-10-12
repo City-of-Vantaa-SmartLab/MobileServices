@@ -25,7 +25,6 @@ class ExpandableContent extends Component {
     };
 
     componentDidMount() {
-        console.log(this.target.clientHeight, this.desiredHeight * 10);
         if (this.target.clientHeight > this.desiredHeight * 10) {
             this.setState({ showMore: true });
         }
