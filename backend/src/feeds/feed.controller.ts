@@ -39,12 +39,19 @@ export class FeedController {
         description: 'Number of feeds to be returned in the response.If Empty/Null uses the defatult limit from configuration file.',
         type: Number,
     })
+    @ApiImplicitQuery({
+        name: 'skip',
+        required: false,
+        description: 'Number of feeds to be skipped while fetching more data based on pagination.',
+        type: Number,
+    })
     @ApiResponse({ status: 200, description: 'List of feeds as response.' })
     @ApiResponse({ status: 500, description: 'Server error.' })
     async getFeeds(@Res() response, @Req() request) {
         try {
             const limit = request.query.limit || config.numberOfFeeds;
-            const feeds = await this.feedService.getFeeds(request.query.type, limit);
+            const skip = request.query.skip;
+            const feeds = await this.feedService.getFeeds(request.query.type, limit, skip);
             return response.status(200).json(feeds);
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
