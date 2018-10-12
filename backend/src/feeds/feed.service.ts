@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { compareDesc } from 'date-fns';
 import { Feed } from './feed.entity';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -33,11 +33,11 @@ export class FeedService {
         }
     }
 
-    async getFeedsByType(source: string, limit: number) {
+    async getFeedsByType(sourceTypes: string, limit: number) {
         try {
-            return await this.feedRepository.find({ where: { source }, take: limit })
+            return await this.feedRepository.find({ where: { source: In(sourceTypes.split(',')) }, take: limit })
         } catch (error) {
-            this.logger.error(`Failed to get feeds for type: ${source}: ${error}`);
+            this.logger.error(`Failed to get feeds for type: ${sourceTypes}: ${error}`);
             throw error;
         }
     }
