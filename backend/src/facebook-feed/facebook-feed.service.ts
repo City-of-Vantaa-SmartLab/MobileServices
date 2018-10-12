@@ -17,18 +17,16 @@ export class FacebookFeedService {
     }
 
     onModuleInit() {
-        this.fetchFacebookFeeds();
+        this.fetchAndSaveFacebookFeeds();
     }
 
-    async fetchFacebookFeeds() {
+    async fetchAndSaveFacebookFeeds() {
         this.logger.log('Fetching facebook feeds Started');
         FB.api(`${sources.vantaa}/posts`, { fields: queryParams })
             .then(this.addProfileImage)
             .then(this.transformData)
-            .then((feeds) => {
-                this.persistIntoDb(feeds);
-                this.logger.log('Fetching facebook feeds Completed');
-            })
+            .then(this.persistIntoDb)
+            .then(() => this.logger.log('Fetching facebook feeds Completed'))
             .catch(error => this.logger.error(`Failed to get facebook feeds: ${error}`));
 
     }
