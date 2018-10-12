@@ -50,7 +50,7 @@ export class FeedController {
     async getFeeds(@Res() response, @Req() request) {
         try {
             const limit = request.query.limit || config.numberOfFeeds;
-            const skip = request.query.skip || -1;
+            const skip = request.query.skip;
             const feeds = await this.feedService.getFeeds(request.query.type, limit, skip);
             return response.status(200).json(feeds);
         } catch (error) {

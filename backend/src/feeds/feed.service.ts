@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Feed } from './feed.entity';
-import { Repository, LessThan } from 'typeorm';
+import { Repository, LessThan, In } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -13,15 +13,13 @@ export class FeedService {
         this.logger = new Logger('FeedService');
     }
 
-    async getFeeds(type: string, limit: number, feedId: number) {
+    async getFeeds(sourceTypes: string, limit: number, skip: number) {
         try {
-            const feeds = type ?
-                await this.getFeedsByType(type, limit)
-                : (
-                    feedId ?
-                        await this.getMoreByDate(limit, feedId) :
-                        await this.getAll(limit));
-            return feeds.slice(0, limit);
+            const feeds = sourceTypes ?
+                await this.getMoreBySourceAndDate(sourceTypes, limit, skip)
+                : await this.getMoreByDate(limit, skip)
+
+            return feeds.slice(0, ((limit && limit <= feeds.length) ? limit : feeds.length));
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
@@ -32,8 +30,8 @@ export class FeedService {
         try {
             return await this.feedRepository.find(
                 {
+                    order: { pub_date: 'DESC' },
                     take: limit,
-                    order: { pub_date: 'DESC' }
                 })
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
@@ -41,24 +39,57 @@ export class FeedService {
         }
     }
 
-    async getMoreByDate(limit: number, feedId: number) {
+    async getMoreByDate(limit: number, skip: number) {
         try {
-            const feed = await this.feedRepository.findOne(feedId);
+            if (!skip) {
+                return this.getAll(limit);
+            }
+            const feed = await this.feedRepository.findOne(skip);
             return await this.feedRepository.find(
                 {
-                    where: { pub_date: LessThan(feed.pub_date) },
+                    where: {
+                        pub_date: LessThan(feed.pub_date),
+                    },
+                    order: { pub_date: 'DESC' },
                     take: limit,
-                    order: { pub_date: 'DESC' }
-                })
+                });
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
         }
     }
 
-    async getFeedsByType(sourceTypes: string, limit: number) {
+    async getMoreBySourceAndDate(sourceTypes: string, limit: number, skip: number) {
         try {
-            return await this.feedRepository.find({ where: { source: In(sourceTypes.split(',')) }, take: limit })
+            if (!skip) {
+                return await this.getFeedsBySource(sourceTypes, limit);
+            }
+            const feed = await this.feedRepository.findOne(skip);
+            return await this.feedRepository.find(
+                {
+                    where: {
+                        pub_date: LessThan(feed.pub_date),
+                        source: In(sourceTypes.split(','))
+                    },
+                    order: { pub_date: 'DESC' },
+                    take: limit,
+                });
+        } catch (error) {
+            this.logger.error(`Failed to get feeds: ${error}`);
+            throw error;
+        }
+    }
+
+    async getFeedsBySource(sourceTypes: string, limit: number) {
+        try {
+            return await this.feedRepository.find({
+                where:
+                    {
+                        source: In(sourceTypes.split(','))
+                    },
+                order: { pub_date: 'DESC' },
+                take: limit
+            })
         } catch (error) {
             this.logger.error(`Failed to get feeds for type: ${sourceTypes}: ${error}`);
             throw error;
