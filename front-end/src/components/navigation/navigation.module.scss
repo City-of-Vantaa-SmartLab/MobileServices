@@ -12,6 +12,7 @@
     justify-content: space-around;
     background-color: $color-white;
     opacity: 0.9;
+    z-index: map-get($map: $z-index, $key: navigation);
 
     a {
         text-decoration: none;
