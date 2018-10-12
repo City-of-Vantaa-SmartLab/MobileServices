@@ -8,6 +8,7 @@ export const sources = {
 export const queryParams = [
     'id',
     'name',
+    'from',
     'message',
     'story',
     'picture',
