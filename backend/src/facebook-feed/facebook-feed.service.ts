@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
 import { sources, queryParams } from './facebook-utils';
 import { FeedService } from '../feeds/feed.service';
+import { sourceNames } from '../feeds/feed.sources';
 const config = new ConfigService();
 
 import FB from 'fb';
@@ -58,7 +59,7 @@ export class FacebookFeedService {
                 author_thumbnail: feed.author_thumbnail,
                 likes: feed.reactions ? feed.reactions.data.length : null,
                 description: feed.story ? feed.story : feed.message,
-                source: 'Facebook',
+                source: sourceNames.FACEBOOK,
                 title: feed.status_type,
                 pub_date: feed.created_time,
                 image_url: feed.picture,

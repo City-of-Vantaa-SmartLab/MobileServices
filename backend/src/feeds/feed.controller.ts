@@ -8,7 +8,7 @@ import {
 import { FeedService } from './feed.service';
 import { ConfigService } from '../config/config.service';
 import { ApiUseTags, ApiImplicitQuery, ApiResponse } from '@nestjs/swagger';
-import feedSources from './feed.sources';
+import { sourceNames, sourceTypes } from '../feeds/feed.sources';
 const config = new ConfigService();
 
 @ApiUseTags('feeds')
@@ -64,6 +64,6 @@ export class FeedController {
     @Get('sources')
     @ApiResponse({ status: 200, description: 'List of source types available.' })
     async getSources(@Res() response) {
-        return response.status(200).json({ sources: feedSources });
+        return response.status(200).json({ sources: sourceNames, types: sourceTypes });
     }
 }

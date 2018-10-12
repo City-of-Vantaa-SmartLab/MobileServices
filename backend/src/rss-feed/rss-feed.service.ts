@@ -3,6 +3,7 @@ import sources from './rss-feed-sources';
 import { Transaction } from 'typeorm';
 import * as converter from 'json-style-converter/es5';
 import { FeedService } from '../feeds/feed.service';
+import { sourceNames, sourceTypes } from '../feeds/feed.sources';
 const Parser = require('rss-parser');
 const parser = new Parser();
 
@@ -24,23 +25,23 @@ export class RssFeedService {
         this.logger.log('Fetching Rss feeds Started');
 
         parser.parseURL(sources.news)
-            .then(this.addSourceName('vantaa'))
+            .then(this.addSourceAndType(sourceNames.VANTAA, sourceTypes.NEWS))
             .then(this.persistIntoDb)
             .catch(error => this.logger.error(`Failed to fetch Rss_News :${error}`)),
             parser.parseURL(sources.stories)
-                .then(this.addSourceName('vantaa'))
+                .then(this.addSourceAndType(sourceNames.VANTAA, sourceTypes.STORIES))
                 .then(this.persistIntoDb)
                 .catch(error => this.logger.error(`Failed to fetch Rss_Stories :${error}`)),
             parser.parseURL(sources.aikuisopisto)
-                .then(this.addSourceName('sivistysvantaa'))
+                .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.AIKUISOPISTO))
                 .then(this.persistIntoDb)
                 .catch(error => this.logger.error(`Failed to fetch Rss_Aikuisopisto :${error}`)),
             parser.parseURL(sources.nuorten)
-                .then(this.addSourceName('sivistysvantaa'))
+                .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.NUORTEN))
                 .then(this.persistIntoDb)
                 .catch(error => this.logger.error(`Failed to fetch Rss_Nuorten :${error}`)),
             parser.parseURL(sources.kaupunginmuseo)
-                .then(this.addSourceName('sivistysvantaa'))
+                .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.KAUPUNGINMUSEO))
                 .then(this.persistIntoDb)
                 .catch(error => this.logger.error(`Failed to fetch Rss_Kaupunginmuseo :${error}`)),
 
@@ -49,13 +50,14 @@ export class RssFeedService {
 
     persistIntoDb = data => this.feedService.saveFeeds(data.items);
 
-    addSourceName = name => {
+    addSourceAndType = (name, type) => {
         return (data) => {
             data = converter.camelToSnakeCase(data);
             data.items = data.items.map(item => {
                 return {
                     ...item,
                     source: name,
+                    type,
                     page_link: item.link,
                     description: item.content
                 }
