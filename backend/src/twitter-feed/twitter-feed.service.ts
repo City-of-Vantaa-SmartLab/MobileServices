@@ -21,17 +21,17 @@ export class TwitterFeedService {
     }
 
     onModuleInit() {
-        this.fetchTwitterFeeds();
+        this.fetchAndSaveTwitterFeeds();
     }
 
-    async fetchTwitterFeeds() {
+    async fetchAndSaveTwitterFeeds() {
         this.logger.log('Fetching Twitter feeds Started');
         const params = { screen_name: 'VantaanKaupunki' };
         await twitter.get('statuses/user_timeline', params)
             .then(this.transformData)
             .then(this.persistIntoDb)
+            .then(() => this.logger.log('Fetching Twitter feeds Completed'))
             .catch(error => this.logger.error(`Failed to fetch Twitter feeds :${error}`));
-        this.logger.log('Fetching Twitter feeds Completed');
     }
 
     persistIntoDb = feeds => this.feedService.saveFeeds(feeds);
