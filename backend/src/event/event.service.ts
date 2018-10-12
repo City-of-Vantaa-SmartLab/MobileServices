@@ -2,6 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import * as converter from 'json-style-converter/es5';
 import sources from './event.sources';
 import { FeedService } from '../feeds/feed.service';
+import { sourceNames } from '../feeds/feed.sources';
+
 const Parser = require('rss-parser-browser');
 
 @Injectable()
@@ -49,7 +51,7 @@ export class EventFeedService {
             ...feed,
             description: feed.content,
             page_link: feed.link,
-            source: 'events',
+            source: sourceNames.EVENTS,
         }
     }
 }

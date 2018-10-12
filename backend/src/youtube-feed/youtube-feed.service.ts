@@ -3,6 +3,7 @@ import { ConfigService } from '../config/config.service';
 import { Injectable, Logger } from '@nestjs/common';
 import axios from 'axios';
 import { FeedService } from '../feeds/feed.service';
+import { sourceNames } from '../feeds/feed.sources';
 
 const config = new ConfigService();
 
@@ -45,7 +46,7 @@ export class YouTubeFeedService {
                     playlist_id: item.id.playlistId,
                     pub_date: item.snippet.publishedAt,
                     title: item.snippet.title,
-                    source: 'Youtube',
+                    source: sourceNames.YOUTUBE,
                     description: item.snippet.description,
                     image_url: item.snippet.thumbnails ? item.snippet.thumbnails.medium.url : null,
                     channel_title: item.snippet.channelTitle,
