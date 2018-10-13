@@ -11,14 +11,22 @@ const API_KEY = config.youTubeApiKey;
 const CHANNEL_ID = config.youTubeChannelID;
 const MAX_RESULTS = config.youTubeChannelListLimit;
 
-const youtube_fetch_url = `https://www.googleapis.com/youtube/v3/search?`
+const channelDetailsUrl = `${config.youTubeBaseUrl}channels?`
+    + `part=snippet`
+    + `&id=UCPazkSuII3Jq1JNFM1k2tWg`
+    + `&key=${API_KEY}`;
+
+const youtubeFetchUrl = `${config.youTubeBaseUrl}search?`
     + `key=${API_KEY}`
     + `&channelId=${CHANNEL_ID}`
-    + `&part=snippet,id`
+    + `&part=snippet`
     + `&order=date`
     + `&maxResults=${MAX_RESULTS}`;
 
-const youtube_video_details_url = `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=statistics&id=`;
+const youtubeVideoDetailsUrl = `${config.youTubeBaseUrl}videos?`
+    + `key=${API_KEY}`
+    + `&part=statistics`
+    + `&id=`;
 
 @Injectable()
 export class YouTubeFeedService {
@@ -38,16 +46,23 @@ export class YouTubeFeedService {
     async fetchAndSaveYouTubeFeed() {
         this.logger.log('Fetching Youtube feeds Started');
         try {
-            const feed = await axios.get(youtube_fetch_url);
+            const channelDetails = await axios.get(channelDetailsUrl);
+
+            const channelTitle = channelDetails.data.items[0].snippet.title;
+            const channelProfileImage = channelDetails.data.items[0].snippet.thumbnails.default.url;
+
+            const feed = await axios.get(youtubeFetchUrl);
             let youTubeFeeds = feed.data.items.filter(item => item.id.videoId)
             youTubeFeeds = await this.filterAlreadyExistingFeeds(youTubeFeeds);
 
             const videoIds = youTubeFeeds.map(item => item.id.videoId);
-            const videoDetails = await axios.get(youtube_video_details_url + videoIds);
+            const videoDetails = await axios.get(youtubeVideoDetailsUrl + videoIds);
 
             youTubeFeeds = youTubeFeeds.map(item => {
                 const details = videoDetails.data.items.find(videoItem => videoItem.id === item.id.videoId);
                 return {
+                    author: channelTitle,
+                    author_thumbnail: channelProfileImage,
                     video_id: item.id.videoId,
                     pub_date: item.snippet.publishedAt,
                     title: item.snippet.title,

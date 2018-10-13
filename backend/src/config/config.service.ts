@@ -123,6 +123,10 @@ export class ConfigService {
     return Number(this.envConfig.UPDATE_INTERVAL);
   }
 
+  get youTubeBaseUrl(): string {
+    return this.envConfig.YOUTUBE_BASE_URL;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -152,6 +156,7 @@ export class ConfigService {
       TWITTER_ACCESS_KEY: Joi.string(),
       TWITTER_SECRET_ACCESS_KEY: Joi.string(),
       UPDATE_INTERVAL: Joi.number().default(1000),
+      YOUTUBE_BASE_URL: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
