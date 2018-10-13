@@ -50,8 +50,5 @@ export class Feed {
     video_id: string;
 
     @Column({ nullable: true })
-    playlist_id: string;
-
-    @Column({ nullable: true })
     feed_id: string;
 }

@@ -18,12 +18,15 @@ export class FacebookFeedService {
     }
 
     onModuleInit() {
-        this.fetchAndSaveFacebookFeeds();
+        setInterval(() => {
+            this.fetchAndSaveFacebookFeeds();
+        }, config.updateInterval);
     }
 
     async fetchAndSaveFacebookFeeds() {
         this.logger.log('Fetching facebook feeds Started');
         FB.api(`${sources.vantaa}/posts`, { fields: queryParams })
+            .then(this.filterAlreadyExistingFeeds)
             .then(this.addProfileImage)
             .then(this.transformData)
             .then(this.persistIntoDb)
@@ -36,7 +39,7 @@ export class FacebookFeedService {
 
     addProfileImage = async feeds => {
         return await Promise.all(
-            feeds.data.map(async feed => {
+            feeds.map(async feed => {
                 let profileImage;
                 try {
                     profileImage = await this.fetchProfileImage(feed.from.id);
@@ -48,6 +51,12 @@ export class FacebookFeedService {
                     author_thumbnail: profileImage ? profileImage.data.url : null
                 }
             }));
+    }
+
+    filterAlreadyExistingFeeds = (feeds) => {
+        return this.feedService.fetchFeedsBySource(sourceNames.FACEBOOK).
+            then(existingFeeds => existingFeeds.map(feed => feed.feed_id)).
+            then(existingFeedIds => feeds.data.filter(feed => !existingFeedIds.includes(feed.id)));
     }
 
     transformData = feeds => {

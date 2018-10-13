@@ -30,20 +30,25 @@ export class YouTubeFeedService {
     }
 
     onModuleInit() {
-        this.fetchAndSaveYouTubeFeed();
+        setInterval(() => {
+            this.fetchAndSaveYouTubeFeed();
+        }, 1000);
     }
 
     async fetchAndSaveYouTubeFeed() {
         this.logger.log('Fetching Youtube feeds Started');
         try {
             const feed = await axios.get(youtube_fetch_url);
-            const videoIds = feed.data.items.map(item => item.id.videoId);
-            const videoDetails = await axios.get(youtube_video_details_url + videoIds.filter(id => id));
-            const youTubeFeeds = feed.data.items.map(item => {
+            let youTubeFeeds = feed.data.items.filter(item => item.id.videoId)
+            youTubeFeeds = await this.filterAlreadyExistingFeeds(youTubeFeeds);
+
+            const videoIds = youTubeFeeds.map(item => item.id.videoId);
+            const videoDetails = await axios.get(youtube_video_details_url + videoIds);
+
+            youTubeFeeds = youTubeFeeds.map(item => {
                 const details = videoDetails.data.items.find(videoItem => videoItem.id === item.id.videoId);
                 return {
                     video_id: item.id.videoId,
-                    playlist_id: item.id.playlistId,
                     pub_date: item.snippet.publishedAt,
                     title: item.snippet.title,
                     source: sourceNames.YOUTUBE,
@@ -59,5 +64,11 @@ export class YouTubeFeedService {
         } catch (error) {
             this.logger.error(`Error in fetching and saving You Tube feed: ${error.message}`);
         }
+    }
+
+    filterAlreadyExistingFeeds = (feeds) => {
+        return this.feedService.fetchFeedsBySource(sourceNames.YOUTUBE).
+            then(existingFeeds => existingFeeds.map(feed => feed.video_id)).
+            then(existingFeedIds => feeds.filter(feed => !existingFeedIds.includes(feed.id.videoId)));
     }
 }
