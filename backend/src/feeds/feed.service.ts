@@ -96,6 +96,25 @@ export class FeedService {
         }
     }
 
+    fetchFeedsBySource(sourceType: string) {
+        return this.feedRepository.find({
+            where:
+                {
+                    source: sourceType,
+                },
+        });
+    }
+
+    fetchFeedsBySourceAndType(sourceType: string, type: string) {
+        return this.feedRepository.find({
+            where:
+                {
+                    source: sourceType,
+                    type
+                },
+        });
+    }
+
     saveFeed(feed: Feed) {
         return this.feedRepository.save(feed);
     }
