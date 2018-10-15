@@ -155,7 +155,7 @@ export class ConfigService {
       TWITTER_CONSUMER_SECRET: Joi.string(),
       TWITTER_ACCESS_KEY: Joi.string(),
       TWITTER_SECRET_ACCESS_KEY: Joi.string(),
-      UPDATE_INTERVAL: Joi.number().default(1000),
+      UPDATE_INTERVAL: Joi.number().default(500),
       YOUTUBE_BASE_URL: Joi.string(),
     });
 

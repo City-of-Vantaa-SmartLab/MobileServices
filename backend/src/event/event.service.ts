@@ -38,10 +38,10 @@ export class EventFeedService {
             }
         }
         Parser.parseURL(sources.events, options, (_, parsed) => {
-            this.filterAlreadyExistingFeeds(parsed.feed.entries).
-                then(this.transformData).
-                then(this.persistIntoDb).
-                then(() => this.logger.log('Fetching Event feeds Completed')).
+            this.filterAlreadyExistingFeeds(parsed.feed.entries)
+                .then(this.transformData)
+                .then(this.persistIntoDb)
+                .then(() => this.logger.log('Fetching Event feeds Completed')).
                 catch(error => this.logger.error(`Failed to get event feeds: ${error}`))
         });
     }
@@ -49,17 +49,14 @@ export class EventFeedService {
     persistIntoDb = events => this.feedService.saveFeeds(events);
 
     filterAlreadyExistingFeeds = (events) => {
-        return this.feedService.fetchFeedsBySource(sourceNames.EVENTS).
-            then(existingEvents => existingEvents.map(event => {
+        return this.feedService.fetchFeedsBySource(sourceNames.EVENTS)
+            .then(existingEvents => existingEvents.map(event => {
                 return formatToTimeZone(event.pub_date, format, { timeZone: 'Europe/Helsinki' })
             }))
-            .then(dates => {
-                events = events.filter(event => {
-                    const itemDate = formatToTimeZone(event.pubDate, format, { timeZone: 'Europe/Helsinki' });
-                    return !dates.includes(itemDate)
-                });
-                return events;
-            })
+            .then(dates => events.filter(event => {
+                const itemDate = formatToTimeZone(event.pubDate, format, { timeZone: 'Europe/Helsinki' });
+                return !dates.includes(itemDate)
+            }))
     }
 
     transformData = feeds => {
