@@ -1,22 +1,23 @@
 const getHeaders = async () => {
     const headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
     };
     return headers;
 };
 
 const baseURL = window.location.protocol + '//' + window.location.host;
 
-const get = async(uri, params) => {
+const get = async (uri, params) => {
     let url = new URL(`${baseURL}${uri}`);
     if (params !== undefined) {
-        Object.keys(params).forEach(key => 
-            url.searchParams.append(key, params[key]));
+        Object.keys(params).forEach((key) => {
+            if (params[key]) url.searchParams.append(key, params[key]);
+        });
     }
     console.log(url);
     const init = {
-      headers: await getHeaders(),
+        headers: await getHeaders(),
     };
     const response = await fetch(url, init);
     return response;
