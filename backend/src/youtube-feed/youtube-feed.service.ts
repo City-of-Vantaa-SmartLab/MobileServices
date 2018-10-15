@@ -47,9 +47,17 @@ export class YouTubeFeedService {
         this.logger.log('Fetching Youtube feeds Started');
         try {
             const channelDetails = await axios.get(channelDetailsUrl);
-
-            const channelTitle = channelDetails.data.items[0].snippet.title;
-            const channelProfileImage = channelDetails.data.items[0].snippet.thumbnails.default.url;
+            let channelTitle;
+            let channelProfileImage;
+            if (channelDetails
+                && channelDetails.data
+                && channelDetails.data.items
+                && channelDetails.data.items.length !== 0
+                && channelDetails.data.items[0].snippet) {
+                const snippet = channelDetails.data.items[0].snippet;
+                channelTitle = snippet.title;
+                channelProfileImage = snippet.thumbnails && snippet.thumbnails.default ? snippet.thumbnails.default.url : null;
+            }
 
             const feed = await axios.get(youtubeFetchUrl);
             let youTubeFeeds = feed.data.items.filter(item => item.id.videoId)
@@ -58,27 +66,31 @@ export class YouTubeFeedService {
             const videoIds = youTubeFeeds.map(item => item.id.videoId);
             const videoDetails = await axios.get(youtubeVideoDetailsUrl + videoIds);
 
-            youTubeFeeds = youTubeFeeds.map(item => {
-                const details = videoDetails.data.items.find(videoItem => videoItem.id === item.id.videoId);
-                return {
-                    author: channelTitle,
-                    author_thumbnail: channelProfileImage,
-                    video_id: item.id.videoId,
-                    pub_date: item.snippet.publishedAt,
-                    title: item.snippet.title,
-                    source: sourceNames.YOUTUBE,
-                    description: item.snippet.description,
-                    image_url: item.snippet.thumbnails ? item.snippet.thumbnails.medium.url : null,
-                    channel_title: item.snippet.channelTitle,
-                    likes: details ? (details.statistics ? details.statistics.likeCount : null) : null,
-                    views: details ? (details.statistics ? details.statistics.viewCount : null) : null
-                }
-            });
+            youTubeFeeds = this.formatFeed(youTubeFeeds, videoDetails, channelTitle, channelProfileImage);
             await this.feedService.saveFeeds(youTubeFeeds);
             this.logger.log('Fetching Youtube feeds Completed');
         } catch (error) {
             this.logger.error(`Error in fetching and saving You Tube feed: ${error.message}`);
         }
+    }
+
+    formatFeed = (youTubeFeeds, videoDetails, channelTitle, channelProfileImage) => {
+        return youTubeFeeds.map(item => {
+            const details = videoDetails.data.items.find(videoItem => videoItem.id === item.id.videoId);
+            return {
+                author: channelTitle,
+                author_thumbnail: channelProfileImage,
+                video_id: item.id.videoId,
+                pub_date: item.snippet.publishedAt,
+                title: item.snippet.title,
+                source: sourceNames.YOUTUBE,
+                description: item.snippet.description,
+                image_url: item.snippet.thumbnails ? item.snippet.thumbnails.medium.url : null,
+                channel_title: item.snippet.channelTitle,
+                likes: details ? (details.statistics ? details.statistics.likeCount : null) : null,
+                views: details ? (details.statistics ? details.statistics.viewCount : null) : null
+            }
+        });
     }
 
     filterAlreadyExistingFeeds = (feeds) => {
