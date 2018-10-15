@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
 import { FeedService } from '../feeds/feed.service';
+import { sourceNames } from 'feeds/feed.sources';
 const config = new ConfigService();
 const Twitter = require('twitter')
 
@@ -21,13 +22,16 @@ export class TwitterFeedService {
     }
 
     onModuleInit() {
-        this.fetchAndSaveTwitterFeeds();
+        setInterval(() => {
+            this.fetchAndSaveTwitterFeeds();
+        }, config.updateInterval);
     }
 
     async fetchAndSaveTwitterFeeds() {
         this.logger.log('Fetching Twitter feeds Started');
         const params = { screen_name: 'VantaanKaupunki' };
         await twitter.get('statuses/user_timeline', params)
+            .then(this.filterAlreadyExistingFeeds)
             .then(this.transformData)
             .then(this.persistIntoDb)
             .then(() => this.logger.log('Fetching Twitter feeds Completed'))
@@ -35,6 +39,12 @@ export class TwitterFeedService {
     }
 
     persistIntoDb = feeds => this.feedService.saveFeeds(feeds);
+
+    filterAlreadyExistingFeeds = (feeds) => {
+        return this.feedService.fetchFeedsBySource(sourceNames.TWITTER).
+            then(existingFeeds => existingFeeds.map(feed => Number(feed.feed_id))).
+            then(existingFeedIds => feeds.filter(feed => !existingFeedIds.includes(feed.id)));
+    }
 
     transformData = feeds => {
         return feeds.map(feed => {
@@ -45,7 +55,7 @@ export class TwitterFeedService {
                 author_thumbnail: feed.user.profile_image_url_https,
                 likes: feed.favorite_count,
                 description: feed.text,
-                source: 'Twitter',
+                source: sourceNames.TWITTER,
                 pub_date: feed.created_at,
                 feed_id
             }

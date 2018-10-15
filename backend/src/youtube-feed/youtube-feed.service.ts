@@ -11,14 +11,22 @@ const API_KEY = config.youTubeApiKey;
 const CHANNEL_ID = config.youTubeChannelID;
 const MAX_RESULTS = config.youTubeChannelListLimit;
 
-const youtube_fetch_url = `https://www.googleapis.com/youtube/v3/search?`
+const channelDetailsUrl = `${config.youTubeBaseUrl}channels?`
+    + `part=snippet`
+    + `&id=UCPazkSuII3Jq1JNFM1k2tWg`
+    + `&key=${API_KEY}`;
+
+const youtubeFetchUrl = `${config.youTubeBaseUrl}search?`
     + `key=${API_KEY}`
     + `&channelId=${CHANNEL_ID}`
-    + `&part=snippet,id`
+    + `&part=snippet`
     + `&order=date`
     + `&maxResults=${MAX_RESULTS}`;
 
-const youtube_video_details_url = `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&part=statistics&id=`;
+const youtubeVideoDetailsUrl = `${config.youTubeBaseUrl}videos?`
+    + `key=${API_KEY}`
+    + `&part=statistics`
+    + `&id=`;
 
 @Injectable()
 export class YouTubeFeedService {
@@ -30,34 +38,64 @@ export class YouTubeFeedService {
     }
 
     onModuleInit() {
-        this.fetchAndSaveYouTubeFeed();
+        setInterval(() => {
+            this.fetchAndSaveYouTubeFeed();
+        }, 1000);
     }
 
     async fetchAndSaveYouTubeFeed() {
         this.logger.log('Fetching Youtube feeds Started');
         try {
-            const feed = await axios.get(youtube_fetch_url);
-            const videoIds = feed.data.items.map(item => item.id.videoId);
-            const videoDetails = await axios.get(youtube_video_details_url + videoIds.filter(id => id));
-            const youTubeFeeds = feed.data.items.map(item => {
-                const details = videoDetails.data.items.find(videoItem => videoItem.id === item.id.videoId);
-                return {
-                    video_id: item.id.videoId,
-                    playlist_id: item.id.playlistId,
-                    pub_date: item.snippet.publishedAt,
-                    title: item.snippet.title,
-                    source: sourceNames.YOUTUBE,
-                    description: item.snippet.description,
-                    image_url: item.snippet.thumbnails ? item.snippet.thumbnails.medium.url : null,
-                    channel_title: item.snippet.channelTitle,
-                    likes: details ? (details.statistics ? details.statistics.likeCount : null) : null,
-                    views: details ? (details.statistics ? details.statistics.viewCount : null) : null
-                }
-            });
+            const channelDetails = await axios.get(channelDetailsUrl);
+            let channelTitle;
+            let channelProfileImage;
+            if (channelDetails
+                && channelDetails.data
+                && channelDetails.data.items
+                && channelDetails.data.items.length !== 0
+                && channelDetails.data.items[0].snippet) {
+                const snippet = channelDetails.data.items[0].snippet;
+                channelTitle = snippet.title;
+                channelProfileImage = snippet.thumbnails && snippet.thumbnails.default ? snippet.thumbnails.default.url : null;
+            }
+
+            const feed = await axios.get(youtubeFetchUrl);
+            let youTubeFeeds = feed.data.items.filter(item => item.id.videoId)
+            youTubeFeeds = await this.filterAlreadyExistingFeeds(youTubeFeeds);
+
+            const videoIds = youTubeFeeds.map(item => item.id.videoId);
+            const videoDetails = await axios.get(youtubeVideoDetailsUrl + videoIds);
+
+            youTubeFeeds = this.formatFeed(youTubeFeeds, videoDetails, channelTitle, channelProfileImage);
             await this.feedService.saveFeeds(youTubeFeeds);
             this.logger.log('Fetching Youtube feeds Completed');
         } catch (error) {
             this.logger.error(`Error in fetching and saving You Tube feed: ${error.message}`);
         }
+    }
+
+    formatFeed = (youTubeFeeds, videoDetails, channelTitle, channelProfileImage) => {
+        return youTubeFeeds.map(item => {
+            const details = videoDetails.data.items.find(videoItem => videoItem.id === item.id.videoId);
+            return {
+                author: channelTitle,
+                author_thumbnail: channelProfileImage,
+                video_id: item.id.videoId,
+                pub_date: item.snippet.publishedAt,
+                title: item.snippet.title,
+                source: sourceNames.YOUTUBE,
+                description: item.snippet.description,
+                image_url: item.snippet.thumbnails ? item.snippet.thumbnails.medium.url : null,
+                channel_title: item.snippet.channelTitle,
+                likes: details ? (details.statistics ? details.statistics.likeCount : null) : null,
+                views: details ? (details.statistics ? details.statistics.viewCount : null) : null
+            }
+        });
+    }
+
+    filterAlreadyExistingFeeds = (feeds) => {
+        return this.feedService.fetchFeedsBySource(sourceNames.YOUTUBE).
+            then(existingFeeds => existingFeeds.map(feed => feed.video_id)).
+            then(existingFeedIds => feeds.filter(feed => !existingFeedIds.includes(feed.id.videoId)));
     }
 }

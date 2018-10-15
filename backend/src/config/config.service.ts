@@ -119,6 +119,14 @@ export class ConfigService {
     return this.envConfig.TWITTER_SECRET_ACCESS_KEY;
   }
 
+  get updateInterval(): number {
+    return Number(this.envConfig.UPDATE_INTERVAL);
+  }
+
+  get youTubeBaseUrl(): string {
+    return this.envConfig.YOUTUBE_BASE_URL;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -147,6 +155,8 @@ export class ConfigService {
       TWITTER_CONSUMER_SECRET: Joi.string(),
       TWITTER_ACCESS_KEY: Joi.string(),
       TWITTER_SECRET_ACCESS_KEY: Joi.string(),
+      UPDATE_INTERVAL: Joi.number().default(500),
+      YOUTUBE_BASE_URL: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
