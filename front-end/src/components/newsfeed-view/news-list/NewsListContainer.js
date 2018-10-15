@@ -2,17 +2,17 @@ import { connect } from 'react-redux';
 import { FETCH_REQUEST } from 'actions/actionTypes';
 import NewsList from './NewsList';
 
-
 const mapStateToProps = (state) => ({
     loading: state.fetch.loading,
     feed: state.fetch.feed,
     error: state.fetch.error,
+    last: state.fetch.last,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onRequest: (filter) => {
-            dispatch({type: FETCH_REQUEST});
+            dispatch({ type: FETCH_REQUEST });
         },
     };
 };

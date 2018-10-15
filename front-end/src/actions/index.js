@@ -5,21 +5,21 @@ import { takeLatest, call, put, select } from 'redux-saga/effects';
 export const toggleFeed = (feedType) => {
     return {
         type: actions.TOGGLE_FEED,
-        feedType,
+        payload: feedType,
     };
-}; 
+};
 
 export const changeLanguage = (lang) => {
     return {
         type: actions.CHANGE_LANGUAGE,
-        lang,
+        payload: lang,
     };
 };
 
-export const setNotificationFilter = (filter) => {
+export const setNotificationFilter = (filterType) => {
     return {
         type: actions.SET_NOTIFICATION_FILTER,
-        filter,
+        payload: filterType,
     };
 };
 
@@ -27,26 +27,19 @@ export function* watcher() {
     yield takeLatest(actions.FETCH_REQUEST, fetchFeed);
 }
 
-
 function* fetchFeed(params) {
     try {
-        const filter = yield select((state) => (
-            Object.keys(state.feeds).filter(
-                key => state.feeds[key]
-            )
-        ));
-        const response = yield call(get, '/api/feeds', {type: ['Facebook','sivistysvantaa']});
+        let filter, last_id;
+        yield select((state) => {
+            filter = Object.keys(state.feeds).filter((key) => state.feeds[key]);
+            last_id = state.fetch.last;
+        });
+        const response = yield call(get, '/api/feeds', { type: filter, last_id: last_id });
         const feed = yield response.json();
+        console.log(feed);
 
-        yield put({type: actions.FETCH_SUCCESS, feed});
-
+        yield put({ type: actions.FETCH_SUCCESS, payload: feed });
     } catch (error) {
-        yield put({type: actions.FETCH_FAILED, error});
+        yield put({ type: actions.FETCH_FAILED, payload: error });
     }
 }
-
-
-
-
-
-
