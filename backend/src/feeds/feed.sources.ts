@@ -1,0 +1,17 @@
+export const sourceNames = {
+    FACEBOOK: 'FACEBOOK',
+    TWITTER: 'TWITTER',
+    YOUTUBE: 'YOUTUBE',
+    INSTAGRAM: 'INSTAGRAM',
+    VANTAA: 'VANTAA',
+    SIVISTYSVANTAA: 'SIVISTYSVANTAA',
+    EVENTS: 'EVENTS'
+}
+
+export const sourceTypes = {
+    NEWS: 'NEWS',
+    STORIES: 'STORIES',
+    AIKUISOPISTO: 'AIKUISOPISTO',
+    NUORTEN: 'NUORTEN',
+    KAUPUNGINMUSEO: 'KAUPUNGINMUSEO',
+}
