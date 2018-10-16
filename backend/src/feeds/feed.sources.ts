@@ -1,17 +1,17 @@
 export const sourceNames = {
-    FACEBOOK: 'FACEBOOK',
-    TWITTER: 'TWITTER',
-    YOUTUBE: 'YOUTUBE',
-    INSTAGRAM: 'INSTAGRAM',
-    VANTAA: 'VANTAA',
-    SIVISTYSVANTAA: 'SIVISTYSVANTAA',
-    EVENTS: 'EVENTS'
+    FACEBOOK: 'facebook',
+    TWITTER: 'twitter',
+    YOUTUBE: 'youtube',
+    INSTAGRAM: 'instagram',
+    VANTAA: 'vantaa',
+    SIVISTYSVANTAA: 'sivistysvantaa',
+    EVENTS: 'events'
 }
 
 export const sourceTypes = {
-    NEWS: 'NEWS',
-    STORIES: 'STORIES',
-    AIKUISOPISTO: 'AIKUISOPISTO',
-    NUORTEN: 'NUORTEN',
-    KAUPUNGINMUSEO: 'KAUPUNGINMUSEO',
+    NEWS: 'news',
+    STORIES: 'stories',
+    AIKUISOPISTO: 'aikuisopisto',
+    NUORTEN: 'nuorten',
+    KAUPUNGINMUSEO: 'kaupunginmuseo',
 }
