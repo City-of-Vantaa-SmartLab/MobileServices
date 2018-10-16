@@ -9,15 +9,17 @@ import { FacebookFeedModule } from './facebook-feed/facebook-feed.module';
 import { FeedModule } from './feeds/feed.module';
 import { EventModule } from './event/event.module';
 import { FrontendMiddleware } from './middleware/frontend.middleware';
+import { TwitterFeedModule } from 'twitter-feed/twitter-feed.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(connectionDetails),
     RssFeedModule,
     YouTubeFeedModule,
-    FacebookFeedModule,
+    //FacebookFeedModule,
     FeedModule,
-    EventModule
+    EventModule,
+    TwitterFeedModule
   ],
   controllers: [AppController],
   providers: [AppService]

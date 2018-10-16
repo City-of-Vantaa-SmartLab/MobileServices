@@ -10,7 +10,7 @@ export class Feed {
     @Column({ nullable: true })
     author_thumbnail: string;
 
-    @Column()
+    @Column({ nullable: true })
     title: string;
 
     @Column({ nullable: true })
@@ -50,5 +50,5 @@ export class Feed {
     video_id: string;
 
     @Column({ nullable: true })
-    playlist_id: string;
+    feed_id: string;
 }

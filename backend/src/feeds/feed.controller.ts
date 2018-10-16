@@ -8,6 +8,7 @@ import {
 import { FeedService } from './feed.service';
 import { ConfigService } from '../config/config.service';
 import { ApiUseTags, ApiImplicitQuery, ApiResponse } from '@nestjs/swagger';
+import { sourceNames, sourceTypes } from '../feeds/feed.sources';
 const config = new ConfigService();
 
 @ApiUseTags('feeds')
@@ -30,7 +31,8 @@ export class FeedController {
             + `2. sivistysvantaa`
             + `3. events`
             + `4. Facebook`
-            + `5. Youtube`,
+            + `5. Youtube`
+            + `6. Twitter`,
         type: String,
     })
     @ApiImplicitQuery({
@@ -39,16 +41,29 @@ export class FeedController {
         description: 'Number of feeds to be returned in the response.If Empty/Null uses the defatult limit from configuration file.',
         type: Number,
     })
+    @ApiImplicitQuery({
+        name: 'skip',
+        required: false,
+        description: 'Number of feeds to be skipped while fetching more data based on pagination.',
+        type: Number,
+    })
     @ApiResponse({ status: 200, description: 'List of feeds as response.' })
     @ApiResponse({ status: 500, description: 'Server error.' })
     async getFeeds(@Res() response, @Req() request) {
         try {
             const limit = request.query.limit || config.numberOfFeeds;
-            const feeds = await this.feedService.getFeeds(request.query.type, limit);
+            const skip = request.query.skip;
+            const feeds = await this.feedService.getFeeds(request.query.type, limit, skip);
             return response.status(200).json(feeds);
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             return response.status(500).json(`Failed to get feeds: ${error.message}`);
         }
+    }
+
+    @Get('sources')
+    @ApiResponse({ status: 200, description: 'List of source types available.' })
+    async getSources(@Res() response) {
+        return response.status(200).json({ sources: sourceNames, types: sourceTypes });
     }
 }
