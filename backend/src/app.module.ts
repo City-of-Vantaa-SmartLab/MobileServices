@@ -10,6 +10,7 @@ import { FeedModule } from './feeds/feed.module';
 import { EventModule } from './event/event.module';
 import { FrontendMiddleware } from './middleware/frontend.middleware';
 import { TwitterFeedModule } from 'twitter-feed/twitter-feed.module';
+import { InstagramFeedModule } from 'instagram/instagram.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { TwitterFeedModule } from 'twitter-feed/twitter-feed.module';
     FacebookFeedModule,
     FeedModule,
     EventModule,
-    TwitterFeedModule
+    TwitterFeedModule,
+    InstagramFeedModule
   ],
   controllers: [AppController],
   providers: [AppService]
