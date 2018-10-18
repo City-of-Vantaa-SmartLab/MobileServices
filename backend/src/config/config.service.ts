@@ -127,6 +127,18 @@ export class ConfigService {
     return this.envConfig.YOUTUBE_BASE_URL;
   }
 
+  get instagramClientId(): string {
+    return this.envConfig.INSTAGRAM_CLIENT_ID;
+  }
+
+  get instagramClientSecret(): string {
+    return this.envConfig.INSTAGRAM_CLIENT_SECRET;
+  }
+
+  get instagramAccessToken(): string {
+    return this.envConfig.INSTAGRAM_ACCESS_TOKEN;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -157,6 +169,9 @@ export class ConfigService {
       TWITTER_SECRET_ACCESS_KEY: Joi.string(),
       UPDATE_INTERVAL: Joi.number().default(500),
       YOUTUBE_BASE_URL: Joi.string(),
+      INSTAGRAM_CLIENT_ID: Joi.string(),
+      INSTAGRAM_CLIENT_SECRET: Joi.string(),
+      INSTAGRAM_ACCESS_TOKEN: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
