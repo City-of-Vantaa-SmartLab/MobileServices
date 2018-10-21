@@ -6,8 +6,11 @@ export const NotificationFilters = {
     NEVER: 'NEVER',
     ALERTS_ONLY: 'ALERTS_ONLY',
     ALWAYS: 'ALWAYS',
-  };
+};
 
 export const FETCH_REQUEST = 'FETCH_REQUEST';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAILED = 'FETCH_FAILED';
+export const SOURCES_FETCH_REQUEST = 'SOURCES_FETCH_REQUEST';
+export const LOAD_SOURCES = 'LOAD_SOURCES';
+export const SOURCES_FETCH_FAILED = 'SOURCES_FETCH_FAILED';

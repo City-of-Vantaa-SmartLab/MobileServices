@@ -61,9 +61,27 @@ const dummyfeed = [
 ];
 
 class NewsList extends Component {
+    constructor(props) {
+        super(props);
+
+        this.newsFeedRef = React.createRef();
+    }
+
     componentDidMount() {
         this.props.onRequest();
+        window.addEventListener('scroll', this.handleScroll);
     }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll = () => {
+        const bottom = this.newsFeedRef.current.getBoundingClientRect().bottom <= window.innerHeight;
+        if (bottom) {
+            this.props.onRequest();
+        }
+    };
 
     render() {
         console.log(this.props.feed);
@@ -74,17 +92,8 @@ class NewsList extends Component {
                 .value();
 
             return (
-                <div className={styles['newsfeed']}>
+                <div className={styles['newsfeed']} ref={this.newsFeedRef}>
                     {newsfeed}
-                    <a
-                        href=""
-                        onClick={(e) => {
-                            e.preventDefault();
-                            this.props.onRequest();
-                        }}
-                    >
-                        Load more
-                    </a>
                 </div>
             );
         } else return;
