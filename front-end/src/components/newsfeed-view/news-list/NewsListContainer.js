@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onRequest: (filter) => {
+        onRequest: () => {
             dispatch({ type: FETCH_REQUEST });
         },
     };

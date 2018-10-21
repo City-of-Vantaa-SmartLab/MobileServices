@@ -69,7 +69,7 @@ export class FeedService {
                 {
                     where: {
                         pub_date: LessThan(feed.pub_date),
-                        source: In(sourceTypes.split(','))
+                        source: In(sourceTypes.toLowerCase().split(','))
                     },
                     order: { pub_date: 'DESC' },
                     take: limit,
@@ -85,7 +85,7 @@ export class FeedService {
             return await this.feedRepository.find({
                 where:
                     {
-                        source: In(sourceTypes.split(','))
+                        source: In(sourceTypes.toLowerCase().split(','))
                     },
                 order: { pub_date: 'DESC' },
                 take: limit
@@ -100,7 +100,7 @@ export class FeedService {
         return this.feedRepository.find({
             where:
                 {
-                    source: sourceType,
+                    source: sourceType.toLowerCase(),
                 },
         });
     }
@@ -109,7 +109,7 @@ export class FeedService {
         return this.feedRepository.find({
             where:
                 {
-                    source: sourceType,
+                    source: sourceType.toLowerCase(),
                     type
                 },
         });
