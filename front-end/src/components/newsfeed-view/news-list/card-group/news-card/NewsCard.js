@@ -2,11 +2,12 @@ import React from 'react';
 import Timestamp from './elements/Timestamp';
 import styles from './news-card.module.scss';
 import ExpandableContent from './elements/ExpandableContent';
+import img from 'assets/images/Vantaa-logo.png';
 
 const NewsCard = ({ data }) => (
     <div className={styles['news-card']}>
         <div className={styles['source']}>{data.source}</div>
-        <div className={styles['image']} style={{ backgroundImage: `url(${data.img})` }} />
+        <div className={styles['image']} style={{ backgroundImage: `url(${img})` }} />
         <div className={styles['content']}>
             <div className={styles['description']}>
                 <span>Author / page headline</span>

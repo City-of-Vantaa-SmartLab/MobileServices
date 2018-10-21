@@ -3,19 +3,18 @@ import Timestamp from './elements/Timestamp';
 import ExpandableContent from './elements/ExpandableContent';
 import styles from './social-media-card.module.scss';
 
-const InstagramCard = ({ data }) => (
-    <div className={`${styles['social-media-card']} ${styles['instagram']}`}>
+const YoutubeCard = ({ data }) => (
+    <div className={`${styles['social-media-card']} ${styles['youtube']}`}>
         <div className={styles['service-source']}>{data.source}</div>
         <div className={styles['content']}>
             <div className={styles['content-source']}>
-                <img src={data.author_thumbnail} alt="Instagram thumbnail" />
+                <img src={data.author_thumbnail} alt="Youtube thumbnail" />
                 <div>{data.author}</div>
             </div>
             <div className={styles['image']}>
-                <img src={data.image_url} alt="Instagram" />
+                <img src={data.image_url} alt="Youtube" />
             </div>
             <div className={styles['description']}>
-                <div className={styles['likes']}>{data.likes} likes</div>
                 <div>
                     <ExpandableContent
                         maxLine={3}
@@ -34,4 +33,4 @@ const InstagramCard = ({ data }) => (
     </div>
 );
 
-export default InstagramCard;
+export default YoutubeCard;

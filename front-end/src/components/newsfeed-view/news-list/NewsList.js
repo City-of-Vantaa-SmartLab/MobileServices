@@ -63,17 +63,20 @@ const dummyfeed = [
 class NewsList extends Component {
     constructor(props) {
         super(props);
-
         this.newsFeedRef = React.createRef();
     }
 
     componentDidMount() {
-        this.props.onRequest();
+        this.newsFeedRef.current.scrollTop = this.props.scroll;
+        if (this.props.feed.length === 0) {
+            this.props.onRequest();
+        }
         window.addEventListener('scroll', this.handleScroll);
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
+        this.props.saveScrollPosition(this.newsFeedRef.current.scrollTop);
     }
 
     handleScroll = () => {
@@ -81,10 +84,23 @@ class NewsList extends Component {
         if (bottom) {
             this.props.onRequest();
         }
+        const top = window.scrollY > this.newsFeedRef.current.offsetTop;
+        if (top && !this.props.activated) {
+            this.props.feedActivated();
+            console.log(this.newsFeedRef);
+        }
+    };
+
+    fixedPosition = {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        overflow: 'auto',
+        height: '100%',
     };
 
     render() {
-        console.log(this.props.feed);
+        console.log(this.props.activated);
         if (this.props.feed) {
             const newsfeed = _.chain(this.props.feed)
                 .groupBy((item) => formatDate(item.pub_date))
@@ -92,8 +108,12 @@ class NewsList extends Component {
                 .value();
 
             return (
-                <div className={styles['newsfeed']} ref={this.newsFeedRef}>
-                    {newsfeed}
+                <div
+                    className={styles['newsfeed']}
+                    style={this.props.activated ? this.fixedPosition : null}
+                    ref={this.newsFeedRef}
+                >
+                    <div>{newsfeed}</div>
                 </div>
             );
         } else return;
