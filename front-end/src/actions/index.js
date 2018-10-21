@@ -25,7 +25,7 @@ export const setNotificationFilter = (filterType) => {
 
 export function* watcher() {
     yield takeLatest(actions.SOURCES_FETCH_REQUEST, fetchSources);
-    yield takeLatest(actions.FETCH_REQUEST, fetchFeed);
+    yield takeLatest(actions.FEED_FETCH_REQUEST, fetchFeed);
 }
 
 function* fetchFeed() {
@@ -38,9 +38,9 @@ function* fetchFeed() {
         const response = yield call(get, '/api/feeds', { type: filter, skip: last_id });
         const feed = yield response.json();
         console.log(feed);
-        yield put({ type: actions.FETCH_SUCCESS, payload: feed });
+        yield put({ type: actions.FEED_FETCH_SUCCESS, payload: feed });
     } catch (error) {
-        yield put({ type: actions.FETCH_FAILED, payload: error });
+        yield put({ type: actions.FEED_FETCH_FAILED, payload: error });
     }
 }
 
@@ -49,7 +49,7 @@ function* fetchSources() {
         const response = yield call(get, '/api/feeds/sources');
         const sources = yield response.json();
         console.log(sources);
-        yield put({ type: actions.LOAD_SOURCES, payload: sources });
+        yield put({ type: actions.SOURCES_FETCH_SUCCESS, payload: sources });
     } catch (error) {
         yield put({ type: actions.SOURCES_FETCH_FAILED, payload: error });
     }

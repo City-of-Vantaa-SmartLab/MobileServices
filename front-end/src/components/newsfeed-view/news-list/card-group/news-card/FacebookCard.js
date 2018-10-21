@@ -8,7 +8,7 @@ const FacebookCard = ({ data }) => (
         <div className={styles['service-source']}>{data.source}</div>
         <div className={styles['content']}>
             <div className={styles['content-source']}>
-                <img src={data.thumbnail} alt="Facebook thumbnail" />
+                <img src={data.author_thumbnail} alt="Facebook thumbnail" />
                 <div>{data.author}</div>
             </div>
             <div className={styles['description']}>

@@ -38,11 +38,13 @@ export class EventFeedService {
             }
         }
         Parser.parseURL(sources.events, options, (_, parsed) => {
-            this.filterAlreadyExistingFeeds(parsed.feed.entries)
-                .then(this.transformData)
-                .then(this.persistIntoDb)
-                .then(() => this.logger.log('Fetching Event feeds Completed')).
-                catch(error => this.logger.error(`Failed to get event feeds: ${error}`))
+            if (parsed.feed) {
+                this.filterAlreadyExistingFeeds(parsed.feed.entries)
+                    .then(this.transformData)
+                    .then(this.persistIntoDb)
+                    .then(() => this.logger.log('Fetching Event feeds Completed'))
+                    .catch(error => this.logger.error(`Failed to get event feeds: ${error}`));
+            }
         });
     }
 
