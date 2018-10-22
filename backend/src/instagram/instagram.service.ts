@@ -49,7 +49,7 @@ export class InstagramFeedService {
                 pub_date: formatToTimeZone(Number(item.created_time + '000'), format, { timeZone: 'Europe/Helsinki' }),
                 source: sourceNames.INSTAGRAM,
                 description: item.caption.text,
-                image_url: item.images.thumbnail ? item.images.thumbnail.url : null,
+                image_url: item.images.standard_resolution ? item.images.standard_resolution.url : null,
                 title: item.caption ? item.caption.text : null,
                 likes: item.likes.count ? item.likes.count : 0,
                 feed_id: item.id,

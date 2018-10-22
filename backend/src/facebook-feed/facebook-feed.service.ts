@@ -18,9 +18,7 @@ export class FacebookFeedService {
     }
 
     onModuleInit() {
-        setInterval(() => {
-            this.fetchAndSaveFacebookFeeds();
-        }, config.updateInterval);
+        this.fetchAndSaveFacebookFeeds();
     }
 
     async fetchAndSaveFacebookFeeds() {

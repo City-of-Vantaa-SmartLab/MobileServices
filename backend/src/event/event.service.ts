@@ -38,7 +38,7 @@ export class EventFeedService {
             }
         }
         Parser.parseURL(sources.events, options, (_, parsed) => {
-            if (parsed.feed) {
+            if (parsed && parsed.feed) {
                 this.filterAlreadyExistingFeeds(parsed.feed.entries)
                     .then(this.transformData)
                     .then(this.persistIntoDb)
