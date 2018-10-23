@@ -11,6 +11,9 @@ export class Feed {
     author_thumbnail: string;
 
     @Column({ nullable: true })
+    screen_name: string;
+
+    @Column({ nullable: true })
     title: string;
 
     @Column({ nullable: true })

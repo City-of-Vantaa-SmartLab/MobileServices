@@ -51,6 +51,7 @@ export class TwitterFeedService {
             return {
                 author: feed.user.name,
                 author_thumbnail: feed.user.profile_image_url_https,
+                screen_name: feed.user.screen_name,
                 likes: feed.favorite_count,
                 description: feed.text,
                 source: sourceNames.TWITTER,
