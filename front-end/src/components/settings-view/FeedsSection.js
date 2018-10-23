@@ -6,7 +6,7 @@ import FeedCheckboxController from './FeedCheckboxController';
 class FeedsSection extends Component {
 
     render() {
-        const {i18n, feeds} = this.props;
+        const { i18n, feeds } = this.props;
         return (
             <section className={styles['settings-section']}>
                 <h4>{i18n.feedHeader}</h4>

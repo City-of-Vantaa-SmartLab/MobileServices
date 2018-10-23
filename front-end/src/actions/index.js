@@ -31,8 +31,19 @@ function* fetchFeed() {
     try {
         const response = yield call(get, '/api/feeds');
         const feed = yield response.json();
+        if (feed.length !== 0) {
+            yield put({ type: actions.FEED_FETCH_SUCCESS, payload: feed });
+        }
+    } catch (error) {
+        yield put({ type: actions.FEED_FETCH_FAILED, payload: error });
+    }
+}
 
-        yield put({ type: actions.FETCH_SUCCESS, feed });
+function* fetchSources() {
+    try {
+        const response = yield call(get, '/api/feeds/sources');
+        const sources = yield response.json();
+        yield put({ type: actions.SOURCES_FETCH_SUCCESS, payload: sources });
     } catch (error) {
         yield put({ type: actions.FETCH_FAILED, error });
     }
