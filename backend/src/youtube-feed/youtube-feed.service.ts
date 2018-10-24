@@ -38,9 +38,7 @@ export class YouTubeFeedService {
     }
 
     onModuleInit() {
-        setInterval(() => {
-            this.fetchAndSaveYouTubeFeed();
-        }, config.updateInterval);
+        this.fetchAndSaveYouTubeFeed();
     }
 
     async fetchAndSaveYouTubeFeed() {
