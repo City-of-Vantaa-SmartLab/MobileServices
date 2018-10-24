@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import  _  from 'lodash';
+import React, { Component } from 'react';
+import groupBy from 'lodash/groupBy';
 import { formatDate } from 'utils/utils';
 import NewsCardGroup from './card-group/NewsCardGroup';
 import styles from './news-list.module.scss';
@@ -49,10 +49,10 @@ class NewsList extends Component {
     }
 
     render() {
-        const newsfeed = _.chain(this.props.feed)
-            .groupBy((item) => formatDate(item.pub_date))
-            .map((item, date) => <NewsCardGroup key={date} date={date} data={item} />)
-            .value();
+        const grouped = groupBy(this.props.feed, (item) => formatDate(item.pub_date));
+        const newsfeed = Object.keys(grouped).map((date) => (
+            <NewsCardGroup key={date} date={date} data={grouped[date]} />
+        ));
         return (
             <div
                 className={styles['newsfeed']}
