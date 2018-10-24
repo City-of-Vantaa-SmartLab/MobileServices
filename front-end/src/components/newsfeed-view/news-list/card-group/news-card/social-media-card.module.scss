@@ -7,6 +7,7 @@ $content-author-font-size: 1.2rem;
 $twitter-source-bg: #007b5f;
 $instagram-source-bg: #450099;
 $facebook-source-bg: #ba0d2e;
+$youtube-source-bg: #ba0d2e;
 
 @mixin avatar_dim($size) {
     height: $size;
@@ -121,5 +122,14 @@ $facebook-source-bg: #ba0d2e;
         .content-source img {
             @include avatar_dim(2.3rem);
         }
-    }   
+    } 
+    &.youtube {
+        .service-source {
+            background-color: $youtube-source-bg;
+        }
+
+        .content-source img {
+            @include avatar_dim(2.3rem);
+        }
+    }  
 }

@@ -44,9 +44,13 @@ class NewsList extends Component {
         }
     };
 
-    componentWillMount() {
-        this.props.onRequest(); 
-    }
+    fixedPosition = {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        overflow: 'auto',
+        height: '100%',
+    };
 
     render() {
         const grouped = groupBy(this.props.feed, (item) => formatDate(item.pub_date));
@@ -64,8 +68,5 @@ class NewsList extends Component {
         );
     }
 }
-
-
-
 
 export default NewsList;

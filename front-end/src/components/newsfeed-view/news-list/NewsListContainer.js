@@ -1,19 +1,29 @@
 import { connect } from 'react-redux';
-import { FETCH_REQUEST } from 'actions/actionTypes';
+import { FEED_FETCH_REQUEST, FEED_ACTIVATED, SAVE_SCROLL_POSITION } from 'actions/actionTypes';
 import NewsList from './NewsList';
-
-
 
 const mapStateToProps = (state) => ({
     loading: state.fetch.loading,
     feed: state.fetch.feed,
     error: state.fetch.error,
+    last: state.fetch.last,
+    activated: state.activated,
+    scroll: state.scroll,
 });
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onRequest: () => {
-            dispatch({type: FETCH_REQUEST});
+            dispatch({ type: FEED_FETCH_REQUEST });
+        },
+        feedActivated: () => {
+            dispatch({ type: FEED_ACTIVATED });
+        },
+        saveScrollPosition: (position) => {
+            dispatch({
+                type: SAVE_SCROLL_POSITION,
+                payload: position,
+            });
         },
     };
 };

@@ -1,35 +1,41 @@
 import * as actions from './actionTypes';
 import get from 'apis';
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 export const toggleFeed = (feedType) => {
     return {
         type: actions.TOGGLE_FEED,
-        feedType,
+        payload: feedType,
     };
 };
 
 export const changeLanguage = (lang) => {
     return {
         type: actions.CHANGE_LANGUAGE,
-        lang,
+        payload: lang,
     };
 };
 
-export const setNotificationFilter = (filter) => {
+export const setNotificationFilter = (filterType) => {
     return {
         type: actions.SET_NOTIFICATION_FILTER,
-        filter,
+        payload: filterType,
     };
 };
 
 export function* watcher() {
-    yield takeLatest(actions.FETCH_REQUEST, fetchFeed);
+    yield takeLatest(actions.SOURCES_FETCH_REQUEST, fetchSources);
+    yield takeLatest(actions.FEED_FETCH_REQUEST, fetchFeed);
 }
 
 function* fetchFeed() {
     try {
-        const response = yield call(get, '/api/feeds');
+        let filter, last_id;
+        yield select((state) => {
+            filter = Object.keys(state.feeds).filter((key) => state.feeds[key]);
+            last_id = state.fetch.last;
+        });
+        const response = yield call(get, '/api/feeds', { type: filter, skip: last_id });
         const feed = yield response.json();
         if (feed.length !== 0) {
             yield put({ type: actions.FEED_FETCH_SUCCESS, payload: feed });
@@ -45,9 +51,6 @@ function* fetchSources() {
         const sources = yield response.json();
         yield put({ type: actions.SOURCES_FETCH_SUCCESS, payload: sources });
     } catch (error) {
-        yield put({ type: actions.FETCH_FAILED, error });
+        yield put({ type: actions.SOURCES_FETCH_FAILED, payload: error });
     }
 }
-
-
-
