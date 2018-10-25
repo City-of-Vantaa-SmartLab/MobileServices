@@ -30,7 +30,6 @@ export class InstagramFeedService {
     async fetchAndSaveYouTubeFeed() {
         this.logger.log('Fetching Instagram feeds Started');
         await instagram.get('users/self/media/recent')
-            .then(this.filterAlreadyExistingFeeds)
             .then(this.formatFeed)
             .then(this.persistIntoDb)
             .then(() =>
@@ -53,14 +52,9 @@ export class InstagramFeedService {
                 title: item.caption ? item.caption.text : null,
                 likes: item.likes.count ? item.likes.count : 0,
                 feed_id: item.id,
-                type: item.type
-            }
+                type: item.type,
+            };
         });
     }
 
-    filterAlreadyExistingFeeds = (feeds) => {
-        return this.feedService.fetchFeedsBySource(sourceNames.INSTAGRAM).
-            then(existingFeeds => existingFeeds.map(feed => feed.feed_id)).
-            then(existingFeedIds => feeds.data.filter(feed => !existingFeedIds.includes(feed.id)));
-    }
 }

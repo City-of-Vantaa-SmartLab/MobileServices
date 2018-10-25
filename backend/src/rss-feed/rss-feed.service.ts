@@ -5,8 +5,6 @@ import * as converter from 'json-style-converter/es5';
 import { FeedService } from '../feeds/feed.service';
 import { sourceNames, sourceTypes } from '../feeds/feed.sources';
 import { ConfigService } from '../config/config.service';
-const { formatToTimeZone } = require('date-fns-timezone');
-const format = 'YYYY-MM-DD HH:mm:ss.SSS [GMT]Z (z)';
 const Parser = require('rss-parser');
 const parser = new Parser();
 const config = new ConfigService();
@@ -32,47 +30,28 @@ export class RssFeedService {
 
         parser.parseURL(sources.news)
             .then(this.addSourceAndType(sourceNames.VANTAA, sourceTypes.NEWS))
-            .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.VANTAA, sourceTypes.NEWS))
             .then(this.persistIntoDb)
             .catch(error => this.logger.error(`Failed to fetch Rss_News :${error}`)),
             parser.parseURL(sources.stories)
                 .then(this.addSourceAndType(sourceNames.VANTAA, sourceTypes.STORIES))
-                .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.VANTAA, sourceTypes.STORIES))
                 .then(this.persistIntoDb)
                 .catch(error => this.logger.error(`Failed to fetch Rss_Stories :${error}`)),
             parser.parseURL(sources.aikuisopisto)
                 .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.AIKUISOPISTO))
-                .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.SIVISTYSVANTAA, sourceTypes.AIKUISOPISTO))
                 .then(this.persistIntoDb)
                 .catch(error => this.logger.error(`Failed to fetch Rss_Aikuisopisto :${error}`)),
             parser.parseURL(sources.nuorten)
                 .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.NUORTEN))
-                .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.SIVISTYSVANTAA, sourceTypes.NUORTEN))
                 .then(this.persistIntoDb)
                 .catch(error => this.logger.error(`Failed to fetch Rss_Nuorten :${error}`)),
             parser.parseURL(sources.kaupunginmuseo)
                 .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.KAUPUNGINMUSEO))
-                .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.SIVISTYSVANTAA, sourceTypes.KAUPUNGINMUSEO))
                 .then(this.persistIntoDb)
                 .catch(error => this.logger.error(`Failed to fetch Rss_Kaupunginmuseo :${error}`)),
             this.logger.log('Fetching Rss feeds Completed');
     }
 
     persistIntoDb = data => this.feedService.saveFeeds(data.items);
-
-    filterAlreadyExistingFeeds = (data, name, type) => {
-        return this.feedService.fetchFeedsBySourceAndType(name, type).
-            then(existingFeeds => existingFeeds.map(feed => {
-                return formatToTimeZone(feed.pub_date, format, { timeZone: 'Europe/Helsinki' })
-            }))
-            .then(dates => {
-                data.items = data.items.filter(item => {
-                    const itemDate = formatToTimeZone(item.pub_date, format, { timeZone: 'Europe/Helsinki' });
-                    return !dates.includes(itemDate)
-                })
-                return data;
-            })
-    }
 
     addSourceAndType = (name, type) => {
         return (data) => {
@@ -83,10 +62,10 @@ export class RssFeedService {
                     source: name,
                     type,
                     page_link: item.link,
-                    description: item.content
-                }
+                    description: item.content,
+                };
             });
             return data;
-        }
+        };
     }
 }
