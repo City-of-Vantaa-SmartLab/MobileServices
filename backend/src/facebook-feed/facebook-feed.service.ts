@@ -18,15 +18,12 @@ export class FacebookFeedService {
     }
 
     onModuleInit() {
-        setInterval(() => {
-            this.fetchAndSaveFacebookFeeds();
-        }, config.updateInterval);
+        this.fetchAndSaveFacebookFeeds();
     }
 
     async fetchAndSaveFacebookFeeds() {
         this.logger.log('Fetching facebook feeds Started');
         FB.api(`${sources.vantaa}/posts`, { fields: queryParams })
-            .then(this.filterAlreadyExistingFeeds)
             .then(this.addProfileImage)
             .then(this.transformData)
             .then(this.persistIntoDb)
@@ -44,19 +41,13 @@ export class FacebookFeedService {
                 try {
                     profileImage = await this.fetchProfileImage(feed.from.id);
                 } catch (error) {
-                    this.logger.error(`Failed to get profile Image: ${error}`)
+                    this.logger.error(`Failed to get profile Image: ${error}`);
                 }
                 return {
                     ...feed,
-                    author_thumbnail: profileImage ? profileImage.data.url : null
-                }
+                    author_thumbnail: profileImage ? profileImage.data.url : null,
+                };
             }));
-    }
-
-    filterAlreadyExistingFeeds = (feeds) => {
-        return this.feedService.fetchFeedsBySource(sourceNames.FACEBOOK).
-            then(existingFeeds => existingFeeds.map(feed => feed.feed_id)).
-            then(existingFeedIds => feeds.data.filter(feed => !existingFeedIds.includes(feed.id)));
     }
 
     transformData = feeds => {
@@ -72,14 +63,14 @@ export class FacebookFeedService {
                 title: feed.status_type,
                 pub_date: feed.created_time,
                 image_url: feed.picture,
-                feed_id
-            }
+                feed_id,
+            };
         });
     }
 
     fetchProfileImage = (id: number) => {
         return FB.api(`${id}/picture`, {
-            "redirect": "0"
+            redirect: '0',
         });
     }
 }

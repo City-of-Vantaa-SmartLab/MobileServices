@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn, } from 'typeorm';
+import {Column, Entity, Index, PrimaryGeneratedColumn, Unique} from 'typeorm';
 
 @Entity()
+@Unique(['source', 'pub_date'])
 export class Feed {
     @PrimaryGeneratedColumn() id: number;
 
@@ -11,6 +12,9 @@ export class Feed {
     author_thumbnail: string;
 
     @Column({ nullable: true })
+    screen_name: string;
+
+    @Column({ nullable: true })
     title: string;
 
     @Column({ nullable: true })
@@ -19,6 +23,7 @@ export class Feed {
     @Column()
     description: string;
 
+    @Index()
     @Column()
     source: string;
 

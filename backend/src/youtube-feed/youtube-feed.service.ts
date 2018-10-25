@@ -38,9 +38,7 @@ export class YouTubeFeedService {
     }
 
     onModuleInit() {
-        setInterval(() => {
-            this.fetchAndSaveYouTubeFeed();
-        }, config.updateInterval);
+        this.fetchAndSaveYouTubeFeed();
     }
 
     async fetchAndSaveYouTubeFeed() {
@@ -60,8 +58,7 @@ export class YouTubeFeedService {
             }
 
             const feed = await axios.get(youtubeFetchUrl);
-            let youTubeFeeds = feed.data.items.filter(item => item.id.videoId)
-            youTubeFeeds = await this.filterAlreadyExistingFeeds(youTubeFeeds);
+            let youTubeFeeds = feed.data.items.filter(item => item.id.videoId);
 
             const videoIds = youTubeFeeds.map(item => item.id.videoId);
             const videoDetails = await axios.get(youtubeVideoDetailsUrl + videoIds);
@@ -88,14 +85,8 @@ export class YouTubeFeedService {
                 image_url: item.snippet.thumbnails ? item.snippet.thumbnails.medium.url : null,
                 channel_title: item.snippet.channelTitle,
                 likes: details ? (details.statistics ? details.statistics.likeCount : null) : null,
-                views: details ? (details.statistics ? details.statistics.viewCount : null) : null
-            }
+                views: details ? (details.statistics ? details.statistics.viewCount : null) : null,
+            };
         });
-    }
-
-    filterAlreadyExistingFeeds = (feeds) => {
-        return this.feedService.fetchFeedsBySource(sourceNames.YOUTUBE).
-            then(existingFeeds => existingFeeds.map(feed => feed.video_id)).
-            then(existingFeedIds => feeds.filter(feed => !existingFeedIds.includes(feed.id.videoId)));
     }
 }

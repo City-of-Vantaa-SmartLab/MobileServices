@@ -3,14 +3,14 @@ import { ConfigService } from '../config/config.service';
 import { FeedService } from '../feeds/feed.service';
 import { sourceNames } from 'feeds/feed.sources';
 const config = new ConfigService();
-const Twitter = require('twitter')
+const Twitter = require('twitter');
 
 const twitter = new Twitter({
     consumer_key: config.twitterConsumerKey,
     consumer_secret: config.twitterConsumerSecret,
     access_token_key: config.twitterTokenKey,
     access_token_secret: config.twitterTokenSecret,
-})
+});
 
 @Injectable()
 export class TwitterFeedService {
@@ -22,16 +22,13 @@ export class TwitterFeedService {
     }
 
     onModuleInit() {
-        setInterval(() => {
-            this.fetchAndSaveTwitterFeeds();
-        }, config.updateInterval);
+        this.fetchAndSaveTwitterFeeds();
     }
 
     async fetchAndSaveTwitterFeeds() {
         this.logger.log('Fetching Twitter feeds Started');
         const params = { screen_name: 'VantaanKaupunki' };
         await twitter.get('statuses/user_timeline', params)
-            .then(this.filterAlreadyExistingFeeds)
             .then(this.transformData)
             .then(this.persistIntoDb)
             .then(() => this.logger.log('Fetching Twitter feeds Completed'))
@@ -40,12 +37,6 @@ export class TwitterFeedService {
 
     persistIntoDb = feeds => this.feedService.saveFeeds(feeds);
 
-    filterAlreadyExistingFeeds = (feeds) => {
-        return this.feedService.fetchFeedsBySource(sourceNames.TWITTER).
-            then(existingFeeds => existingFeeds.map(feed => Number(feed.feed_id))).
-            then(existingFeedIds => feeds.filter(feed => !existingFeedIds.includes(feed.id)));
-    }
-
     transformData = feeds => {
         return feeds.map(feed => {
             const feed_id = feed.id;
@@ -53,12 +44,13 @@ export class TwitterFeedService {
             return {
                 author: feed.user.name,
                 author_thumbnail: feed.user.profile_image_url_https,
+                screen_name: feed.user.screen_name,
                 likes: feed.favorite_count,
                 description: feed.text,
                 source: sourceNames.TWITTER,
                 pub_date: feed.created_at,
-                feed_id
-            }
+                feed_id,
+            };
         });
     }
 }
