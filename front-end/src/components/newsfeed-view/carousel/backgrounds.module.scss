@@ -3,12 +3,11 @@
 .backgrounds {
     height: 100%;
     width: 100%;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: map-get($map: $z-index, $key: background);
     // Placeholder image. Will change once backgrounds are available from server
-
     background-image: url("../../../assets/images/bg1.jpg");
     background-repeat: no-repeat;
     background-size: cover;

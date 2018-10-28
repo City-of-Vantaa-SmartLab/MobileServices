@@ -2,6 +2,7 @@ export class FeedDto {
     id: number;
     author: string;
     author_thumbnail: string;
+    screen_name: string;
     title: string;
     description: string;
     page_link: string;

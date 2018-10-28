@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Backgrounds from './carousel/Backgrounds';
-import NewsList from './news-list/NewsList';
+import NewsListContainer from './news-list/NewsListContainer';
 
 class NewsfeedView extends Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class NewsfeedView extends Component {
         this.state = {
             opacity: 1.0,
         };
-        this.opacityScrollLimit = 150;
+        this.opacityScrollLimit = 500;
     }
 
     componentDidMount() {
@@ -30,7 +30,7 @@ class NewsfeedView extends Component {
             <div>
                 <Backgrounds />
                 <Header opacity={this.state.opacity} />
-                <NewsList />
+                <NewsListContainer />
             </div>
         );
     }

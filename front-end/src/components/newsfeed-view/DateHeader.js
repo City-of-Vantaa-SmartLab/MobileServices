@@ -6,7 +6,7 @@ import styles from './header.module.scss';
 class DateHeader extends React.Component {
     constructor(props) {
         super(props);
-
+        this.state = { sticky: false };
         this.headerRef = React.createRef();
     }
 
@@ -14,7 +14,17 @@ class DateHeader extends React.Component {
         if (this.props.newsfeedHeader) window.addEventListener('NewsFeedContainerScrolling', this.handleScroll);
     }
 
+    componentWillUnmount() {
+        if (this.props.newsfeedHeader) window.removeEventListener('NewsFeedContainerScrolling', this.handleScroll);
+    }
+
     handleScroll = () => {
+        // if (this.headerRef.current.parentNode.getBoundingClientRect().top < 0) {
+        // this.setState({sticky: true});
+        // console.log('FIREE');
+        // } else {
+        // this.setState({sticky: false});
+        // }
         this.headerRef.current.style['width'] =
             this.headerRef.current.getBoundingClientRect().top < 50 ? '100%' : 'auto';
     };
@@ -24,7 +34,9 @@ class DateHeader extends React.Component {
 
         return (
             <div
-                className={`${styles['date']} ${this.props.newsfeedHeader ? styles['newsfeed-date'] : ''}`}
+                className={`${styles['date']} ${this.props.newsfeedHeader ? styles['newsfeed-date'] : ''} ${
+                    this.state.sticky ? styles['sticky'] : ''
+                } `}
                 ref={this.headerRef}
             >
                 <h4>{formatDate(date, this.props.i18n.locale)}</h4>

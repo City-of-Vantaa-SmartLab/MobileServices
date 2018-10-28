@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { compareDesc } from 'date-fns';
 import { Feed } from './feed.entity';
-import { Repository } from 'typeorm';
+import { Repository, LessThan, In } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -14,10 +13,13 @@ export class FeedService {
         this.logger = new Logger('FeedService');
     }
 
-    async getFeeds(type: string, limit: number) {
+    async getFeeds(sourceTypes: string, limit: number, skip: number) {
         try {
-            const feeds = type ? await this.getFeedsByType(type, limit) : await this.getAll(limit);
-            return feeds.sort((a, b) => compareDesc(a.pub_date, b.pub_date)).slice(0, limit);
+            const feeds = sourceTypes ?
+                await this.getMoreBySourceAndDate(sourceTypes, limit, skip)
+                : await this.getMoreByDate(limit, skip)
+
+            return feeds.slice(0, ((limit && limit <= feeds.length) ? limit : feeds.length));
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
@@ -26,20 +28,91 @@ export class FeedService {
 
     async getAll(limit: number) {
         try {
-            return await this.feedRepository.find({ take: limit })
+            return await this.feedRepository.find(
+                {
+                    order: { pub_date: 'DESC' },
+                    take: limit,
+                })
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
         }
     }
 
-    async getFeedsByType(source: string, limit: number) {
+    async getMoreByDate(limit: number, skip: number) {
         try {
-            return await this.feedRepository.find({ where: { source }, take: limit })
+            if (!skip) {
+                return this.getAll(limit);
+            }
+            const feed = await this.feedRepository.findOne(skip);
+            return await this.feedRepository.find(
+                {
+                    where: {
+                        pub_date: LessThan(feed.pub_date),
+                    },
+                    order: { pub_date: 'DESC' },
+                    take: limit,
+                });
         } catch (error) {
-            this.logger.error(`Failed to get feeds for type: ${source}: ${error}`);
+            this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
         }
+    }
+
+    async getMoreBySourceAndDate(sourceTypes: string, limit: number, skip: number) {
+        try {
+            if (!skip) {
+                return await this.getFeedsBySource(sourceTypes, limit);
+            }
+            const feed = await this.feedRepository.findOne(skip);
+            return await this.feedRepository.find(
+                {
+                    where: {
+                        pub_date: LessThan(feed.pub_date),
+                        source: In(sourceTypes.toLowerCase().split(','))
+                    },
+                    order: { pub_date: 'DESC' },
+                    take: limit,
+                });
+        } catch (error) {
+            this.logger.error(`Failed to get feeds: ${error}`);
+            throw error;
+        }
+    }
+
+    async getFeedsBySource(sourceTypes: string, limit: number) {
+        try {
+            return await this.feedRepository.find({
+                where:
+                    {
+                        source: In(sourceTypes.toLowerCase().split(','))
+                    },
+                order: { pub_date: 'DESC' },
+                take: limit
+            })
+        } catch (error) {
+            this.logger.error(`Failed to get feeds for type: ${sourceTypes}: ${error}`);
+            throw error;
+        }
+    }
+
+    fetchFeedsBySource(sourceType: string) {
+        return this.feedRepository.find({
+            where:
+                {
+                    source: sourceType.toLowerCase(),
+                },
+        });
+    }
+
+    fetchFeedsBySourceAndType(sourceType: string, type: string) {
+        return this.feedRepository.find({
+            where:
+                {
+                    source: sourceType.toLowerCase(),
+                    type
+                },
+        });
     }
 
     saveFeed(feed: Feed) {

@@ -14,12 +14,13 @@ const store = getStore();
 ReactDOM.render(
     <Provider store={store}>
         <CookiesProvider>
-            <Router>
+            <Router basename={process.env.PUBLIC_URL}>
                 <App />
             </Router>
         </CookiesProvider>
     </Provider>,
-    
-    document.getElementById('root'));
-    
+
+    document.getElementById('root')
+);
+
 registerServiceWorker();

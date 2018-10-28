@@ -103,6 +103,42 @@ export class ConfigService {
     return Number(this.envConfig.NUMBER_OF_FEEDS);
   }
 
+  get twitterConsumerKey(): string {
+    return this.envConfig.TWITTER_CONSUMER_KEY;
+  }
+
+  get twitterConsumerSecret(): string {
+    return this.envConfig.TWITTER_CONSUMER_SECRET;
+  }
+
+  get twitterTokenKey(): string {
+    return this.envConfig.TWITTER_ACCESS_KEY;
+  }
+
+  get twitterTokenSecret(): string {
+    return this.envConfig.TWITTER_SECRET_ACCESS_KEY;
+  }
+
+  get updateInterval(): number {
+    return Number(this.envConfig.UPDATE_INTERVAL);
+  }
+
+  get youTubeBaseUrl(): string {
+    return this.envConfig.YOUTUBE_BASE_URL;
+  }
+
+  get instagramClientId(): string {
+    return this.envConfig.INSTAGRAM_CLIENT_ID;
+  }
+
+  get instagramClientSecret(): string {
+    return this.envConfig.INSTAGRAM_CLIENT_SECRET;
+  }
+
+  get instagramAccessToken(): string {
+    return this.envConfig.INSTAGRAM_ACCESS_TOKEN;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -127,6 +163,15 @@ export class ConfigService {
       VANTAA_FACEBOOK_PAGE: Joi.string(),
       FACEBOOK_GRAPH_API: Joi.string(),
       NUMBER_OF_FEEDS: Joi.number(),
+      TWITTER_CONSUMER_KEY: Joi.string(),
+      TWITTER_CONSUMER_SECRET: Joi.string(),
+      TWITTER_ACCESS_KEY: Joi.string(),
+      TWITTER_SECRET_ACCESS_KEY: Joi.string(),
+      UPDATE_INTERVAL: Joi.number().default(500),
+      YOUTUBE_BASE_URL: Joi.string(),
+      INSTAGRAM_CLIENT_ID: Joi.string(),
+      INSTAGRAM_CLIENT_SECRET: Joi.string(),
+      INSTAGRAM_ACCESS_TOKEN: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(

@@ -15,11 +15,13 @@
 .date {
     text-transform: uppercase;
     padding: 0.6rem 2rem;
+    transition: all 1s ease-in;
 
     h4 {
         color: $color-white;
         font-weight: normal;
         letter-spacing: -0.03rem;
+        transition: all 1s ease-in;
     }
 
     &.newsfeed-date {
@@ -29,5 +31,13 @@
         display: inline-block;
         position: sticky;
         top: 0;
+        transition: all 1s ease-in;
     }
+
+    // &.sticky {
+    //     width: 100%;
+    //     position: fixed;
+    //     top: 0;
+    //     transition: all 1s ease-in;
+    // }
 }

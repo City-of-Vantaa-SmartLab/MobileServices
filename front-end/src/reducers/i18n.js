@@ -87,7 +87,7 @@ const translations = {
 export default (state = translations.en, action) => {
     switch (action.type) {
         case CHANGE_LANGUAGE:
-            return translations[action.lang];
+            return translations[action.payload];
         default:
             return state;
     }
