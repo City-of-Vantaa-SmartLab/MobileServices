@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import groupBy from 'lodash/groupBy';
-import { formatDate } from 'utils/utils';
 import NewsCardGroup from './card-group/NewsCardGroup';
 import styles from './news-list.module.scss';
+import { startOfDay } from 'date-fns';
 
 class NewsList extends Component {
     constructor(props) {
         super(props);
         this.newsFeedRef = React.createRef();
-        //this.containerRef = React.createRef();
         this.NewsFeedContainerScrollingEvent = new Event('NewsFeedContainerScrolling');
     }
 
@@ -19,10 +18,6 @@ class NewsList extends Component {
         }
         window.addEventListener('scroll', this.handleOuterScroll);
         this.newsFeedRef.current.addEventListener('scroll', this.handleFeedScroll);
-
-        // window.addEventListener('scroll', this.handleScroll);
-        // this.newsFeedRef.current.addEventListener('scroll', this.dispatchCustomEvent);
-        // this.props.onRequest();
     }
 
     componentWillUnmount() {
@@ -65,7 +60,7 @@ class NewsList extends Component {
     };
 
     render() {
-        const grouped = groupBy(this.props.feed, (item) => formatDate(item.pub_date));
+        const grouped = groupBy(this.props.feed, (item) => startOfDay(item.pub_date));
         const newsfeed = Object.keys(grouped).map((date) => (
             <NewsCardGroup key={date} date={date} data={grouped[date]} />
         ));
@@ -76,9 +71,6 @@ class NewsList extends Component {
                 ref={this.newsFeedRef}
             >
                 {newsfeed}
-                {/* <div className={styles['container']}>
-                
-                </div> */}
             </div>
         );
     }
