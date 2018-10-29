@@ -20,9 +20,11 @@ const FacebookCard = ({ data }) => (
                     ellipsisClickable={true}
                 />
             </div>
-            <div className={styles['image']}>
-                <img src={data.image_url} alt="Facebook" />
-            </div>
+            {data.image_url ? (
+                <div className={styles['image']}>
+                    <img src={data.image_url} alt="Facebook" />
+                </div>
+            ) : null}
             <div className={styles['footer']}>
                 <Timestamp time={data.pub_date} />
             </div>
