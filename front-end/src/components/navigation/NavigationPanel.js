@@ -1,29 +1,48 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import NavigationIcon from './navigation-icon/NavigationIcon';
 import styles from './navigation.module.scss';
 
-
 class NavigationPanel extends Component {
-    
+    constructor(props) {
+        super(props);
+
+        this.newsFeedNavRef = React.createRef();
+        this.resourcesNavRef = React.createRef();
+        this.settingsNavRef = React.createRef();
+    }
+
+    clicked = (event) => {
+        for (let element of event.target.parentNode.children) {
+            if (element === event.target) {
+                element.className = 'active';
+            } else {
+                element.className = 'inactive';
+            }
+        }
+    };
+
     render() {
-        let {i18n} = this.props;
+        let { i18n } = this.props;
 
         return (
             <div className={styles.navigation}>
-                <NavLink to='/newsfeed'><NavigationIcon iconName="newsIcon" iconText={i18n.navigation.news} /></NavLink>
-                <NavLink to='/resources'><NavigationIcon iconName="resourcesIcon" iconText={i18n.navigation.links} /></NavLink>
-                <NavLink to='/Settings'><NavigationIcon iconName="preferencesIcon" iconText={i18n.navigation.settings} /></NavLink>
+                <NavLink exact to="/newsfeed" onClick={this.clicked}>
+                    {i18n.navigation.news}
+                </NavLink>
+                <NavLink exact to="/resources" onClick={this.clicked}>
+                    {i18n.navigation.links}
+                </NavLink>
+                <NavLink exact to="/settings" onClick={this.clicked}>
+                    {i18n.navigation.settings}
+                </NavLink>
             </div>
         );
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     i18n: state.i18n,
 });
 
-export default connect(
-    mapStateToProps
-)(NavigationPanel);
+export default connect(mapStateToProps)(NavigationPanel);
