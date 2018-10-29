@@ -4,14 +4,6 @@ import { connect } from 'react-redux';
 import styles from './navigation.module.scss';
 
 class NavigationPanel extends Component {
-    constructor(props) {
-        super(props);
-
-        this.newsFeedNavRef = React.createRef();
-        this.resourcesNavRef = React.createRef();
-        this.settingsNavRef = React.createRef();
-    }
-
     clicked = (event) => {
         for (let element of event.target.parentNode.children) {
             if (element === event.target) {
