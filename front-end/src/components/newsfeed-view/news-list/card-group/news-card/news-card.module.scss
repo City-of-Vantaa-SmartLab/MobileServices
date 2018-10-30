@@ -45,6 +45,7 @@ $content-author-font-size: 1.2rem;
         justify-content: space-between;
         position: relative;
         padding: 2.4rem 1.2rem 1.2rem 1.2rem;
+        max-width: calc(100% - 14.8rem); // 14.8rem is width of image
 
         .description {
             .content-text {
