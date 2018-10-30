@@ -10,13 +10,13 @@ class NavigationPanel extends Component {
 
         return (
             <div className={styles.navigation}>
-                <NavLink to="/newsfeed" className={`${location.pathname === '/newsfeed' ? 'active' : 'inactive'}`}>
+                <NavLink to="/newsfeed" className={`${location.pathname === '/newsfeed' ? 'active' : ''}`}>
                     {i18n.navigation.news}
                 </NavLink>
-                <NavLink to="/resources" className={`${location.pathname === '/resources' ? 'active' : 'inactive'}`}>
+                <NavLink to="/resources" className={`${location.pathname === '/resources' ? 'active' : ''}`}>
                     {i18n.navigation.links}
                 </NavLink>
-                <NavLink to="/settings" className={`${location.pathname === '/settings' ? 'active' : 'inactive'}`}>
+                <NavLink to="/settings" className={`${location.pathname === '/settings' ? 'active' : ''}`}>
                     {i18n.navigation.settings}
                 </NavLink>
             </div>
