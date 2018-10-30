@@ -2,30 +2,21 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styles from './navigation.module.scss';
+import { withRouter } from 'react-router';
 
 class NavigationPanel extends Component {
-    clicked = (event) => {
-        for (let element of event.target.parentNode.children) {
-            if (element === event.target) {
-                element.className = 'active';
-            } else {
-                element.className = 'inactive';
-            }
-        }
-    };
-
     render() {
-        let { i18n } = this.props;
+        let { location, i18n } = this.props;
 
         return (
             <div className={styles.navigation}>
-                <NavLink exact to="/newsfeed" onClick={this.clicked}>
+                <NavLink to="/newsfeed" className={`${location.pathname === '/newsfeed' ? 'active' : 'inactive'}`}>
                     {i18n.navigation.news}
                 </NavLink>
-                <NavLink exact to="/resources" onClick={this.clicked}>
+                <NavLink to="/resources" className={`${location.pathname === '/resources' ? 'active' : 'inactive'}`}>
                     {i18n.navigation.links}
                 </NavLink>
-                <NavLink exact to="/settings" onClick={this.clicked}>
+                <NavLink to="/settings" className={`${location.pathname === '/settings' ? 'active' : 'inactive'}`}>
                     {i18n.navigation.settings}
                 </NavLink>
             </div>
@@ -37,4 +28,4 @@ const mapStateToProps = (state) => ({
     i18n: state.i18n,
 });
 
-export default connect(mapStateToProps)(NavigationPanel);
+export default withRouter(connect(mapStateToProps)(NavigationPanel));
