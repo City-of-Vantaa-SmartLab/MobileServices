@@ -11,6 +11,7 @@ import { EventModule } from './event/event.module';
 import { FrontendMiddleware } from './middleware/frontend.middleware';
 import { TwitterFeedModule } from 'twitter-feed/twitter-feed.module';
 import { InstagramFeedModule } from 'instagram/instagram.module';
+import { FactModule } from './facts/fact.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { InstagramFeedModule } from 'instagram/instagram.module';
     FeedModule,
     EventModule,
     TwitterFeedModule,
-    InstagramFeedModule
+    InstagramFeedModule,
+    FactModule
   ],
   controllers: [AppController],
   providers: [AppService]
