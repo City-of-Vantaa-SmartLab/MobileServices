@@ -8,6 +8,7 @@ $twitter-source-bg: #007b5f;
 $instagram-source-bg: #450099;
 $facebook-source-bg: #ba0d2e;
 $youtube-source-bg: #ba0d2e;
+$events-source-bg: #db3db0;
 
 @mixin avatar_dim($size) {
     height: $size;
@@ -31,6 +32,7 @@ $youtube-source-bg: #ba0d2e;
         font-size: $content-source-font-size;
         height: 2rem;
         line-height: 2rem;
+        z-index: 1;
     }
   
     .content {
@@ -123,6 +125,7 @@ $youtube-source-bg: #ba0d2e;
             @include avatar_dim(2.3rem);
         }
     } 
+
     &.youtube {
         .service-source {
             background-color: $youtube-source-bg;
@@ -132,4 +135,37 @@ $youtube-source-bg: #ba0d2e;
             @include avatar_dim(2.3rem);
         }
     }  
+
+    &.events {
+        .service-source {
+            background-color: $youtube-source-bg;
+        }
+
+        .content {
+            .image {
+                margin: 0;
+                img {
+                    width: 100%;
+                }
+            }
+
+            .description {
+                margin: 1.2rem;
+
+                .title {
+                    font-size: 1.6rem;
+                    text-transform: uppercase;
+                    font-weight: bold;
+
+                    a {
+                        color: #4a4a4a;
+                    }
+                }
+
+                .event-time {
+                    margin-top: 1.2rem;
+                }
+            }
+        }
+    } 
 }
