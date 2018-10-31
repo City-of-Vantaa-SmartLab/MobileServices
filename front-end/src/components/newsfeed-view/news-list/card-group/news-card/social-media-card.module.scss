@@ -134,6 +134,10 @@ $events-source-bg: #db3db0;
         .content-source img {
             @include avatar_dim(2.3rem);
         }
+
+        .description {
+            font-weight: 600;
+        }
     }  
 
     &.events {
