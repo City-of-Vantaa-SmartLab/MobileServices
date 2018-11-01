@@ -4,8 +4,15 @@ import styles from './social-media-card.module.scss';
 import share_button from 'assets/images/share_button.svg';
 import copy_icon from 'assets/images/copy_icon.svg';
 import { copyToClipboard } from 'utils/utils';
+import ToastNotification from './elements/ToastNotification';
 
 class TwitterCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showNotification: false,
+        };
+    }
     share = () => {
         console.log('Shared');
         let tweetUrl = 'https://twitter.com/' + this.props.data.screen_name + '/status/' + this.props.data.feed_id;
@@ -20,6 +27,10 @@ class TwitterCard extends React.Component {
             let textToBeCopied =
                 this.props.data.screen_name + '\r\n\r\n' + this.props.data.description + '\r\n\r\n' + tweetUrl;
             copyToClipboard(textToBeCopied);
+            this.setState({ showNotification: true });
+            setTimeout(() => {
+                this.setState({ showNotification: false });
+            }, 1200);
         }
     };
 
@@ -45,6 +56,7 @@ class TwitterCard extends React.Component {
                         <img src={navigator.share ? share_button : copy_icon} alt="Share button" onClick={this.share} />
                     </div>
                 </div>
+                {this.state.showNotification && <ToastNotification text="Copied to clipboard" />}
             </div>
         );
     }

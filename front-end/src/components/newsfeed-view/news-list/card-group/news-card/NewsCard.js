@@ -6,8 +6,15 @@ import img from 'assets/images/cutiepie.jpg';
 import share_button from 'assets/images/share_button.svg';
 import copy_icon from 'assets/images/copy_icon.svg';
 import { copyToClipboard } from 'utils/utils';
+import ToastNotification from './elements/ToastNotification';
 
 class NewsCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showNotification: false,
+        };
+    }
     share = () => {
         if (navigator.share) {
             navigator.share({
@@ -19,6 +26,10 @@ class NewsCard extends React.Component {
             let textToBeCopied =
                 this.props.data.source + '\r\n\r\n' + this.props.data.title + '\r\n\r\n' + this.props.data.page_link;
             copyToClipboard(textToBeCopied);
+            this.setState({ showNotification: true });
+            setTimeout(() => {
+                this.setState({ showNotification: false });
+            }, 1200);
         }
     };
 
@@ -45,6 +56,7 @@ class NewsCard extends React.Component {
                         <img src={navigator.share ? share_button : copy_icon} alt="Share button" onClick={this.share} />
                     </div>
                 </div>
+                {this.state.showNotification && <ToastNotification text="Copied to clipboard" />}
             </div>
         );
     }

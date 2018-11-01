@@ -5,8 +5,15 @@ import ExpandableContent from './elements/ExpandableContent';
 import share_button from 'assets/images/share_button.svg';
 import copy_icon from 'assets/images/copy_icon.svg';
 import { copyToClipboard } from 'utils/utils';
+import ToastNotification from './elements/ToastNotification';
 
 class FacebookCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showNotification: false,
+        };
+    }
     share = () => {
         let facebookUrl = '';
 
@@ -20,6 +27,10 @@ class FacebookCard extends React.Component {
             let textToBeCopied =
                 this.props.data.author + '\r\n\r\n' + this.props.data.description + '\r\n\r\n' + facebookUrl;
             copyToClipboard(textToBeCopied);
+            this.setState({ showNotification: true });
+            setTimeout(() => {
+                this.setState({ showNotification: false });
+            }, 1200);
         }
     };
 
@@ -52,6 +63,7 @@ class FacebookCard extends React.Component {
                         <img src={navigator.share ? share_button : copy_icon} alt="Share button" onClick={this.share} />
                     </div>
                 </div>
+                {this.state.showNotification && <ToastNotification text="Copied to clipboard" />}
             </div>
         );
     }
