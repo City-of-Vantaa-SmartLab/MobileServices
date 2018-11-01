@@ -52,7 +52,6 @@ export class FacebookFeedService {
     }
 
     filterAlreadyExistingFeeds = (feeds) => {
-
         return this.feedService.fetchFeedsBySource(sourceNames.FACEBOOK).
             then(existingFeeds => existingFeeds.map(feed => feed.feed_id)).
             then(existingFeedIds => feeds.data.filter(feed => !existingFeedIds.includes(feed.id)));
@@ -73,6 +72,7 @@ export class FacebookFeedService {
                 title: feed.status_type,
                 pub_date: feed.created_time,
                 image_url: feed.picture,
+                page_link: feed.link,
                 feed_id
             }
         });

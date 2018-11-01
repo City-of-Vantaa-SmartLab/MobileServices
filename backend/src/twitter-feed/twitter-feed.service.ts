@@ -56,6 +56,7 @@ export class TwitterFeedService {
                 description: feed.text,
                 source: sourceNames.TWITTER,
                 pub_date: feed.created_at,
+                page_link: feed.entities.urls[0].expanded_url,
                 feed_id
             }
         });
