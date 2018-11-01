@@ -4,7 +4,7 @@ import styles from './social-media-card.module.scss';
 import ExpandableContent from './elements/ExpandableContent';
 import share_button from 'assets/images/share_button.svg';
 import copy_icon from 'assets/images/copy_icon.svg';
-import { copyToClipboard } from 'utils/utils';
+import { share } from 'utils/utils';
 import ToastNotification from './elements/ToastNotification';
 
 class FacebookCard extends React.Component {
@@ -14,19 +14,12 @@ class FacebookCard extends React.Component {
             showNotification: false,
         };
     }
-    share = () => {
-        let facebookUrl = '';
 
-        if (navigator.share) {
-            navigator.share({
-                url: facebookUrl,
-                title: this.props.data.author,
-                description: this.props.data.description,
-            });
-        } else {
-            let textToBeCopied =
-                this.props.data.author + '\r\n\r\n' + this.props.data.description + '\r\n\r\n' + facebookUrl;
-            copyToClipboard(textToBeCopied);
+    handleClick = () => {
+        let { data } = this.props;
+        let isCopySuccessful = share({ url: data.page_link, title: data.author, description: data.description });
+
+        if (!navigator.share && isCopySuccessful) {
             this.setState({ showNotification: true });
             setTimeout(() => {
                 this.setState({ showNotification: false });
@@ -60,7 +53,11 @@ class FacebookCard extends React.Component {
                     ) : null}
                     <div className={styles['footer']}>
                         <Timestamp time={data.pub_date} />
-                        <img src={navigator.share ? share_button : copy_icon} alt="Share button" onClick={this.share} />
+                        <img
+                            src={navigator.share ? share_button : copy_icon}
+                            alt="Share button"
+                            onClick={this.handleClick}
+                        />
                     </div>
                 </div>
                 {this.state.showNotification && <ToastNotification text="Copied to clipboard" />}

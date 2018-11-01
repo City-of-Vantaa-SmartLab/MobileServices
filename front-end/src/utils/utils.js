@@ -19,8 +19,26 @@ const copyToClipboard = (data) => {
     textField.innerHTML = data;
     document.body.appendChild(textField);
     textField.select();
-    document.execCommand('copy');
+    let isCopySuccessful = document.execCommand('copy');
     textField.remove();
+    return isCopySuccessful;
 };
 
-export { formatDate, getTimeDelta, getEventsTime, copyToClipboard };
+const share = (data) => {
+    if (navigator.share) {
+        navigator.share({ url: data.url, title: data.title, description: data.description }).then(
+            () => {
+                return true;
+            },
+            () => {
+                return false;
+            }
+        );
+    } else {
+        let textToBeCopied = data.title + '\r\n\r\n' + data.description + '\r\n\r\n' + data.url;
+        let isCopySuccessful = copyToClipboard(textToBeCopied);
+        return isCopySuccessful;
+    }
+};
+
+export { formatDate, getTimeDelta, getEventsTime, copyToClipboard, share };

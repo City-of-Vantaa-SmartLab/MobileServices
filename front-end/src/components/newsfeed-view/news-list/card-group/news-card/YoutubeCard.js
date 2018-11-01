@@ -4,7 +4,7 @@ import Youtube from 'react-youtube';
 import styles from './social-media-card.module.scss';
 import share_button from 'assets/images/share_button.svg';
 import copy_icon from 'assets/images/copy_icon.svg';
-import { copyToClipboard } from 'utils/utils';
+import { share } from 'utils/utils';
 import ToastNotification from './elements/ToastNotification';
 
 class YoutubeCard extends React.Component {
@@ -14,15 +14,12 @@ class YoutubeCard extends React.Component {
             showNotification: false,
         };
     }
-    share = () => {
-        let videoUrl = 'https://www.youtube.com/watch?v=' + this.props.data.video_id;
 
-        if (navigator.share) {
-            navigator.share({ url: videoUrl, title: this.props.data.title, description: this.props.data.description });
-        } else {
-            let textToBeCopied =
-                this.props.data.title + '\r\n\r\n' + this.props.data.description + '\r\n\r\n' + videoUrl;
-            copyToClipboard(textToBeCopied);
+    handleClick = () => {
+        let { data } = this.props;
+        let isCopySuccessful = share({ url: data.page_link, title: data.title, description: data.description });
+
+        if (!navigator.share && isCopySuccessful) {
             this.setState({ showNotification: true });
             setTimeout(() => {
                 this.setState({ showNotification: false });
@@ -32,7 +29,7 @@ class YoutubeCard extends React.Component {
 
     render() {
         let { data } = this.props;
-
+        console.log(data);
         const opts = {
             width: '100%',
             height: '180',
@@ -52,7 +49,11 @@ class YoutubeCard extends React.Component {
                     <div className={styles['description']}>{data.description}</div>
                     <div className={styles['footer']}>
                         <Timestamp time={data.pub_date} />
-                        <img src={navigator.share ? share_button : copy_icon} alt="Share button" onClick={this.share} />
+                        <img
+                            src={navigator.share ? share_button : copy_icon}
+                            alt="Share button"
+                            onClick={this.handleClick}
+                        />
                     </div>
                 </div>
                 {this.state.showNotification && <ToastNotification text="Copied to clipboard" />}
