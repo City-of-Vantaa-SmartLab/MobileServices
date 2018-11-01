@@ -14,4 +14,13 @@ const getTimeDelta = (date, lang) =>
 
 const getEventsTime = (date, lang) => format(new Date(date), 'D MMMM, H:mm', { locale: locales[lang] });
 
-export { formatDate, getTimeDelta, getEventsTime };
+const copyToClipboard = (data) => {
+    let textField = document.createElement('textarea');
+    textField.innerHTML = data;
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand('copy');
+    textField.remove();
+};
+
+export { formatDate, getTimeDelta, getEventsTime, copyToClipboard };
