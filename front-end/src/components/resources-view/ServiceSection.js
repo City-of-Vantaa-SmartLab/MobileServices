@@ -2,16 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './resources.module.scss';
 import ServiceCard from './ServiceCard';
+import SectionHeader from './SectionHeader';
+import { services } from './serviceLinks';
 
 class ServiceSection extends Component {
     render() {
         const { i18n } = this.props;
         return (
             <section className={styles['section']}>
-                <h4>{i18n.serviceHeader}</h4>
+                <SectionHeader service header={i18n.serviceHeader} />
                 <div className={styles['card-row']}>
-                    <ServiceCard title="randomName" />
-                    <ServiceCard title="oneMoreRandomName" />
+                    {Object.keys(services).map((key) => (
+                        <ServiceCard
+                            key={key}
+                            title={i18n.services[key]}
+                            link={services[key].link}
+                            img={services[key].img}
+                        />
+                    ))}
                 </div>
             </section>
         );

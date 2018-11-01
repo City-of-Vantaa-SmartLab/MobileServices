@@ -5,25 +5,23 @@ $contact-bg: #ffffff;
 $service-title-bg: rgba(255, 255, 255, 0.7);
 
 .container {
-    padding: 4rem 1.2rem;
     position: absolute;
+    overflow: scroll;
     height: 100%;
     width: 100%;
+    padding: 4rem 1.2rem;
+    padding-bottom: $navigation-height;
+    
     background-image: url("../../assets/images/background.svg");
     background-repeat: no-repeat;
     background-size: cover;
+
     h1 {
         color: $light-header-color;
     }
 }
 
 .section {
-    margin-top: 2.4rem;
-    & > h4 {
-        margin-bottom: 0.9rem;
-        font-size: 1.4rem;
-    }
-
     .card-row { 
         display: flex;
         flex-flow: row wrap;
@@ -31,19 +29,21 @@ $service-title-bg: rgba(255, 255, 255, 0.7);
     }        
 }
 
-.light {
-    color: $light-header-color;
-}
-    
-
-
 .contact-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
     width: calc((100% - 2.4rem) / 3);
-    background: $contact-bg;
-    text-align: center;
     height: 8.4rem;
     margin-right: 1.2rem;
-    padding: 1.2rem;
+    padding: 1.5rem 1.2rem 0.8rem;
+    
+    background: $contact-bg;
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.36);
+    
+    text-align: center;
+    
     &:last-child {
         margin-right: 0;
     }
@@ -54,25 +54,41 @@ $service-title-bg: rgba(255, 255, 255, 0.7);
     }
 }
 .service-card {
+    position: relative;
+
     width: calc((100% - 1.2rem) / 2);
-    margin-right: 1.2rem;
-    text-align: center;
     height: 12.6rem;
+    margin: 0 1.2rem 1.2rem 0;
+
     background-image: url("../../assets/images/cutiepie.jpg");
     background-size: cover;
-    position: relative;
-    &:last-child {
+
+    text-align: center;
+     
+    &:nth-child(even) {
         margin-right: 0;
     }
     .service-title {
         position: absolute;
+        display: flex;
+        align-items: center;
+
+        height: 5.9rem;
         width: 100%;
         bottom: 0;
-        background: $service-title-bg;
         padding: 1.2rem;
-        word-wrap: break-word;
+
+        background: $service-title-bg;
+        
+        text-align: center;
+        
         h4 {
+            width: 100%;
+
             font-size: 1.4rem;
+            word-wrap: break-word;
+            text-align: center;
+            
         }
     }
 }
