@@ -29,12 +29,11 @@ class YoutubeCard extends React.Component {
 
     render() {
         let { data } = this.props;
-        console.log(data);
         const opts = {
             width: '100%',
             height: '180',
+            origin: window.location.origin,
         };
-
         return (
             <div className={`${styles['social-media-card']} ${styles['youtube']}`}>
                 <div className={styles['service-source']}>{data.source}</div>

@@ -29,7 +29,6 @@ class InstagramCard extends React.Component {
 
     render() {
         let { data } = this.props;
-        console.log(data);
         return (
             <div className={`${styles['social-media-card']} ${styles['instagram']}`}>
                 <div className={styles['service-source']}>{data.source}</div>
