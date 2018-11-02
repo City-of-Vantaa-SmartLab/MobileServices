@@ -37,15 +37,19 @@ export class EventFeedService {
                 ],
             }
         }
-        Parser.parseURL(sources.events, options, (_, parsed) => {
-            if (parsed && parsed.feed) {
-                this.filterAlreadyExistingFeeds(parsed.feed.entries)
-                    .then(this.transformData)
-                    .then(this.persistIntoDb)
-                    .then(() => this.logger.log('Fetching Event feeds Completed')).
-                    catch(error => this.logger.error(`Failed to get event feeds: ${error}`))
-            }
-        });
+        try {
+            Parser.parseURL(sources.events, options, (_, parsed) => {
+                if (parsed && parsed.feed) {
+                    this.filterAlreadyExistingFeeds(parsed.feed.entries)
+                        .then(this.transformData)
+                        .then(this.persistIntoDb)
+                        .then(() => this.logger.log('Fetching Event feeds Completed'))
+                        .catch(error => this.logger.error(`Failed to get event feeds: ${error}`))
+                }
+            });
+        } catch (error) {
+            this.logger.error(`failed to get events feeds: ${error.message}`);
+        }
     }
 
     persistIntoDb = events => this.feedService.saveFeeds(events);
