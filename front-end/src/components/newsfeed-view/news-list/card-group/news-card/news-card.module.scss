@@ -65,6 +65,8 @@ $content-author-font-size: 1.2rem;
     .footer {
         bottom: 0;
         right: 0;
+        display: flex;
+        justify-content: space-between;
 
         h5 {
             font-family: inherit;
