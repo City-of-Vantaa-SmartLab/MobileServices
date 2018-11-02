@@ -16,7 +16,7 @@ const getEventsTime = (date, lang) => format(new Date(date), 'D MMMM, H:mm', { l
 
 const copyToClipboard = (data) => {
     let textField = document.createElement('textarea');
-    textField.innerHTML = data;
+    textField.innerHTML = escapeHTML(data);
     document.body.appendChild(textField);
     textField.select();
     let isCopySuccessful = document.execCommand('copy');
@@ -39,6 +39,16 @@ const share = (data) => {
         let isCopySuccessful = copyToClipboard(textToBeCopied);
         return isCopySuccessful;
     }
+};
+
+const escapeHTML = (unsafe_str) => {
+    return unsafe_str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/\//g, '&#x2F;');
 };
 
 export { formatDate, getTimeDelta, getEventsTime, copyToClipboard, share };
