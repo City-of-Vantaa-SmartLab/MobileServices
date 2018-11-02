@@ -5,29 +5,10 @@ import ExpandableContent from './elements/ExpandableContent';
 import img from 'assets/images/cutiepie.jpg';
 import share_button from 'assets/images/share_button.svg';
 import copy_icon from 'assets/images/copy_icon.svg';
-import { share } from 'utils/utils';
 import ToastNotification from './elements/ToastNotification';
+import CardHOC from './CardHOC';
 
 class NewsCard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showNotification: false,
-        };
-    }
-
-    handleClick = () => {
-        let { data } = this.props;
-        let isCopySuccessful = share({ url: data.page_link, title: data.source, description: data.title });
-
-        if (!navigator.share && isCopySuccessful) {
-            this.setState({ showNotification: true });
-            setTimeout(() => {
-                this.setState({ showNotification: false });
-            }, 1200);
-        }
-    };
-
     render() {
         let { data } = this.props;
         return (
@@ -51,14 +32,14 @@ class NewsCard extends React.Component {
                         <img
                             src={navigator.share ? share_button : copy_icon}
                             alt="Share button"
-                            onClick={this.handleClick}
+                            onClick={() => this.props.handleClick(data.source, data.title)}
                         />
                     </div>
                 </div>
-                {this.state.showNotification && <ToastNotification text="Copied to clipboard" />}
+                {this.props.showNotification && <ToastNotification text="Copied to clipboard" />}
             </div>
         );
     }
 }
 
-export default NewsCard;
+export default CardHOC(NewsCard);
