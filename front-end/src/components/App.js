@@ -8,7 +8,18 @@ import NewsfeedView from './newsfeed-view/NewsfeedView';
 import ResourcesView from './resources-view/ResourcesView';
 import SettingsView from './settings-view/SettingsView';
 import NavigationPanel from './navigation/NavigationPanel';
+import AppLoader from './app-loader';
 import { SOURCES_FETCH_REQUEST } from 'actions/actionTypes';
+import styled from 'react-emotion';
+
+const Container = styled('section')`
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    position: relative;
+`;
 
 class App extends Component {
     componentDidMount() {
@@ -16,16 +27,17 @@ class App extends Component {
     }
     render() {
         return (
-            <div>
-                <CookieView cookies={this.props.cookies} />
+            <Container>
+                <AppLoader />
                 <Switch>
                     <Route path="/newsfeed" component={NewsfeedView} />
                     <Route path="/resources" component={ResourcesView} />
                     <Route path="/settings" component={SettingsView} />
                     <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
                 </Switch>
+                <CookieView cookies={this.props.cookies} />
                 <NavigationPanel />
-            </div>
+            </Container>
         );
     }
 }
