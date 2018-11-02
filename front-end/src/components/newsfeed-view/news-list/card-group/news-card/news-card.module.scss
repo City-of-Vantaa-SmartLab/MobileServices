@@ -46,6 +46,7 @@ $content-author-font-size: 1.2rem;
         .title {
             margin: 1.8rem 1.2rem 0 1.2rem;
             max-width: calc(100% - 9.8rem); // 9.8rem is width of image
+            word-break: break-word;
             & > span {
                 font-size: $content-author-font-size;
                 color: $color-primary;
@@ -60,11 +61,15 @@ $content-author-font-size: 1.2rem;
 
     .description {
         padding: 1.2rem;
-        .content-text {
+        :global(.LinesEllipsis) {
             line-height: 1.21;
             font-size: 1.4rem;
             color: #4a4a4a;
             margin: 0;
+        }
+
+        :global(.LinesEllipsis-ellipsis) {
+            color: rgba(74, 74, 74, 0.5);
         }
     }
   
