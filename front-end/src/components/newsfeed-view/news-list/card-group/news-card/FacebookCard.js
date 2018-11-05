@@ -15,18 +15,6 @@ class FacebookCard extends React.Component {
     }
 
     componentDidMount() {
-        /*
-        this.observer = new MutationObserver(() => {
-            this.moreText = this.descriptionRef.current.getElementsByClassName('LinesEllipsis-ellipsis')[0];
-            if (this.moreText) {
-                this.moreText.addEventListener('click', () => {
-                    this.setState({ descriptionMaxLines: 1000 });
-                });
-            }
-            this.observer.disconnect();
-        });
-        this.observer.observe(this.descriptionRef.current, { attributes: false, childList: true, subtree: true });
-        */
         this.props.moreTextClickListener(this.descriptionRef);
     }
 

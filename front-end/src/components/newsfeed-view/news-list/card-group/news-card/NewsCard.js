@@ -16,29 +16,19 @@ class NewsCard extends React.Component {
     }
 
     componentDidMount() {
-        /*
-        this.observer = new MutationObserver(() => {
-            this.moreText = this.descriptionRef.current.getElementsByClassName('LinesEllipsis-ellipsis')[0];
-            if (this.moreText) {
-                this.moreText.addEventListener('click', () => {
-                    this.setState({ descriptionMaxLines: 1000 });
-                });
-            }
-            this.observer.disconnect();
-        });
-        this.observer.observe(this.descriptionRef.current, { attributes: false, childList: true, subtree: true });
-        */
         this.props.moreTextClickListener(this.descriptionRef);
     }
 
     render() {
         let { data } = this.props;
-        console.log(data);
+
         return (
             <div className={styles['news-card']}>
                 <div className={styles['source']}>{data.source}</div>
                 <div className={styles['content']}>
-                    <div className={styles['image']} style={{ backgroundImage: `url(${img})` }} />
+                    <div className={styles['image']}>
+                        <img src={data.image_url ? `http://${data.image_url}` : img} alt="News" />
+                    </div>
                     <div className={styles['title']}>
                         <span>Author / page headline</span>
                         <br />
