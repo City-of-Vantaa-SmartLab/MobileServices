@@ -13,7 +13,7 @@ class NewsCard extends React.Component {
         super(props);
 
         this.state = {
-            maxLines: 6,
+            descriptionMaxLines: 6,
         };
         this.descriptionRef = React.createRef();
     }
@@ -23,7 +23,7 @@ class NewsCard extends React.Component {
             this.moreText = this.descriptionRef.current.getElementsByClassName('LinesEllipsis-ellipsis')[0];
             if (this.moreText) {
                 this.moreText.addEventListener('click', () => {
-                    this.setState({ maxLines: 1000 });
+                    this.setState({ descriptionMaxLines: 1000 });
                 });
             }
             this.observer.disconnect();
@@ -50,7 +50,7 @@ class NewsCard extends React.Component {
                 <div ref={this.descriptionRef} className={styles['description']}>
                     <LinesEllipsis
                         text={data.description}
-                        maxLine={this.state.maxLines}
+                        maxLine={this.state.descriptionMaxLines}
                         ellipsis="... more"
                         trimRight
                         basedOn="letters"
