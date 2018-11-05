@@ -11,43 +11,15 @@ class InstagramCard extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            descriptionMaxLines: 3,
-        };
         this.descriptionRef = React.createRef();
     }
 
     componentDidMount() {
-        this.observer = new MutationObserver(() => {
-            this.moreText = this.descriptionRef.current.getElementsByClassName('LinesEllipsis-ellipsis')[0];
-            if (this.moreText) {
-                this.moreText.addEventListener('click', () => {
-                    this.setState({ descriptionMaxLines: 1000 });
-                });
-            }
-
-            this.contentNode = this.descriptionRef.current.getElementsByClassName('LinesEllipsis')[0];
-            this.contentNode.childNodes[0].textContent = this.contentNode.childNodes[0].textContent.replace(
-                /\xa0/g,
-                ''
-            );
-
-            this.observer.disconnect();
-        });
-        this.observer.observe(this.descriptionRef.current, { attributes: false, childList: true, subtree: true });
-    }
-
-    componentDidUpdate() {
-        if (this.contentNode)
-            this.contentNode.childNodes[0].textContent = this.contentNode.childNodes[0].textContent.replace(
-                /\u00a0/g,
-                ''
-            );
+        this.props.moreTextClickListener(this.descriptionRef);
     }
 
     render() {
         let { data } = this.props;
-        let descriptionString = '\xA0'.repeat(data.author.length) + data.description;
 
         return (
             <div className={`${styles['social-media-card']} ${styles['instagram']}`}>
@@ -67,11 +39,11 @@ class InstagramCard extends React.Component {
                                 <b>{data.author} </b>
                             </span>
                             <LinesEllipsis
-                                text={descriptionString}
-                                maxLine={this.state.descriptionMaxLines}
+                                text={data.description}
+                                maxLine={this.props.descriptionMaxLinesLimit ? 1000 : 2}
                                 ellipsis="... more"
                                 trimRight
-                                basedOn="letters"
+                                basedOn="words"
                                 component="span"
                             />
                         </div>

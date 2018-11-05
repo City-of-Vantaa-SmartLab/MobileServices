@@ -11,13 +11,11 @@ class FacebookCard extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            descriptionMaxLines: 4,
-        };
         this.descriptionRef = React.createRef();
     }
 
     componentDidMount() {
+        /*
         this.observer = new MutationObserver(() => {
             this.moreText = this.descriptionRef.current.getElementsByClassName('LinesEllipsis-ellipsis')[0];
             if (this.moreText) {
@@ -28,6 +26,8 @@ class FacebookCard extends React.Component {
             this.observer.disconnect();
         });
         this.observer.observe(this.descriptionRef.current, { attributes: false, childList: true, subtree: true });
+        */
+        this.props.moreTextClickListener(this.descriptionRef);
     }
 
     render() {
@@ -43,7 +43,7 @@ class FacebookCard extends React.Component {
                     <div className={styles['description']} ref={this.descriptionRef}>
                         <LinesEllipsis
                             text={data.description}
-                            maxLine={this.state.descriptionMaxLines}
+                            maxLine={this.props.descriptionMaxLinesLimit ? 1000 : 4}
                             ellipsis="... more"
                             trimRight
                             basedOn="letters"
