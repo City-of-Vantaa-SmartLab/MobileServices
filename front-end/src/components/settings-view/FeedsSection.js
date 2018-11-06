@@ -5,12 +5,12 @@ import FeedCheckboxController from './FeedCheckboxController';
 
 class FeedsSection extends Component {
     render() {
-        const { i18n, feeds } = this.props;
+        const { i18n, feedTypes } = this.props;
         return (
             <section className={styles['settings-section']}>
                 <h4>{i18n.feedHeader}</h4>
                 <div className={styles['button-row']}>
-                    {Object.keys(feeds).map((key) => (
+                    {Object.keys(feedTypes).map((key) => (
                         <FeedCheckboxController key={key} type={key}>
                             {key}
                         </FeedCheckboxController>
@@ -22,7 +22,7 @@ class FeedsSection extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    feeds: state.feeds,
+    feedTypes: state.feedTypes,
     i18n: state.i18n.settings,
 });
 
