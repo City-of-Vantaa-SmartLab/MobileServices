@@ -1,4 +1,4 @@
-const facts = [
+export const facts = [
     'Koko pääkaupunkiseudun vanhin rakennus löytyy Vantaalta. Mikä se on? Pyhän Laurin kirkko eli Helsingin pitäjän kirkko, joka valmistui noin vuonna 1452.',
     'Missä Vantaalla sijaitsee Suomen suurin viherkatto? Toimisto- ja liikekeskus Dixin katolla. Viherkaton pinta-ala on 6300 m2.',
     'Tiesitkö, että vuodenvaihteessa 2016–2017 Vantaalla oli 15 henkilöä, jotka oli täyttänyt 100 vuotta!',
@@ -19,4 +19,10 @@ const facts = [
     'Tiesitkö, että 1950-luvulla lentokentän kiitorataa rakentaessa jäi yli paljon tyhjiä asfalttitynnyreitä, joita otettiin hyötykäyttöön rakennusten Vantaalaisten kattoja rakentaessa.',
 ];
 
-export default facts;
+export const images = [
+    'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/bg1.jpg',
+    'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/bg2.jpg',
+    'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/bg3.jpg',
+    'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/bg4.jpg',
+    'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/bg5.jpg',
+];
