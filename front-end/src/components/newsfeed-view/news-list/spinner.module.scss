@@ -1,0 +1,26 @@
+$circleColor: #fff;
+$spinColor: #0042a5;
+$spinnerDim: 2rem;
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+.spinner {
+    display: none;
+    &.active {
+        display: block;
+        border: 0.2rem solid transparent;
+        border-top: 0.2rem solid $spinColor;
+        border-radius: 50%;
+        width: $spinnerDim;
+        height: $spinnerDim;
+        animation: spin 1s linear infinite;
+    }
+}
+
+@keyframes spin {
+    0% {transform: rotate(0deg); }
+    100% {transform: rotate(360deg); }
+}

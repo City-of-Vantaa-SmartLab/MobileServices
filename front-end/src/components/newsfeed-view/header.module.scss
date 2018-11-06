@@ -4,6 +4,7 @@
 .header {
     color: $color-white;
     position: fixed;
+    
 
     h1 {
         margin-top: 4rem;
@@ -14,7 +15,7 @@
 
 .date {
     text-transform: uppercase;
-    padding: 0.6rem 2rem;
+    padding: 0.9rem 2rem;
     transition: all 1s ease-in;
 
     h4 {

@@ -14,9 +14,16 @@ $color-news-feed-bg: rgba(237, 237, 237, 1);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    padding-top: 1.5rem;
+    padding-top: 0;
     // Padding bottom is set here so that the navigation bar doesn't hide the end of the news list
+    
     padding-bottom: $navigation-height;
+
+    & > h1 {
+        color: #fff;
+        margin-left: 2rem;
+        margin-top: 4rem;
+    }
 
     .container {
         height: 100%;

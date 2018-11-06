@@ -21,10 +21,10 @@ class DateHeader extends React.Component {
     handleScroll = () => {
         // if (this.headerRef.current.parentNode.getBoundingClientRect().top < 0) {
         // this.setState({sticky: true});
-        // console.log('FIREE');
         // } else {
         // this.setState({sticky: false});
         // }
+
         this.headerRef.current.style['width'] =
             this.headerRef.current.getBoundingClientRect().top < 50 ? '100%' : 'auto';
     };

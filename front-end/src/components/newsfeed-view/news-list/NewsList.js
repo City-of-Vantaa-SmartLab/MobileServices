@@ -3,6 +3,7 @@ import groupBy from 'lodash/groupBy';
 import NewsCardGroup from './card-group/NewsCardGroup';
 import styles from './news-list.module.scss';
 import { startOfDay } from 'date-fns';
+import Spinner from './Spinner';
 
 class NewsList extends Component {
     constructor(props) {
@@ -47,10 +48,6 @@ class NewsList extends Component {
         }
     };
 
-    // dispatchCustomEvent = () => {
-    //     window.dispatchEvent(this.NewsFeedContainerScrollingEvent);
-    // }
-
     fixedPosition = {
         position: 'fixed',
         top: 0,
@@ -70,7 +67,9 @@ class NewsList extends Component {
                 style={this.props.activated ? this.fixedPosition : null}
                 ref={this.newsFeedRef}
             >
-                {newsfeed}
+                <h1>{this.props.i18n.newsfeed.header}</h1>
+                <div>{newsfeed}</div>
+                <Spinner active={this.props.loading} />
             </div>
         );
     }

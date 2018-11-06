@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
     last: state.fetch.last,
     activated: state.activated,
     scroll: state.scroll,
+    i18n: state.i18n,
 });
 
 const mapDispatchToProps = (dispatch) => {

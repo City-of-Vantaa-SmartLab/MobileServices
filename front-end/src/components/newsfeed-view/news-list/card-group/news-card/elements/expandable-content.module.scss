@@ -3,6 +3,7 @@ $more-text-width: 12 * 1.04rem;
 .expandable-div {
     overflow: hidden;
     position: relative;
+    word-wrap: break-word;
 
     .more-text  {
         // !! Important !! background: the gradient color relies on the news feed background color
