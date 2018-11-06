@@ -2,11 +2,11 @@ import { combineReducers } from 'redux';
 
 import i18n from './i18n';
 import * as settings from './settings';
-import fetch from './fetch';
+import * as fetch from './fetch';
 
 const rootReducer = combineReducers({
     i18n,
-    fetch,
+    ...fetch,
     ...settings,
 });
 

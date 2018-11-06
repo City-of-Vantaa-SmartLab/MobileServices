@@ -1,28 +1,54 @@
-import { FEED_FETCH_REQUEST, FEED_FETCH_SUCCESS, FEED_FETCH_FAILED, TOGGLE_FEED } from 'actions/actionTypes';
+import * as actions from 'actions/actionTypes';
 
 const initialState = {
-    loading: false,
-    feed: [],
-    last: null,
-    error: null,
+    feeds: {
+        loading: false,
+        data: [],
+        last: null,
+        error: null,
+    },
+    carousel: {
+        loading: false,
+        facts: [],
+        images: [],
+        error: null,
+    },
 };
 
-export default (state = initialState, action) => {
+export function feed(state = initialState.feeds, action) {
     switch (action.type) {
-        case FEED_FETCH_REQUEST:
+        case actions.FEED_FETCH_REQUEST:
             return { ...state, loading: true, error: null };
-        case FEED_FETCH_SUCCESS:
+        case actions.FEED_FETCH_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                feed: [...state.feed, ...action.payload],
+                data: [...state.data, ...action.payload],
                 last: action.payload.slice(-1)[0].id,
             };
-        case FEED_FETCH_FAILED:
+        case actions.FEED_FETCH_FAILED:
             return { ...state, loading: false, error: action.payload };
-        case TOGGLE_FEED:
-            return { ...state, feed: [], last: null };
+        case actions.TOGGLE_FEED:
+            return { ...state, data: [], last: null };
         default:
             return state;
     }
-};
+}
+
+export function carousel(state = initialState.carousel, action) {
+    switch (action.type) {
+        case actions.FACTS_FETCH_REQUEST:
+            return { ...state, loading: true, error: null };
+        case actions.FACTS_FETCH_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                facts: action.payload.facts,
+                images: action.payload.images,
+            };
+        case actions.FACTS_FETCH_FAILED:
+            return { ...state, loading: false, error: action.payload };
+        default:
+            return state;
+    }
+}

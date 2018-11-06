@@ -5,7 +5,7 @@ import Checkbox from './Checkbox';
 const colorTags = ['instagram', 'twitter', 'facebook', 'youtube'];
 
 const mapStateToProps = (state, ownProps) => ({
-    active: state.feeds[ownProps.type],
+    active: state.feedTypes[ownProps.type],
     colorTag: colorTags.indexOf(ownProps.type) !== -1 ? ownProps.type : '',
 });
 

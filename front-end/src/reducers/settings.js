@@ -12,7 +12,7 @@ let initialState = {
     notificationFilter: NotificationFilters.NEVER,
 };
 
-export function feeds(state = initialState.feedTypes, action) {
+export function feedTypes(state = initialState.feedTypes, action) {
     switch (action.type) {
         case TOGGLE_FEED:
             return { ...state, [action.payload]: !state[action.payload] };
