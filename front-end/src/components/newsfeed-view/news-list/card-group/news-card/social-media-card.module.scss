@@ -74,6 +74,17 @@ $events-source-bg: #db3db0;
                 font-weight: bold;
             }
 
+            :global(.LinesEllipsis) {
+                line-height: 1.21;
+                font-size: 1.4rem;
+                color: #4a4a4a;
+                margin: 0;
+            }
+    
+            :global(.LinesEllipsis-ellipsis) {
+                color: rgba(74, 74, 74, 0.5);
+            }
+
         }
 
         .footer {

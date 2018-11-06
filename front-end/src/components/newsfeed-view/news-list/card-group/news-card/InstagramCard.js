@@ -1,6 +1,6 @@
 import React from 'react';
 import Timestamp from './elements/Timestamp';
-import ExpandableContent from './elements/ExpandableContent';
+import LinesEllipsis from 'react-lines-ellipsis';
 import styles from './social-media-card.module.scss';
 import share_button from 'assets/images/share_button.svg';
 import copy_icon from 'assets/images/copy_icon.svg';
@@ -8,8 +8,19 @@ import ToastNotification from './elements/ToastNotification';
 import CardHOC from './CardHOC';
 
 class InstagramCard extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.descriptionRef = React.createRef();
+    }
+
+    componentDidMount() {
+        this.props.moreTextClickListener(this.descriptionRef);
+    }
+
     render() {
         let { data } = this.props;
+
         return (
             <div className={`${styles['social-media-card']} ${styles['instagram']}`}>
                 <div className={styles['service-source']}>{data.source}</div>
@@ -21,16 +32,19 @@ class InstagramCard extends React.Component {
                     <div className={styles['image']}>
                         <img src={data.image_url} alt="Instagram" />
                     </div>
-                    <div className={styles['description']}>
+                    <div className={styles['description']} ref={this.descriptionRef}>
                         <div className={styles['likes']}>{data.likes} likes</div>
                         <div>
-                            <ExpandableContent
-                                maxLine={3}
-                                author={data.author}
-                                description={data.description}
+                            <span>
+                                <b>{data.author} </b>
+                            </span>
+                            <LinesEllipsis
+                                text={data.description}
+                                maxLine={this.props.descriptionMaxLinesLimit ? 1000 : 2}
                                 ellipsis="... more"
-                                lineHeight={1.7}
-                                ellipsisClickable={true}
+                                trimRight
+                                basedOn="words"
+                                component="span"
                             />
                         </div>
                     </div>

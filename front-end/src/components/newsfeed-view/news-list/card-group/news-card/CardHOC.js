@@ -7,8 +7,22 @@ const CardHOC = (PassedComponent) => {
             super(props);
             this.state = {
                 showNotification: false,
+                descriptionMaxLinesLimit: false,
             };
         }
+
+        moreTextClickListener = (ref) => {
+            let observer = new MutationObserver(() => {
+                let moreText = ref.current.getElementsByClassName('LinesEllipsis-ellipsis')[0];
+                if (moreText) {
+                    moreText.addEventListener('click', () => {
+                        this.setState({ descriptionMaxLinesLimit: true });
+                    });
+                }
+                observer.disconnect();
+            });
+            observer.observe(ref.current, { attributes: false, childList: true, subtree: true });
+        };
 
         handleClick = (title, description) => {
             let { data } = this.props;
@@ -27,6 +41,8 @@ const CardHOC = (PassedComponent) => {
                 <PassedComponent
                     handleClick={this.handleClick}
                     showNotification={this.state.showNotification}
+                    descriptionMaxLinesLimit={this.state.descriptionMaxLinesLimit}
+                    moreTextClickListener={this.moreTextClickListener}
                     {...this.props}
                 />
             );
