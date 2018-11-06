@@ -1,22 +1,33 @@
-$circleColor: #fff;
-$spinColor: #0042a5;
+@import "src/assets/stylesheets/variables";
+
 $spinnerDim: 2rem;
 
-.spinner-container {
+.loader-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     padding: 2rem 0;
 }
 .spinner {
     display: none;
     &.active {
+        margin: 0 auto;
         display: block;
         border: 0.2rem solid transparent;
-        border-top: 0.2rem solid $spinColor;
+        border-top: 0.2rem solid $color-accent;
         border-radius: 50%;
         width: $spinnerDim;
         height: $spinnerDim;
         animation: spin 1s linear infinite;
+    }
+}
+
+.message {
+    & h5 {
+        font-family: $font-feed-cards;
+        text-align: center;
+        opacity: 0.5;
+        font-weight: normal;
     }
 }
 

@@ -3,7 +3,7 @@ import groupBy from 'lodash/groupBy';
 import NewsCardGroup from './card-group/NewsCardGroup';
 import styles from './news-list.module.scss';
 import { startOfDay } from 'date-fns';
-import Spinner from './Spinner';
+import Loader from './Loader';
 
 class NewsList extends Component {
     constructor(props) {
@@ -42,7 +42,7 @@ class NewsList extends Component {
             const bottom =
                 this.newsFeedRef.current.scrollHeight - this.newsFeedRef.current.scrollTop <=
                 this.newsFeedRef.current.clientHeight;
-            if (bottom) {
+            if (bottom && !this.props.error) {
                 this.props.onRequest();
             }
         }
@@ -69,7 +69,7 @@ class NewsList extends Component {
             >
                 <h1>{this.props.i18n.newsfeed.header}</h1>
                 <div>{newsfeed}</div>
-                <Spinner active={this.props.loading} />
+                <Loader active={this.props.loading} error={this.props.error} />
             </div>
         );
     }
