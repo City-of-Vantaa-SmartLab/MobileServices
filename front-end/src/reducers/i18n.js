@@ -4,12 +4,30 @@ const translations = {
     en: {
         locale: 'en',
         navigation: {
-            news: 'Newsfeed',
+            news: 'News',
             links: 'Resources',
-            settings: 'Settings',
+            settings: 'Preferences',
         },
         newsfeed: {
             header: 'Today in Vantaa',
+        },
+        resources: {
+            header: 'How can we help?',
+            contactHeader: 'Contact us',
+            serviceHeader: 'Services',
+            chat: 'chat',
+            contact: 'contact',
+            feedback: 'give feedback',
+            services: {
+                vantaa: 'Vantaa.fi',
+                palvelukartta: 'Palvelukartta',
+                sivistysvantaa: 'Sivistysvantaa',
+                jumppaliput: 'Jumppaliput',
+                lasten: 'Lasten kulttuuriliput',
+                tapahtumat: 'Tapahtumat',
+                matkailu: 'Matkailu',
+                asiointi: 'Asiointi',
+            },
         },
         settings: {
             header: 'My preferences',
@@ -31,12 +49,30 @@ const translations = {
     fi: {
         locale: 'fi',
         navigation: {
-            news: 'Newsfeed',
-            links: 'Resources',
-            settings: 'Settings',
+            news: 'Uutiset',
+            links: 'Palvelut',
+            settings: 'Asetukset',
         },
         newsfeed: {
             header: 'Today in Vantaa',
+        },
+        resources: {
+            header: 'How can we help?',
+            contactHeader: 'Ota yheyttä',
+            serviceHeader: 'Palvelut',
+            chat: 'Kysy neuvoa',
+            contact: 'Ota yheyttä',
+            feedback: 'Anna palautetta',
+            services: {
+                vantaa: 'Vantaa.fi',
+                palvelukartta: 'Palvelukartta',
+                sivistysvantaa: 'Sivistysvantaa',
+                jumppaliput: 'Jumppaliput',
+                lasten: 'Lasten kulttuuriliput',
+                tapahtumat: 'Tapahtumat',
+                matkailu: 'Matkailu',
+                asiointi: 'Asiointi',
+            },
         },
         settings: {
             header: 'My preferences',
@@ -64,6 +100,24 @@ const translations = {
         },
         newsfeed: {
             header: 'Today in Vantaa',
+        },
+        resources: {
+            header: 'How can we help?',
+            contactHeader: 'Contact us',
+            serviceHeader: 'Services',
+            chat: 'chat',
+            contact: 'contact',
+            feedback: 'give feedback',
+            services: {
+                vantaa: 'Vantaa.fi',
+                palvelukartta: 'Palvelukartta',
+                sivistysvantaa: 'Sivistysvantaa',
+                jumppaliput: 'Jumppaliput',
+                lasten: 'Lasten kulttuuriliput',
+                tapahtumat: 'Tapahtumat',
+                matkailu: 'Matkailu',
+                asiointi: 'Asiointi',
+            },
         },
         settings: {
             header: 'My preferences',

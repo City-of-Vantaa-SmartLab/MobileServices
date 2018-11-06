@@ -139,6 +139,14 @@ export class ConfigService {
     return this.envConfig.INSTAGRAM_ACCESS_TOKEN;
   }
 
+  get vantaaImagePrefix(): string {
+    return this.envConfig.VANTAA_IMAGE_PREFIX;
+  }
+
+  get youTubeVideoUrl(): string {
+    return this.envConfig.YOUTUBE_WATCH_URL;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -172,6 +180,8 @@ export class ConfigService {
       INSTAGRAM_CLIENT_ID: Joi.string(),
       INSTAGRAM_CLIENT_SECRET: Joi.string(),
       INSTAGRAM_ACCESS_TOKEN: Joi.string(),
+      VANTAA_IMAGE_PREFIX: Joi.string().default('www.vantaa.fi'),
+      YOUTUBE_WATCH_URL: Joi.string().default('http://www.youtube.com/watch?v='),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(

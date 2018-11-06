@@ -9,6 +9,7 @@ export const queryParams = [
     'id',
     'name',
     'from',
+    'link',
     'message',
     'story',
     'picture',

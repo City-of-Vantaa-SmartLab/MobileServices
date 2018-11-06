@@ -1,0 +1,31 @@
+
+$light-header-color: #ffffff;
+
+.header {
+    display: block;
+    top: -4rem;
+    z-index: 9999;
+
+    width: 100%;
+    padding-top: 2.4rem;
+    padding-bottom: 0.9rem;
+    
+    h4 {
+        font-size: 1.4rem;
+        transition: all 0.3s ease-in;
+    }
+}
+
+.light {
+    & h4 {
+    color: $light-header-color;
+    }
+}
+    
+.sticky {
+    position: sticky;
+    background: #0042a5;
+    & h4 {
+        @extend .light;
+    }
+}

@@ -1,0 +1,94 @@
+@import "src/assets/stylesheets/variables";
+
+$light-header-color: #ffffff;
+$contact-bg: #ffffff;
+$service-title-bg: rgba(255, 255, 255, 0.7);
+
+.container {
+    position: absolute;
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
+    padding: 4rem 1.2rem;
+    padding-bottom: $navigation-height;
+    
+    background-image: url("../../assets/images/background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    h1 {
+        color: $light-header-color;
+    }
+}
+
+.section {
+    .card-row { 
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }        
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: calc((100% - 2.4rem) / 3);
+    height: 8.4rem;
+    margin-right: 1.2rem;
+    padding: 1.5rem 1.2rem 0.8rem;
+    
+    background: $contact-bg;
+    box-shadow: 0 0.1rem 0.2rem 0 rgba(0, 0, 0, 0.36);
+    
+    text-align: center;
+    
+    &:last-child {
+        margin-right: 0;
+    }
+    h4 {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+}
+.service-card {
+    position: relative;
+
+    width: calc((100% - 1.2rem) / 2);
+    height: 12.6rem;
+    margin: 0 1.2rem 1.2rem 0;
+
+    background-image: url("../../assets/images/cutiepie.jpg");
+    background-size: cover;
+
+    text-align: center;
+     
+    &:nth-child(even) {
+        margin-right: 0;
+    }
+    .service-title {
+        position: absolute;
+        display: flex;
+        align-items: center;
+
+        height: 5.9rem;
+        width: 100%;
+        bottom: 0;
+        padding: 1.2rem;
+
+        background: $service-title-bg;
+        
+        text-align: center;
+        
+        h4 {
+            width: 100%;
+
+            font-size: 1.4rem;
+            word-wrap: break-word;
+            text-align: center;
+            
+        }
+    }
+}

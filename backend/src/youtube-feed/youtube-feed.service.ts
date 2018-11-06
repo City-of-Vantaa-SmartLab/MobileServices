@@ -80,6 +80,7 @@ export class YouTubeFeedService {
                 author_thumbnail: channelProfileImage,
                 video_id: item.id.videoId,
                 pub_date: item.snippet.publishedAt,
+                page_link: config.youTubeVideoUrl + item.id.videoId,
                 title: item.snippet.title,
                 source: sourceNames.YOUTUBE,
                 description: item.snippet.description,

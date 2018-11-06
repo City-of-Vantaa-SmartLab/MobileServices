@@ -10,6 +10,7 @@ const format = 'YYYY-MM-DD HH:mm:ss.SSS [GMT]Z (z)';
 const Parser = require('rss-parser');
 const parser = new Parser();
 const config = new ConfigService();
+import { parse } from 'node-html-parser';
 
 @Injectable()
 export class RssFeedService {
@@ -78,12 +79,36 @@ export class RssFeedService {
         return (data) => {
             data = converter.camelToSnakeCase(data);
             data.items = data.items.map(item => {
+                let description = item.content;
+                let detailed_description = null;
+                let image = null;
+
+                // For news and stories content is returned in html format.
+                // We need to parse the main description and images from the text.
+                if ([sourceTypes.NEWS, sourceTypes.STORIES].includes(type)) {
+                    const root = parse(item.content);
+                    detailed_description = root.childNodes[1]
+                        ? root.childNodes[1].rawText.replace(/[\t\r]/g, ' ')
+                        : null;
+                    description = root.querySelector('p')
+                        ? root.querySelector('p').rawText.replace(/[\t\r\n]/g, '')
+                        : null;
+                    image = root.querySelector('.imagewrapper');
+                    image = image
+                        ? config.vantaaImagePrefix + image.childNodes[0]
+                            .rawAttrs.split(" ")[0]
+                            .split("src=")[1]
+                            .replace(/"/g, "")
+                        : null;
+                }
                 return {
                     ...item,
                     source: name,
                     type,
                     page_link: item.link,
-                    description: item.content
+                    description,
+                    detailed_description,
+                    image_url: image
                 }
             });
             return data;

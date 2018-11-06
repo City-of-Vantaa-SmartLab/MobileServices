@@ -12,6 +12,7 @@ import { FrontendMiddleware } from './middleware/frontend.middleware';
 import { TwitterFeedModule } from 'twitter-feed/twitter-feed.module';
 import { InstagramFeedModule } from 'instagram/instagram.module';
 import {WebhookModule} from './webhook/webhook.module';
+import { FactModule } from './facts/fact.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import {WebhookModule} from './webhook/webhook.module';
     EventModule,
     TwitterFeedModule,
     InstagramFeedModule,
+    FactModule,
   ],
   controllers: [AppController],
   providers: [AppService],
