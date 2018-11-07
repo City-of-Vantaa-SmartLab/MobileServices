@@ -1,13 +1,24 @@
-import React, { Component } from "react";
-import styles from "./backgrounds.module.scss";
+import React, { Component } from 'react';
+import styles from './backgrounds.module.scss';
+import Hammer from 'hammerjs';
 
 class Backgrounds extends Component {
-    render() {
-        return (
-            <div className={styles["backgrounds"]}>
+    componentDidMount() {
+        this.hammer = Hammer(this.node);
+        this.hammer.on('swipeleft', this.next);
+        this.hammer.on('swiperight', this.prev);
+    }
 
-            </div>
-        )
+    next = () => {
+        console.log('Next');
+    };
+
+    prev = () => {
+        console.log('Prev');
+    };
+
+    render() {
+        return <div ref={(el) => (this.node = el)} className={styles['backgrounds']} />;
     }
 }
 
