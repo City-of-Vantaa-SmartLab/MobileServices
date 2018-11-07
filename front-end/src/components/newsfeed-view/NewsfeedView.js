@@ -27,7 +27,7 @@ class NewsfeedView extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ pointerEvents: 'all' }}>
                 <Backgrounds />
                 <Header opacity={this.state.opacity} />
                 <NewsListContainer />

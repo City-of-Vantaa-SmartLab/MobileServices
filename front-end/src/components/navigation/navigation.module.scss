@@ -14,6 +14,7 @@ $navigation-z-index: 500;
     border: solid 1px #0042a5;
     background-color: #0042a5;
     z-index: $navigation-z-index;
+    pointer-events: all;
 
     a {
         display: inline-block;

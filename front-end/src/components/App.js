@@ -19,6 +19,7 @@ const Container = styled('section')`
     height: 100%;
     min-height: 480px;
     position: relative;
+    pointer-events: none;
 `;
 
 class App extends Component {

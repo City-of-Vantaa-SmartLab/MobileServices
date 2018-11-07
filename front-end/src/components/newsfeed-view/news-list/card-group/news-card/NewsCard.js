@@ -2,7 +2,7 @@ import React from 'react';
 import Timestamp from './elements/Timestamp';
 import styles from './news-card.module.scss';
 import LinesEllipsis from 'react-lines-ellipsis';
-import img from 'assets/images/vantaa-logo.svg';
+import img from 'assets/images/Vantaa-logo.svg';
 import share_button from 'assets/images/share_button.svg';
 import copy_icon from 'assets/images/copy_icon.svg';
 import ToastNotification from './elements/ToastNotification';

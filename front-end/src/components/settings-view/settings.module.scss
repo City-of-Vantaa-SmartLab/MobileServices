@@ -9,6 +9,7 @@ $active-button-color: #3c8fde;
     height: 100%;
     width: 100%;
     background: $bg-color;
+    pointer-events: all;
 }
 
 .settings-section {
