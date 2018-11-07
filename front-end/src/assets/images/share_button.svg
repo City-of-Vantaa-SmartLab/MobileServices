@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="14px" viewBox="0 0 10 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Glyphs / Bar Button / Action / Light</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="component/twitter/max" transform="translate(-328.000000, -175.000000)" fill="#4A4A4A">
+            <g id="Glyphs-/-Bar-Button-/-Action-/-Light" transform="translate(328.000000, 175.000000)">
+                <path d="M4.98368421,0 L2.63157895,2.36089204 L3.00736842,2.73544395 L4.73684211,0.996339761 L4.73684211,8.98079318 L5.26315789,8.98079318 L5.26315789,1.02539527 L6.99315789,2.73544395 L7.36842105,2.36089204 L4.98368421,0 Z M6.31631579,3.96211464 L6.31631579,4.49039659 L9.47368421,4.49039659 L9.47368421,13.4711898 L0.526315789,13.4711898 L0.526315789,4.49039659 L3.68421053,4.49039659 L3.68421053,3.96211464 L0,3.96211464 L0,14 L10,14 L10,3.96211464 L6.31631579,3.96211464 Z" id="action"></path>
+            </g>
+        </g>
+    </g>
+</svg>

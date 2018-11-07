@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import facts from './fact';
+import { facts, images } from './fact';
 
 @Injectable()
 export class FactService {
@@ -11,7 +11,7 @@ export class FactService {
 
     async getFacts() {
         try {
-            return facts;
+            return { facts, images };
         } catch (error) {
             this.logger.error(`Failed to get facts: ${error}`);
             throw error;

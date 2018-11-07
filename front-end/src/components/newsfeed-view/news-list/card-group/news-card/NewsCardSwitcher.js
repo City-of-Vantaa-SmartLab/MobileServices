@@ -4,6 +4,7 @@ import InstagramCard from './InstagramCard';
 import TwitterCard from './TwitterCard';
 import FacebookCard from './FacebookCard';
 import YoutubeCard from './YoutubeCard';
+import EventsCard from './EventsCard';
 
 const NewsCardSwitcher = ({ type, data }) => {
     switch (type.toLowerCase()) {
@@ -15,6 +16,8 @@ const NewsCardSwitcher = ({ type, data }) => {
             return <FacebookCard data={data} />;
         case 'youtube':
             return <YoutubeCard data={data} />;
+        case 'events':
+            return <EventsCard data={data} />;
         default:
             return <NewsCard data={data} />;
     }

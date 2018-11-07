@@ -1,6 +1,8 @@
 @import "src/assets/stylesheets/variables";
 @import "src/assets/stylesheets/globals";
 
+$navigation-z-index: 500;
+
 .navigation {
     position: fixed;
     bottom: 0;
@@ -11,6 +13,7 @@
     box-shadow: 0 -0.1rem 0.2rem 0 rgba(0, 0, 0, 0.2);
     border: solid 1px #0042a5;
     background-color: #0042a5;
+    z-index: $navigation-z-index;
 
     a {
         display: inline-block;
