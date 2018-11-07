@@ -1,7 +1,7 @@
 import { Module, Logger } from '@nestjs/common';
-import {WebhookController} from './webhook.controller';
-import {FacebookFeedModule} from '../facebook-feed/facebook-feed.module';
-import {TwitterFeedModule} from "../twitter-feed/twitter-feed.module";
+import { WebhookController } from './webhook.controller';
+import { FacebookFeedModule } from '../facebook-feed/facebook-feed.module';
+import { TwitterFeedModule } from '../twitter-feed/twitter-feed.module';
 
 @Module({
     controllers: [WebhookController],

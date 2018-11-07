@@ -11,6 +11,7 @@ import { ConfigService } from '../config/config.service';
 import { TwitterFeedService } from '../twitter-feed/twitter-feed.service';
 const config = new ConfigService();
 const crypto = require('crypto')
+const SHA = 'sha256=';
 
 @ApiUseTags('webhook')
 @Controller('/api/webhook')
@@ -26,9 +27,9 @@ export class WebhookController {
     @ApiResponse({status: 200, description: 'Verification endpoint for facebook fetch'})
     async fbVerify(@Req() request, @Res() response) {
         try {
-            this.logger.log('Facebook Verification challenge', request.query['hub.challenge']);
+            this.logger.log(`Facebook Verification challenge: ${request.query['hub.challenge']}`);
             const hubChallenge = parseInt(request.query['hub.challenge'], 10);
-            this.logger.error(`Parsed hub challenge: ${hubChallenge}`);
+            this.logger.log(`Parsed hub challenge: ${hubChallenge}`);
             return response.status(200).json(hubChallenge);
         } catch (error) {
             return response.sendStatus(400);
@@ -47,11 +48,10 @@ export class WebhookController {
     @ApiResponse({status: 200, description: 'Verification endpoint for twitter fetch'})
     async twVerify(@Res() response, @Req() request) {
         try {
-            const SHA = 'sha256='
+            this.logger.log(`Twitter Verification token: ${request.query.crc_token}`);
             const hmac = crypto.createHmac('sha256', config.twitterConsumerSecret);
             const encryptedCRC = SHA + hmac.update(request.query.crc_token).digest('base64')
-            this.logger.log('Twitter CRC token: ', request.query.crc_token);
-            this.logger.log('Encrypted CRC Token: ', encryptedCRC);
+            this.logger.log(`Encrypted CRC Token:  ${encryptedCRC}`);
             return response.status(200).json({response_token: encryptedCRC});
         } catch (error) {
             this.logger.error(`Error while verifying twitter webhook:${error.message}`);
