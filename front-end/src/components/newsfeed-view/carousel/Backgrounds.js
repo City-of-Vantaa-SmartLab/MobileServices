@@ -21,12 +21,16 @@ class Backgrounds extends Component {
     }
 
     next = () => {
-        this.setState({ randomImageIndex: (this.state.randomImageIndex + 1) % 3 });
+        this.setState({
+            randomImageIndex: (this.state.randomImageIndex + 1) % 3,
+            randomFactIndex: (this.state.randomFactIndex + 1) % 3,
+        });
     };
 
     prev = () => {
         this.setState({
             randomImageIndex: this.state.randomImageIndex === 0 ? 2 : (this.state.randomImageIndex - 1) % 3,
+            randomFactIndex: this.state.randomFactIndex === 0 ? 2 : (this.state.randomFactIndex - 1) % 3,
         });
     };
 
@@ -52,7 +56,9 @@ class Backgrounds extends Component {
                         ? { backgroundImage: `url(${this.randomImages[this.state.randomImageIndex]})` }
                         : {}
                 }
-            />
+            >
+                <div className={styles['random-facts']}>{this.randomFacts[this.state.randomFactIndex]}</div>
+            </div>
         );
     }
 }
