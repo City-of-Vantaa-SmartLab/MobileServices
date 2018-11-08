@@ -60,6 +60,7 @@ $content-author-font-size: 1.2rem;
 
     .description {
         padding: 1.2rem;
+        width: calc(100% - 2.4rem); // Subtract padding-left + padding-right
         :global(.LinesEllipsis) {
             line-height: 1.21;
             font-size: 1.4rem;
