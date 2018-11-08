@@ -9,8 +9,9 @@ import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
 import { FacebookFeedService } from '../facebook-feed/facebook-feed.service';
 import { ConfigService } from '../config/config.service';
 import { TwitterFeedService } from '../twitter-feed/twitter-feed.service';
+import {YouTubeFeedService} from "../youtube-feed/youtube-feed.service";
 const config = new ConfigService();
-const crypto = require('crypto')
+const crypto = require('crypto');
 const SHA = 'sha256=';
 
 @ApiUseTags('webhook')
@@ -19,13 +20,14 @@ export class WebhookController {
     constructor(
         private readonly facebookFeedService: FacebookFeedService,
         private readonly twitterFeedService: TwitterFeedService,
+        private readonly youtubeFeedService: YouTubeFeedService,
         private readonly logger: Logger) {
         this.logger = new Logger('WebhookController');
     }
 
     @Get('facebook')
-    @ApiResponse({status: 200, description: 'Verification endpoint for facebook fetch'})
-    async fbVerify(@Req() request, @Res() response) {
+    @ApiResponse({status: 200, description: 'Verification endpoint for Facebook fetch'})
+    fbVerify(@Res() response, @Req() request) {
         try {
             this.logger.log(`Facebook Verification challenge: ${request.query['hub.challenge']}`);
             const hubChallenge = parseInt(request.query['hub.challenge'], 10);
@@ -37,7 +39,7 @@ export class WebhookController {
     }
 
     @Post('facebook')
-    @ApiResponse({status: 200, description: 'Trigger facebook fetch'})
+    @ApiResponse({status: 200, description: 'Trigger Facebook fetch'})
     fbTrigger(@Res() response) {
         this.facebookFeedService.fetchAndSaveFacebookFeeds();
         this.logger.log('Triggered facebook fetch');
@@ -45,12 +47,12 @@ export class WebhookController {
     }
 
     @Get('twitter')
-    @ApiResponse({status: 200, description: 'Verification endpoint for twitter fetch'})
-    async twVerify(@Res() response, @Req() request) {
+    @ApiResponse({status: 200, description: 'Verification endpoint for Twitter fetch'})
+    twVerify(@Res() response, @Req() request) {
         try {
             this.logger.log(`Twitter Verification token: ${request.query.crc_token}`);
             const hmac = crypto.createHmac('sha256', config.twitterConsumerSecret);
-            const encryptedCRC = SHA + hmac.update(request.query.crc_token).digest('base64')
+            const encryptedCRC = SHA + hmac.update(request.query.crc_token).digest('base64');
             this.logger.log(`Encrypted CRC Token:  ${encryptedCRC}`);
             return response.status(200).json({response_token: encryptedCRC});
         } catch (error) {
@@ -64,6 +66,21 @@ export class WebhookController {
     twTrigger(@Res() response) {
         this.twitterFeedService.fetchAndSaveTwitterFeeds();
         this.logger.log('Triggered Twitter fetch');
+        return response.sendStatus(200);
+    }
+
+    @Get('youtube')
+    @ApiResponse({status: 200, description: 'Verification endpoint for Youtube fetch'})
+    youtubeVerify(@Req() request) {
+        this.logger.log(`Youtube Verification challenge: ${request.query['hub.challenge']}`);
+        return request.query['hub.challenge'];
+    }
+
+    @Post('youtube')
+    @ApiResponse({status: 200, description: 'Trigger Youtube'})
+    youtubeTrigger(@Res() response) {
+        this.youtubeFeedService.fetchAndSaveYouTubeFeed();
+        this.logger.log('Triggered Youtube fetch');
         return response.sendStatus(200);
     }
 }
