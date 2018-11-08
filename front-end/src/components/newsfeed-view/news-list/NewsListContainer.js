@@ -3,10 +3,10 @@ import { FEED_FETCH_REQUEST, FEED_ACTIVATED, SAVE_SCROLL_POSITION } from 'action
 import NewsList from './NewsList';
 
 const mapStateToProps = (state) => ({
-    loading: state.fetch.loading,
-    feed: state.fetch.feed,
-    error: state.fetch.error,
-    last: state.fetch.last,
+    loading: state.feed.loading,
+    feed: state.feed.data,
+    error: state.feed.error,
+    last: state.feed.last,
     activated: state.activated,
     scroll: state.scroll,
     i18n: state.i18n,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { createPortal } from 'react-dom';
 import posed, { PoseGroup } from 'react-pose';
 import styled, { injectGlobal } from 'react-emotion';
-import logoIcon from 'assets/images/vantaa-logo.svg';
+import logoIcon from 'assets/images/Vantaa-logo.svg';
 
 const CoordinatorBase = posed.div({
     enter: {
