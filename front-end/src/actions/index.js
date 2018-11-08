@@ -39,6 +39,8 @@ function* fetchFeed() {
         const feed = yield response.json();
         if (feed.length !== 0) {
             yield put({ type: actions.FEED_FETCH_SUCCESS, payload: feed });
+        } else {
+            yield put({ type: actions.FEED_FETCH_FAILED, payload: 1 });
         }
     } catch (error) {
         yield put({ type: actions.FEED_FETCH_FAILED, payload: error });
