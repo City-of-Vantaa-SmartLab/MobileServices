@@ -22,6 +22,10 @@ export class Feed {
     @Column()
     description: string;
 
+
+    @Column({ nullable: true })
+    detailed_description: string;
+
     @Column()
     source: string;
 

@@ -48,6 +48,9 @@ export class TwitterFeedService {
         return feeds.map(feed => {
             const feed_id = feed.id;
             delete feed.id;
+            const page_link = feed.entities.urls[0]
+                ? feed.entities.urls[0].expanded_url :
+                feed.retweeted_status.entities.urls[0].expanded_url;
             return {
                 author: feed.user.name,
                 author_thumbnail: feed.user.profile_image_url_https,
@@ -56,6 +59,7 @@ export class TwitterFeedService {
                 description: feed.text,
                 source: sourceNames.TWITTER,
                 pub_date: feed.created_at,
+                page_link,
                 feed_id
             }
         });

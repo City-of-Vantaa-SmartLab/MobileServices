@@ -12,13 +12,13 @@ import getStore from './store/getStore';
 const store = getStore();
 
 ReactDOM.render(
-    <Provider store={store}>
-        <CookiesProvider>
-            <Router basename={process.env.PUBLIC_URL}>
-                <App />
-            </Router>
-        </CookiesProvider>
-    </Provider>,
+    <Router basename={process.env.PUBLIC_URL}>
+        <Provider store={store}>
+            <App>
+                <CookiesProvider />
+            </App>
+        </Provider>
+    </Router>,
 
     document.getElementById('root')
 );

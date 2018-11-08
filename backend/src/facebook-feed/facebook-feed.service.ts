@@ -58,6 +58,7 @@ export class FacebookFeedService {
     }
 
     transformData = feeds => {
+
         return feeds.map(feed => {
             const feed_id = feed.id;
             delete feed.id;
@@ -66,10 +67,12 @@ export class FacebookFeedService {
                 author_thumbnail: feed.author_thumbnail,
                 likes: feed.reactions ? feed.reactions.data.length : null,
                 description: feed.story ? feed.story : feed.message,
+                type: feed.story ? 'STORY' : 'MESSAGE',
                 source: sourceNames.FACEBOOK,
                 title: feed.status_type,
                 pub_date: feed.created_time,
                 image_url: feed.picture,
+                page_link: feed.link,
                 feed_id
             }
         });

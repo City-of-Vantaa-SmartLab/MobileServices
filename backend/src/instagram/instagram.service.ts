@@ -53,6 +53,7 @@ export class InstagramFeedService {
                 title: item.caption ? item.caption.text : null,
                 likes: item.likes.count ? item.likes.count : 0,
                 feed_id: item.id,
+                page_link: item.link,
                 type: item.type
             }
         });
