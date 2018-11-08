@@ -44,7 +44,7 @@ $content-author-font-size: 1.2rem;
 
         .title {
             margin: 1.8rem 1.2rem 0 1.2rem;
-            max-width: calc(100% - 9.8rem); // 9.8rem is width of image
+            width: calc(100% - 9.8rem); // 9.8rem is width of image
             word-break: break-word;
             & > span {
                 font-size: $content-author-font-size;
