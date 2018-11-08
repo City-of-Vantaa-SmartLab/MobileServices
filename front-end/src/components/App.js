@@ -10,17 +10,6 @@ import SettingsView from './settings-view/SettingsView';
 import NavigationPanel from './navigation/NavigationPanel';
 import AppLoader from './app-loader';
 import { SOURCES_FETCH_REQUEST, FACTS_FETCH_REQUEST } from 'actions/actionTypes';
-import styled from 'react-emotion';
-
-const Container = styled('section')`
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 480px;
-    position: relative;
-    pointer-events: none;
-`;
 
 class App extends Component {
     componentDidMount() {
