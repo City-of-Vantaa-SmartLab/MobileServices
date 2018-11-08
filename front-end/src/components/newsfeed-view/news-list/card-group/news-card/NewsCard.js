@@ -26,9 +26,10 @@ class NewsCard extends React.Component {
             <div className={styles['news-card']}>
                 <div className={styles['source']}>{data.source}</div>
                 <div className={styles['content']}>
-                    <div className={styles['image']}>
-                        <img src={data.image_url ? `http://${data.image_url}` : img} alt="News" />
-                    </div>
+                    <div
+                        className={styles['image']}
+                        style={{ backgroundImage: data.image_url ? `url(http://${data.image_url})` : `url(${img})` }}
+                    />
                     <div className={styles['title']}>
                         <span>Author / page headline</span>
                         <br />
