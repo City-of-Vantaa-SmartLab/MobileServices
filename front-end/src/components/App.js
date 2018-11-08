@@ -27,7 +27,7 @@ class App extends Component {
     }
     render() {
         return (
-            <Container>
+            <div>
                 <AppLoader />
                 <Switch>
                     <Route path="/newsfeed" component={NewsfeedView} />
@@ -37,7 +37,7 @@ class App extends Component {
                 </Switch>
                 <CookieView cookies={this.props.cookies} />
                 <NavigationPanel />
-            </Container>
+            </div>
         );
     }
 }
