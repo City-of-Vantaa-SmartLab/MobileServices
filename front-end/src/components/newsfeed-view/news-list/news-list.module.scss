@@ -9,8 +9,20 @@ $color-news-feed-bg: rgba(237, 237, 237, 1);
     left: 0;
     width: 100%;
     margin: 0 auto;
-    background: $color-news-feed-bg;
-    padding-top: 1.5rem;
-    // Padding bottom is set here so that the navigation bar doesn't hide the end of the news list
+    background-image: url("../../../assets/images/background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    padding-top: 0; 
     padding-bottom: $navigation-height;
+
+    & > h1 {
+        color: #fff;
+        margin-left: 2rem;
+        margin-top: 4rem;
+    }
+
+    .container {
+        height: 100%;
+    }
 }

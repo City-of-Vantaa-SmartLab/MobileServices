@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import groupBy from 'lodash/groupBy';
-import { formatDate } from 'utils/utils';
 import NewsCardGroup from './card-group/NewsCardGroup';
 import styles from './news-list.module.scss';
+import { startOfDay } from 'date-fns';
+import Loader from './Loader';
 
 class NewsList extends Component {
     constructor(props) {
         super(props);
         this.newsFeedRef = React.createRef();
+        this.NewsFeedContainerScrollingEvent = new Event('NewsFeedContainerScrolling');
     }
 
     componentDidMount() {
@@ -33,12 +35,14 @@ class NewsList extends Component {
             this.props.feedActivated();
         }
     };
+
     handleFeedScroll = () => {
         if (this.props.activated) {
+            window.dispatchEvent(this.NewsFeedContainerScrollingEvent);
             const bottom =
                 this.newsFeedRef.current.scrollHeight - this.newsFeedRef.current.scrollTop <=
                 this.newsFeedRef.current.clientHeight;
-            if (bottom) {
+            if (bottom && !this.props.error) {
                 this.props.onRequest();
             }
         }
@@ -48,12 +52,12 @@ class NewsList extends Component {
         position: 'fixed',
         top: 0,
         left: 0,
-        overflow: 'auto',
         height: '100%',
+        overflow: 'scroll',
     };
 
     render() {
-        const grouped = groupBy(this.props.feed, (item) => formatDate(item.pub_date));
+        const grouped = groupBy(this.props.feed, (item) => startOfDay(item.pub_date));
         const newsfeed = Object.keys(grouped).map((date) => (
             <NewsCardGroup key={date} date={date} data={grouped[date]} />
         ));
@@ -63,7 +67,9 @@ class NewsList extends Component {
                 style={this.props.activated ? this.fixedPosition : null}
                 ref={this.newsFeedRef}
             >
+                <h1>{this.props.i18n.newsfeed.header}</h1>
                 <div>{newsfeed}</div>
+                <Loader active={this.props.loading} error={this.props.error} />
             </div>
         );
     }
