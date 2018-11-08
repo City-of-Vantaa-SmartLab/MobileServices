@@ -43,6 +43,12 @@ class Backgrounds extends Component {
         ) {
             this.randomImages = sampleSize(images, 3);
             this.randomFacts = sampleSize(facts, 3);
+
+            // Pre-fetch images and cache them automatically
+            this.randomImages.forEach((src) => {
+                const img = document.createElement('img');
+                img.src = src;
+            });
         }
 
         console.log(this.randomImages);
