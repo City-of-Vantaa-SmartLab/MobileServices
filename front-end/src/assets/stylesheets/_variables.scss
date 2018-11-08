@@ -7,6 +7,7 @@ $color-primary: rgba(74, 74, 74, 1);
 $color-white: rgba(255, 255, 255, 1);
 $color-active-link: rgba(60, 143, 222, 1);
 $bg-color: #ededed;
+$color-accent: #0042a5;
 
 
 
@@ -14,7 +15,8 @@ $bg-color: #ededed;
 $z-index: (
     modal: 1050,
     overlay: 1040,
-    background: -1
+    background: -1,
+    navigation: 1000,
 );
 
 // Container static heights
