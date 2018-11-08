@@ -103,3 +103,9 @@ $color-cookie-view-bg: rgba(228, 239, 248, 1);
         }
     }
 }
+
+@media only screen and (max-width: 320px) {
+    .cookie-modal {
+        height: 21rem;
+    }
+}

@@ -65,6 +65,7 @@ $events-source-bg: #db3db0;
         .description {
             font-size: 1.4rem;
             margin: 0.6rem 1.2rem;
+            width: calc(100% - 2.4rem); // subtract margin-left + margin-right
 
             .likes {
                 margin-bottom: 1.2rem;

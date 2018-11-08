@@ -40,16 +40,11 @@ $content-author-font-size: 1.2rem;
             background-size: cover;
             overflow: hidden;
             flex-shrink: 0;
-
-            img {
-                height: 100%;
-                width: 100%;
-            }
         }
 
         .title {
             margin: 1.8rem 1.2rem 0 1.2rem;
-            max-width: calc(100% - 9.8rem); // 9.8rem is width of image
+            width: calc(100% - 9.8rem); // 9.8rem is width of image
             word-break: break-word;
             & > span {
                 font-size: $content-author-font-size;
@@ -65,6 +60,7 @@ $content-author-font-size: 1.2rem;
 
     .description {
         padding: 1.2rem;
+        width: calc(100% - 2.4rem); // Subtract padding-left + padding-right
         :global(.LinesEllipsis) {
             line-height: 1.21;
             font-size: 1.4rem;

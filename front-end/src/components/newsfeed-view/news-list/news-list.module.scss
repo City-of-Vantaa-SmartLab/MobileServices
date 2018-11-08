@@ -19,10 +19,21 @@ $color-news-feed-bg: rgba(237, 237, 237, 1);
     & > h1 {
         color: #fff;
         margin-left: 2rem;
-        margin-top: 4rem;
+        margin-top: 3rem;
+        height: 3rem;
+        line-height: 3rem;
     }
 
     .container {
         height: 100%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .newsfeed > h1 {
+        margin-top: 2.5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        font-size: 2.5rem;
     }
 }
