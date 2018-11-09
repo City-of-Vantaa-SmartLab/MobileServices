@@ -54,7 +54,7 @@ function* fetchSources() {
     try {
         const response = yield call(get, '/api/feeds/sources');
         const data = yield response.json();
-        console.log(data);
+        // console.log(data);
         yield put({ type: actions.SOURCES_FETCH_SUCCESS, payload: data });
     } catch (error) {
         yield put({ type: actions.SOURCES_FETCH_FAILED, payload: error });
@@ -65,7 +65,7 @@ function* fetchFacts() {
     try {
         const response = yield call(get, '/api/facts');
         const facts = yield response.json();
-        console.log(facts);
+        // console.log(facts);
         yield put({ type: actions.FACTS_FETCH_SUCCESS, payload: facts });
     } catch (error) {
         yield put({ type: actions.FACTS_FETCH_FAILED, payload: error });
