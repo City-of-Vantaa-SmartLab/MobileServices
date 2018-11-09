@@ -50,7 +50,7 @@ export class TwitterFeedService {
             delete feed.id;
             const page_link = feed.entities.urls[0]
                 ? feed.entities.urls[0].expanded_url :
-                feed.retweeted_status.entities.urls[0].expanded_url;
+                null;
             return {
                 author: feed.user.name,
                 author_thumbnail: feed.user.profile_image_url_https,
