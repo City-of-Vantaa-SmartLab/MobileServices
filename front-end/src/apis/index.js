@@ -15,7 +15,6 @@ const get = async (uri, params) => {
             if (params[key]) url.searchParams.append(key, params[key]);
         });
     }
-    console.log(url);
     const init = {
         headers: await getHeaders(),
     };

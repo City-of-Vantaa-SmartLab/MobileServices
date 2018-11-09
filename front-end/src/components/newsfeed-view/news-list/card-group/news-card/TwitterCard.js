@@ -15,11 +15,7 @@ class TwitterCard extends React.Component {
                 <div className={styles['content']}>
                     <div className={styles['content-source']}>
                         <img src={data.author_thumbnail} alt="Twitter thumbnail" />
-                        <div>
-                            {data.author}
-                            <br />
-                            <span className={styles['twitter-handle']}>@{data.userhandle}</span>
-                        </div>
+                        <div>@vantaankaupunki</div>
                     </div>
                     <div className={styles['description']}>
                         <div>{data.description}</div>

@@ -51,8 +51,6 @@ class Backgrounds extends Component {
             });
         }
 
-        console.log(this.randomImages);
-
         return (
             <div
                 ref={(el) => (this.node = el)}
