@@ -9,7 +9,7 @@ import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
 import { FacebookFeedService } from '../facebook-feed/facebook-feed.service';
 import { ConfigService } from '../config/config.service';
 import { TwitterFeedService } from '../twitter-feed/twitter-feed.service';
-import {YouTubeFeedService} from "../youtube-feed/youtube-feed.service";
+import { YouTubeFeedService } from '../youtube-feed/youtube-feed.service';
 const config = new ConfigService();
 const crypto = require('crypto');
 const SHA = 'sha256=';
@@ -26,7 +26,6 @@ export class WebhookController {
     }
 
     @Get('facebook')
-    @ApiResponse({status: 200, description: 'Verification endpoint for Facebook fetch'})
     fbVerify(@Res() response, @Req() request) {
         try {
             this.logger.log(`Facebook Verification challenge: ${request.query['hub.challenge']}`);
@@ -39,7 +38,6 @@ export class WebhookController {
     }
 
     @Post('facebook')
-    @ApiResponse({status: 200, description: 'Trigger Facebook fetch'})
     fbTrigger(@Res() response) {
         this.facebookFeedService.fetchAndSaveFacebookFeeds();
         this.logger.log('Triggered facebook fetch');
@@ -47,7 +45,6 @@ export class WebhookController {
     }
 
     @Get('twitter')
-    @ApiResponse({status: 200, description: 'Verification endpoint for Twitter fetch'})
     twVerify(@Res() response, @Req() request) {
         try {
             this.logger.log(`Twitter Verification token: ${request.query.crc_token}`);
@@ -62,7 +59,6 @@ export class WebhookController {
     }
 
     @Post('twitter')
-    @ApiResponse({status: 200, description: 'Trigger Twitter'})
     twTrigger(@Res() response) {
         this.twitterFeedService.fetchAndSaveTwitterFeeds();
         this.logger.log('Triggered Twitter fetch');
@@ -70,14 +66,12 @@ export class WebhookController {
     }
 
     @Get('youtube')
-    @ApiResponse({status: 200, description: 'Verification endpoint for Youtube fetch'})
     youtubeVerify(@Req() request) {
         this.logger.log(`Youtube Verification challenge: ${request.query['hub.challenge']}`);
         return request.query['hub.challenge'];
     }
 
     @Post('youtube')
-    @ApiResponse({status: 200, description: 'Trigger Youtube'})
     youtubeTrigger(@Res() response) {
         this.youtubeFeedService.fetchAndSaveYouTubeFeed();
         this.logger.log('Triggered Youtube fetch');
