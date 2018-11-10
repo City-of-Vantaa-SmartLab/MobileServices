@@ -58,7 +58,6 @@ export class FacebookFeedService {
     }
 
     transformData = feeds => {
-
         return feeds.map(feed => {
             const feed_id = feed.id;
             delete feed.id;
@@ -71,13 +70,21 @@ export class FacebookFeedService {
                 source: sourceNames.FACEBOOK,
                 title: feed.status_type,
                 pub_date: feed.created_time,
-                image_url: feed.picture,
+                image_url: this.getImageUrl(feed),
                 page_link: feed.link,
                 feed_id
             }
         });
     }
 
+    getImageUrl(feed) {
+        try {
+            return feed.attachments.data[0].media.image.src;
+        } catch (error) {
+            this.logger.error(`Failed to get image url: ${error}`);
+            return null;
+        }
+    }
     fetchProfileImage = (id: number) => {
         return FB.api(`${id}/picture`, {
             "redirect": "0"
