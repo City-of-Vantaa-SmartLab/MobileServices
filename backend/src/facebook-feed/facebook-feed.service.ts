@@ -82,7 +82,7 @@ export class FacebookFeedService {
             return feed.attachments.data[0].media.image.src;
         } catch (error) {
             this.logger.error(`Failed to get image url: ${error}`);
-            return null;
+            return feed.picture;
         }
     }
     fetchProfileImage = (id: number) => {
