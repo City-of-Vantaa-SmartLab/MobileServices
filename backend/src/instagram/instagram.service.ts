@@ -25,6 +25,9 @@ export class InstagramFeedService {
 
     onModuleInit() {
         this.fetchAndSaveYouTubeFeed();
+        setInterval(() => {
+            this.fetchAndSaveYouTubeFeed();
+        }, config.socialMediaUpdateInterval);
     }
 
     async fetchAndSaveYouTubeFeed() {

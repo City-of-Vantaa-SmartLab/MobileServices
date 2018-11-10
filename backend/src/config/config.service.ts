@@ -147,6 +147,10 @@ export class ConfigService {
     return this.envConfig.YOUTUBE_WATCH_URL;
   }
 
+  get socialMediaUpdateInterval(): string {
+    return this.envConfig.SOCIAL_MEDIA_UPDATE_INTERVAL;
+  }
+
   /**
    * Ensures all needed variables are set, and returns the validated JavaScript object
    * including the applied default values.
@@ -176,6 +180,7 @@ export class ConfigService {
       TWITTER_ACCESS_KEY: Joi.string(),
       TWITTER_SECRET_ACCESS_KEY: Joi.string(),
       UPDATE_INTERVAL: Joi.number().default(500),
+      SOCIAL_MEDIA_UPDATE_INTERVAL: Joi.number().default(30000),
       YOUTUBE_BASE_URL: Joi.string(),
       INSTAGRAM_CLIENT_ID: Joi.string(),
       INSTAGRAM_CLIENT_SECRET: Joi.string(),

@@ -23,6 +23,9 @@ export class TwitterFeedService {
 
     onModuleInit() {
         this.fetchAndSaveTwitterFeeds();
+        setInterval(() => {
+            this.fetchAndSaveTwitterFeeds();
+        }, config.socialMediaUpdateInterval);
     }
 
     async fetchAndSaveTwitterFeeds() {
