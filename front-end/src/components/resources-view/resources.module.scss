@@ -60,9 +60,7 @@ $service-title-bg: rgba(255, 255, 255, 0.7);
     height: 12.6rem;
     margin: 0 1.2rem 1.2rem 0;
 
-    background-image: url("../../assets/images/cutiepie.jpg");
-    background-size: cover;
-
+    background: #fff;
     text-align: center;
      
     &:nth-child(even) {
@@ -73,7 +71,7 @@ $service-title-bg: rgba(255, 255, 255, 0.7);
         display: flex;
         align-items: center;
 
-        height: 5.9rem;
+        height: 100%;
         width: 100%;
         bottom: 0;
         padding: 1.2rem;
