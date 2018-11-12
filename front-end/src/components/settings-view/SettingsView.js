@@ -3,27 +3,21 @@ import { connect } from 'react-redux';
 import styles from './settings.module.scss';
 import LanguageSection from './LanguageSection';
 import FeedsSection from './FeedsSection';
-import NotificationsSection from './NotificationsSection';
 
 class SettingsView extends Component {
-    
     render() {
-        let {i18n} = this.props;
+        let { i18n } = this.props;
         return (
             <div className={styles['settings-container']}>
-            <h1>{i18n.settings.header}</h1>
-                <LanguageSection/>
+                <h1>{i18n.settings.header}</h1>
+                <LanguageSection />
                 <FeedsSection />
-                <NotificationsSection />
             </div>
         );
     }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     i18n: state.i18n,
 });
 
-
-export default connect(
-    mapStateToProps
-)(SettingsView);
+export default connect(mapStateToProps)(SettingsView);
