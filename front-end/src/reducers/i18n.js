@@ -1,4 +1,5 @@
 import { CHANGE_LANGUAGE } from 'actions/actionTypes';
+import { getLang } from 'utils/utils';
 
 const translations = {
     en: {
@@ -138,7 +139,9 @@ const translations = {
     },
 };
 
-export default (state = translations.en, action) => {
+const lang = getLang();
+
+export default (state = translations[lang], action) => {
     switch (action.type) {
         case CHANGE_LANGUAGE:
             return translations[action.payload];

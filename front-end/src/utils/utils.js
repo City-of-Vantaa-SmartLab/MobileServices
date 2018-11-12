@@ -55,4 +55,16 @@ const escapeHTML = (unsafe_str) => {
         .replace(/\//g, '&#x2F;');
 };
 
-export { formatDate, getTimeDelta, getEventsTime, copyToClipboard, share };
+const getLang = () => {
+    const lang = localStorage.getItem('lang');
+
+    if (lang && lang !== 'undefined') {
+        return lang;
+    } else return 'en';
+};
+
+const saveLang = (data) => {
+    return localStorage.setItem('lang', data);
+};
+
+export { formatDate, getTimeDelta, getEventsTime, copyToClipboard, share, getLang, saveLang };

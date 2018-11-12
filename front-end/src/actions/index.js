@@ -1,6 +1,7 @@
 import * as actions from './actionTypes';
 import get from 'apis';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
+import { saveLang } from 'utils/utils';
 
 export const toggleFeed = (feedType) => {
     return {
@@ -10,6 +11,7 @@ export const toggleFeed = (feedType) => {
 };
 
 export const changeLanguage = (lang) => {
+    saveLang(lang);
     return {
         type: actions.CHANGE_LANGUAGE,
         payload: lang,
