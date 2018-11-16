@@ -17,7 +17,7 @@ const translations = {
             contactHeader: 'Contact us',
             serviceHeader: 'Services',
             chat: 'chat',
-            contact: 'contact',
+            contact: 'contact us',
             feedback: 'give feedback',
             services: {
                 vantaa: 'Vantaa.fi',
@@ -55,7 +55,7 @@ const translations = {
             settings: 'Asetukset',
         },
         newsfeed: {
-            header: 'Tänään Vantalla',
+            header: 'Tänään Vantaalla',
         },
         resources: {
             header: 'Voimmeko auttaa?',
