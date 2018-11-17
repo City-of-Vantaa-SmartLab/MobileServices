@@ -3,15 +3,13 @@
 .backgrounds {
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: 0;
     z-index: map-get($map: $z-index, $key: background);
     // Placeholder image. Will change once backgrounds are available from server
     background-image: url("../../../assets/images/bg1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
 
     .random-facts {
         position: fixed;
@@ -28,5 +26,15 @@
         color: #ffffff;
         background-color: rgba(0, 0, 0, 0.2);
         border-radius: 0.5rem;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .backgrounds {
+        width: $app-width;
+        background-size: cover;
+    }
+    .random-facts {
+        width: $app-width - 20;
     }
 }

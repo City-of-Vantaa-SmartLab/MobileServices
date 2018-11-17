@@ -1,2 +1,25 @@
 @import "src/assets/stylesheets/font-faces";
  @import "src/assets/stylesheets/globals";
+
+ @media only screen and (min-width: 600px) {
+    body {
+        width: $app-width;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+    html {
+        display: flex;
+        width:100%;
+        flex:1;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+    #root {
+        border-radius: 2rem;
+        align-items: center;
+        align-content: center;
+    }
+}
