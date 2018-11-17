@@ -14,6 +14,10 @@ class FacebookCard extends React.Component {
         this.descriptionRef = React.createRef();
     }
 
+    handleClick = (data) => {
+        window.open(data.page_link);
+    };
+
     componentDidMount() {
         this.props.moreTextClickListener(this.descriptionRef);
     }
@@ -21,7 +25,10 @@ class FacebookCard extends React.Component {
     render() {
         let { data } = this.props;
         return (
-            <div className={`${styles['social-media-card']} ${styles['facebook']}`}>
+            <div
+                onClick={() => this.handleClick(data)}
+                className={`${styles['social-media-card']} ${styles['facebook']}`}
+            >
                 <div className={styles['service-source']}>{data.source}</div>
                 <div className={styles['content']}>
                     <div className={styles['content-source']}>

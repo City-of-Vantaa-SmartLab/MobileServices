@@ -14,6 +14,10 @@ class InstagramCard extends React.Component {
         this.descriptionRef = React.createRef();
     }
 
+    handleClick = (data) => {
+        window.open(data.page_link);
+    };
+
     componentDidMount() {
         this.props.moreTextClickListener(this.descriptionRef);
     }
@@ -22,7 +26,10 @@ class InstagramCard extends React.Component {
         let { data } = this.props;
 
         return (
-            <div className={`${styles['social-media-card']} ${styles['instagram']}`}>
+            <div
+                onClick={() => this.handleClick(data)}
+                className={`${styles['social-media-card']} ${styles['instagram']}`}
+            >
                 <div className={styles['service-source']}>{data.source}</div>
                 <div className={styles['content']}>
                     <div className={styles['content-source']}>

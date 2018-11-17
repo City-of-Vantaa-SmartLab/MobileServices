@@ -7,10 +7,17 @@ import ToastNotification from './elements/ToastNotification';
 import CardHOC from './CardHOC';
 
 class TwitterCard extends React.Component {
+    handleClick = (data) => {
+        window.open(data.page_link);
+    };
+
     render() {
         let { data } = this.props;
         return (
-            <div className={`${styles['social-media-card']} ${styles['twitter']}`}>
+            <div
+                onClick={() => this.handleClick(data)}
+                className={`${styles['social-media-card']} ${styles['twitter']}`}
+            >
                 <div className={styles['service-source']}>{data.source}</div>
                 <div className={styles['content']}>
                     <div className={styles['content-source']}>
