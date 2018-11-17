@@ -64,6 +64,7 @@ export class FacebookFeedService {
         return feeds.map(feed => {
             const feed_id = feed.id;
             delete feed.id;
+            const postIds = feed_id.split('_');
             return {
                 author: feed.from.name,
                 author_thumbnail: feed.author_thumbnail,
@@ -74,7 +75,7 @@ export class FacebookFeedService {
                 title: feed.status_type,
                 pub_date: feed.created_time,
                 image_url: this.getImageUrl(feed),
-                page_link: feed.link,
+                page_link: 'http://www.facebook.com/' + postIds[0] + '/posts/' + postIds[1],
                 feed_id
             }
         });
