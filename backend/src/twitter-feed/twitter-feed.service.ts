@@ -51,9 +51,7 @@ export class TwitterFeedService {
         return feeds.map(feed => {
             const feed_id = feed.id;
             delete feed.id;
-            const page_link = feed.entities.urls[0]
-                ? feed.entities.urls[0].expanded_url :
-                null;
+            const page_link = 'https://twitter.com/' + feed.user.screen_name + '/status/' + feed.id_str;
             return {
                 author: feed.user.name,
                 author_thumbnail: feed.user.profile_image_url_https,
