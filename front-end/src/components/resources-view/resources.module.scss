@@ -21,6 +21,12 @@ $service-title-bg: rgba(255, 255, 255, 0.7);
     }
 }
 
+@media only screen and (min-width: 600px) {
+    .container {
+        width: $app-width;
+    }
+}
+
 .section {
     .card-row { 
         display: flex;
