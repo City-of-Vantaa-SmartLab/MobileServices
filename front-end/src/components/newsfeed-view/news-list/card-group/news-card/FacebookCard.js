@@ -24,10 +24,10 @@ class FacebookCard extends React.Component {
             <div className={`${styles['social-media-card']} ${styles['facebook']}`}>
                 <div className={styles['service-source']}>{data.source}</div>
                 <div className={styles['content']}>
-                    <div className={styles['content-source']}>
+                    <a href={data.page_link} className={styles['content-source']}>
                         <img src={data.author_thumbnail} alt="Facebook thumbnail" />
                         <div>{data.author}</div>
-                    </div>
+                    </a>
                     <div className={styles['description']} ref={this.descriptionRef}>
                         <LinesEllipsis
                             text={data.description}
