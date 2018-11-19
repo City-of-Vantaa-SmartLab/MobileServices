@@ -7,7 +7,7 @@ $content-author-font-size: 1.2rem;
 $twitter-source-bg: #007b5f;
 $instagram-source-bg: #450099;
 $facebook-source-bg: #ba0d2e;
-$youtube-source-bg: #ba0d2e;
+$youtube-source-bg: #FF8F1C;
 $events-source-bg: #db3db0;
 
 @mixin avatar_dim($size) {
@@ -47,11 +47,13 @@ $events-source-bg: #db3db0;
             position: relative;
             margin: 1.2rem 1.2rem 0.6rem 1.2rem;
 
+
             div {
                 margin: auto 0 auto 0.8rem;
                 margin-left: 0.8rem;
                 font-weight: bold;
                 font-size: 1.6rem;
+                color: #333 !important
             }
         }
 

@@ -13,12 +13,7 @@ class ServiceSection extends Component {
                 <SectionHeader service header={i18n.serviceHeader} />
                 <div className={styles['card-row']}>
                     {Object.keys(services).map((key) => (
-                        <ServiceCard
-                            key={key}
-                            title={i18n.services[key]}
-                            link={services[key].link}
-                            img={services[key].img}
-                        />
+                        <ServiceCard key={key} title={i18n.services[key]} link={services[key]} />
                     ))}
                 </div>
             </section>

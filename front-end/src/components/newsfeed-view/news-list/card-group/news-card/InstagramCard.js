@@ -25,10 +25,10 @@ class InstagramCard extends React.Component {
             <div className={`${styles['social-media-card']} ${styles['instagram']}`}>
                 <div className={styles['service-source']}>{data.source}</div>
                 <div className={styles['content']}>
-                    <div className={styles['content-source']}>
+                    <a href={data.page_link} className={styles['content-source']}>
                         <img src={data.author_thumbnail} alt="Instagram thumbnail" />
                         <div>{data.author}</div>
-                    </div>
+                    </a>
                     <div className={styles['image']}>
                         <img src={data.image_url} alt="Instagram" />
                     </div>

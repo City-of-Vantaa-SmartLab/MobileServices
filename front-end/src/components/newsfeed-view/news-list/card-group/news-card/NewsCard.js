@@ -31,8 +31,6 @@ class NewsCard extends React.Component {
                         style={{ backgroundImage: data.image_url ? `url(http://${data.image_url})` : `url(${img})` }}
                     />
                     <div className={styles['title']}>
-                        <span>Author / page headline</span>
-                        <br />
                         <div>
                             <LinesEllipsis text={data.title} maxLine="3" ellipsis="..." trimRight basedOn="letters" />
                         </div>
