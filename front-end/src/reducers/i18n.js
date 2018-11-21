@@ -36,9 +36,9 @@ const translations = {
             feedHeader: 'My feed',
             notificationsHeader: 'Push notifications',
             langButtons: {
-                en: 'English',
                 fi: 'Suomi',
                 sv: 'Svenska',
+                en: 'English',
             },
             notificationButtons: {
                 always: 'Always',
@@ -81,9 +81,9 @@ const translations = {
             feedHeader: 'My feed',
             notificationsHeader: 'Push notifications',
             langButtons: {
-                en: 'English',
                 fi: 'Suomi',
                 sv: 'Svenska',
+                en: 'English',
             },
             notificationButtons: {
                 always: 'Always',
@@ -126,9 +126,9 @@ const translations = {
             feedHeader: 'My feed',
             notificationsHeader: 'Push notifications',
             langButtons: {
-                en: 'English',
                 fi: 'Suomi',
                 sv: 'Svenska',
+                en: 'English',
             },
             notificationButtons: {
                 always: 'Always',
