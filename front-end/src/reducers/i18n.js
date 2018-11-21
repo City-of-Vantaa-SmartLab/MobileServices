@@ -78,7 +78,7 @@ const translations = {
         settings: {
             header: 'Asetukset',
             languageHeader: 'Kieli',
-            feedHeader: 'My feed',
+            feedHeader: 'Oma uutisvirta',
             notificationsHeader: 'Push notifications',
             langButtons: {
                 fi: 'Suomi',
@@ -95,16 +95,16 @@ const translations = {
     sv: {
         locale: 'sv',
         navigation: {
-            news: 'Newsfeed',
-            links: 'Resources',
-            settings: 'Settings',
+            news: 'Nyheter',
+            links: 'Tjänster',
+            settings: 'Inställningar',
         },
         newsfeed: {
-            header: 'Today in Vantaa',
+            header: 'Vanda idag',
         },
         resources: {
-            header: 'How can we help?',
-            contactHeader: 'Kontakt Oss',
+            header: 'Kan vi hjälpa dig?',
+            contactHeader: 'Kontakta Oss',
             serviceHeader: 'Tjänster',
             chat: 'chat',
             contact: 'Kontakt Oss',
@@ -121,9 +121,9 @@ const translations = {
             },
         },
         settings: {
-            header: 'My preferences',
-            languageHeader: 'My language',
-            feedHeader: 'My feed',
+            header: 'Mina inställningar',
+            languageHeader: 'Språk',
+            feedHeader: 'Eget flöde',
             notificationsHeader: 'Push notifications',
             langButtons: {
                 fi: 'Suomi',
