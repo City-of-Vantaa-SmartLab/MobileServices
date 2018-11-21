@@ -20,14 +20,38 @@ const translations = {
             contact: 'contact us',
             feedback: 'give feedback',
             services: {
-                vantaa: 'Vantaa.fi',
-                palvelukartta: 'City map',
-                sivistysvantaa: 'Sivistysvantaa',
-                jumppaliput: 'Jumppaliput',
-                lasten: 'Lasten kulttuuriliput',
-                tapahtumat: 'Events',
-                matkailu: 'Tourism',
-                asiointi: 'E-services',
+                vantaa: {
+                    title: 'Vantaa.fi',
+                    link: 'http://www.vantaa.fi',
+                },
+                palvelukartta: {
+                    title: 'City map',
+                    link: 'http://kartta.vantaa.fi',
+                },
+                // sivistysvantaa: {
+                //     title: 'Sivistysvantaa',
+                //     link: 'http://www.sivistysvantaa.fi/sivistysvantaa/index.html',
+                // },
+                // jumppaliput: {
+                //     title: 'Jumppaliput',
+                //     link: 'https://jumppaliput.vantaa.fi/app/',
+                // },
+                // lasten: {
+                //     title: 'Lasten kulttuuriliput',
+                //     link: 'https://kulttuuriliput.vantaa.fi/app/consumer',
+                // },
+                tapahtumat: {
+                    title: 'Events',
+                    link: 'http://www.vantaa.fi/tapahtumienvantaa',
+                },
+                matkailu: {
+                    title: 'Tourism',
+                    link: 'https://www.visitvantaa.fi',
+                },
+                asiointi: {
+                    title: 'E-services',
+                    link: 'http://www.vantaa.fi/asioi_verkossa',
+                },
             },
         },
         settings: {
@@ -65,14 +89,38 @@ const translations = {
             contact: 'Ota yhteyttä',
             feedback: 'Anna palautetta',
             services: {
-                vantaa: 'Vantaa.fi',
-                palvelukartta: 'Palvelukartta',
-                sivistysvantaa: 'Sivistysvantaa',
-                jumppaliput: 'Jumppaliput',
-                lasten: 'Lasten kulttuuriliput',
-                tapahtumat: 'Tapahtumat',
-                matkailu: 'Matkailu',
-                asiointi: 'Asiointi',
+                vantaa: {
+                    title: 'Vantaa.fi',
+                    link: 'http://www.vantaa.fi',
+                },
+                palvelukartta: {
+                    title: 'Palvelukartta',
+                    link: 'http://kartta.vantaa.fi',
+                },
+                // sivistysvantaa: {
+                //     title: 'Sivistysvantaa',
+                //     link: 'http://www.sivistysvantaa.fi/sivistysvantaa/index.html',
+                // },
+                // jumppaliput: {
+                //     title: 'Jumppaliput',
+                //     link: 'https://jumppaliput.vantaa.fi/app/',
+                // },
+                // lasten: {
+                //     title: 'Lasten kulttuuriliput',
+                //     link: 'https://kulttuuriliput.vantaa.fi/app/consumer',
+                // },
+                tapahtumat: {
+                    title: 'Tapahtumat',
+                    link: 'http://www.vantaa.fi/tapahtumienvantaa',
+                },
+                matkailu: {
+                    title: 'Matkailu',
+                    link: 'https://www.visitvantaa.fi',
+                },
+                asiointi: {
+                    title: 'Asiointi',
+                    link: 'http://www.vantaa.fi/asioi_verkossa',
+                },
             },
         },
         settings: {
@@ -110,14 +158,38 @@ const translations = {
             contact: 'Kontakt Oss',
             feedback: 'Ge respons',
             services: {
-                vantaa: 'Vanda.fi',
-                palvelukartta: 'Kartservice',
-                sivistysvantaa: 'Sivistysvantaa',
-                jumppaliput: 'Jumppaliput',
-                lasten: 'Lasten kulttuuriliput',
-                tapahtumat: 'Evenemang',
-                matkailu: 'Turism',
-                asiointi: 'E-tjänster',
+                vantaa: {
+                    title: 'Vanda.fi',
+                    link: 'http://www.vantaa.fi',
+                },
+                palvelukartta: {
+                    title: 'Kartservice',
+                    link: 'http://kartta.vantaa.fi',
+                },
+                // sivistysvantaa: {
+                //     title: 'Sivistysvantaa',
+                //     link: 'http://www.sivistysvantaa.fi/sivistysvantaa/index.html',
+                // },
+                // jumppaliput: {
+                //     title: 'Jumppaliput',
+                //     link: 'https://jumppaliput.vantaa.fi/app/',
+                // },
+                // lasten: {
+                //     title: 'Lasten kulttuuriliput',
+                //     link: 'https://kulttuuriliput.vantaa.fi/app/consumer',
+                // },
+                tapahtumat: {
+                    title: 'Evenemang',
+                    link: 'http://www.vantaa.fi/tapahtumienvantaa',
+                },
+                matkailu: {
+                    title: 'Turism',
+                    link: 'https://www.visitvantaa.fi',
+                },
+                asiointi: {
+                    title: 'E-tjänster',
+                    link: 'http://www.vantaa.fi/asioi_verkossa',
+                },
             },
         },
         settings: {

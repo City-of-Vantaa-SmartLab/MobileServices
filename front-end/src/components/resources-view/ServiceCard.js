@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const ServiceCard = ({ title, link }) => (
     <div className={styles['service-card']}>
-        <a href={link} className={styles['service-title']}>
+        <a href={link} rel="noopener noreferrer" target="_blank" className={styles['service-title']}>
             <h4>{title}</h4>
         </a>
     </div>
