@@ -30,11 +30,11 @@ class NewsCard extends React.Component {
                         className={styles['image']}
                         style={{ backgroundImage: data.image_url ? `url(http://${data.image_url})` : `url(${img})` }}
                     />
-                    <div className={styles['title']}>
+                    <a href={data.page_link} rel="noopener noreferrer" target="_blank" className={styles['title']}>
                         <div>
                             <LinesEllipsis text={data.title} maxLine="3" ellipsis="..." trimRight basedOn="letters" />
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div ref={this.descriptionRef} className={styles['description']}>
                     <LinesEllipsis
