@@ -22,6 +22,7 @@ export class RssFeedService {
     }
 
     onModuleInit() {
+        this.fetchAndSaveRssFeeds();
         setInterval(() => {
             this.fetchAndSaveRssFeeds();
         }, config.updateInterval);
