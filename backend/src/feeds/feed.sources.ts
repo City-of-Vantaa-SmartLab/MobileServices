@@ -10,6 +10,8 @@ export const sourceNames = {
 
 export const sourceTypes = {
     NEWS: 'news',
+    NEWS_EN: 'news_en',
+    NEWS_SV: 'news_sv',
     STORIES: 'stories',
     AIKUISOPISTO: 'aikuisopisto',
     NUORTEN: 'nuorten',
