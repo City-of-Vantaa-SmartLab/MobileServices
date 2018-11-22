@@ -22,11 +22,16 @@ const translations = {
             services: {
                 vantaa: {
                     title: 'Vantaa.fi',
-                    link: 'http://www.vantaa.fi',
+                    link: 'http://www.vantaa.fi/front_page',
+                },
+                työpaikat: {
+                    title: 'Open positions',
+                    link: 'http://www.vantaa.fi/hallinto_ja_talous/tyo_ja_elinkeinot/vantaa_tyonantajana',
                 },
                 palvelukartta: {
                     title: 'City map',
-                    link: 'http://kartta.vantaa.fi',
+                    link:
+                        'https://kartta.vantaa.fi/?setlanguage=en&e=25502000&n=6687000&r=4&w=&l=Kaupunkikartta_gd2&o=100',
                 },
                 // sivistysvantaa: {
                 //     title: 'Sivistysvantaa',
@@ -46,11 +51,11 @@ const translations = {
                 },
                 matkailu: {
                     title: 'Tourism',
-                    link: 'https://www.visitvantaa.fi',
+                    link: 'https://www.visitvantaa.fi/en/frontpage/',
                 },
                 asiointi: {
                     title: 'E-services',
-                    link: 'http://www.vantaa.fi/asioi_verkossa',
+                    link: 'http://www.vantaa.fi/administration_and_economy/participate_and_make_an_impact/e-services',
                 },
             },
         },
@@ -92,6 +97,10 @@ const translations = {
                 vantaa: {
                     title: 'Vantaa.fi',
                     link: 'http://www.vantaa.fi',
+                },
+                työpaikat: {
+                    title: 'Työpaikat',
+                    link: 'http://www.vantaa.fi/hallinto_ja_talous/tyo_ja_elinkeinot/vantaa_tyonantajana',
                 },
                 palvelukartta: {
                     title: 'Palvelukartta',
@@ -160,11 +169,16 @@ const translations = {
             services: {
                 vantaa: {
                     title: 'Vanda.fi',
-                    link: 'http://www.vantaa.fi',
+                    link: 'http://www.vanda.fi',
+                },
+                työpaikat: {
+                    title: 'Lediga arbestplatser',
+                    link: 'http://www.vanda.fi/forvaltning_och_ekonomi/arbete_och_naringsliv/vanda_som_arbetsgivare',
                 },
                 palvelukartta: {
                     title: 'Kartservice',
-                    link: 'http://kartta.vantaa.fi',
+                    link:
+                        'https://kartta.vantaa.fi/?setlanguage=sv&e=25502000&n=6687000&r=4&w=&l=Kaupunkikartta_gd2&o=100',
                 },
                 // sivistysvantaa: {
                 //     title: 'Sivistysvantaa',
@@ -184,11 +198,11 @@ const translations = {
                 },
                 matkailu: {
                     title: 'Turism',
-                    link: 'https://www.visitvantaa.fi',
+                    link: 'https://www.visitvantaa.fi/sv/startsida/',
                 },
                 asiointi: {
                     title: 'E-tjänster',
-                    link: 'http://www.vantaa.fi/asioi_verkossa',
+                    link: 'http://www.vanda.fi/forvaltning_och_ekonomi/delta_och_paverka/e-tjanster',
                 },
             },
         },
