@@ -30,7 +30,7 @@ export class TwitterFeedService {
 
     async fetchAndSaveTwitterFeeds() {
         this.logger.log('Fetching Twitter feeds Started');
-        const params = { screen_name: 'VantaanKaupunki' };
+        const params = { screen_name: 'VantaanKaupunki', tweet_mode: 'extended' };
         await twitter.get('statuses/user_timeline', params)
             .then(this.filterAlreadyExistingFeeds)
             .then(this.transformData)
@@ -57,7 +57,7 @@ export class TwitterFeedService {
                 author_thumbnail: feed.user.profile_image_url_https,
                 screen_name: feed.user.screen_name,
                 likes: feed.favorite_count,
-                description: feed.text,
+                description: feed.full_text,
                 source: sourceNames.TWITTER,
                 pub_date: feed.created_at,
                 page_link,
