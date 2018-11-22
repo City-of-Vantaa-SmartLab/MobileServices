@@ -94,8 +94,11 @@ export class RssFeedService {
                 let image = null;
 
                 // For news and stories content is returned in html format.
-                // We need to parse the main description and images from the text.
-                if ([sourceTypes.NEWS, sourceTypes.STORIES].includes(type)) {
+                // We need to parse the main descriptionsourceTypes and images from the text.
+                if ([sourceTypes.NEWS,
+                sourceTypes.STORIES,
+                sourceTypes.NEWS_EN,
+                sourceTypes.NEWS_SV].includes(type)) {
                     const root = parse(item.content);
                     detailed_description = root.childNodes[1]
                         ? root.childNodes[1].rawText.replace(/[\t\r]/g, ' ')
