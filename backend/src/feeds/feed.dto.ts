@@ -6,6 +6,7 @@ export class FeedDto {
     title: string;
     description: string;
     page_link: string;
+    language: string;
     source: string;
     type: string;
     image_url: string;

@@ -22,6 +22,8 @@ export class Feed {
     @Column()
     description: string;
 
+    @Column({ default: 'FI' })
+    language: string;
 
     @Column({ nullable: true })
     detailed_description: string;

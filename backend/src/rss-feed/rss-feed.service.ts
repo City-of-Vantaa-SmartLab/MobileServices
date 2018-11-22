@@ -35,28 +35,38 @@ export class RssFeedService {
             .then(this.addSourceAndType(sourceNames.VANTAA, sourceTypes.NEWS))
             .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.VANTAA, sourceTypes.NEWS))
             .then(this.persistIntoDb)
-            .catch(error => this.logger.error(`Failed to fetch Rss_News :${error}`)),
-            parser.parseURL(sources.stories)
-                .then(this.addSourceAndType(sourceNames.VANTAA, sourceTypes.STORIES))
-                .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.VANTAA, sourceTypes.STORIES))
-                .then(this.persistIntoDb)
-                .catch(error => this.logger.error(`Failed to fetch Rss_Stories :${error}`)),
-            parser.parseURL(sources.aikuisopisto)
-                .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.AIKUISOPISTO))
-                .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.SIVISTYSVANTAA, sourceTypes.AIKUISOPISTO))
-                .then(this.persistIntoDb)
-                .catch(error => this.logger.error(`Failed to fetch Rss_Aikuisopisto :${error}`)),
-            parser.parseURL(sources.nuorten)
-                .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.NUORTEN))
-                .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.SIVISTYSVANTAA, sourceTypes.NUORTEN))
-                .then(this.persistIntoDb)
-                .catch(error => this.logger.error(`Failed to fetch Rss_Nuorten :${error}`)),
-            parser.parseURL(sources.kaupunginmuseo)
-                .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.KAUPUNGINMUSEO))
-                .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.SIVISTYSVANTAA, sourceTypes.KAUPUNGINMUSEO))
-                .then(this.persistIntoDb)
-                .catch(error => this.logger.error(`Failed to fetch Rss_Kaupunginmuseo :${error}`)),
-            this.logger.log('Fetching Rss feeds Completed');
+            .catch(error => this.logger.error(`Failed to fetch Rss_News :${error}`));
+        parser.parseURL(sources.news_en)
+            .then(this.addSourceAndType(sourceNames.VANTAA, sourceTypes.NEWS_EN))
+            .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.VANTAA, sourceTypes.NEWS_EN))
+            .then(this.persistIntoDb)
+            .catch(error => this.logger.error(`Failed to fetch Rss_News_EN :${error}`));
+        parser.parseURL(sources.news_sv)
+            .then(this.addSourceAndType(sourceNames.VANTAA, sourceTypes.NEWS_SV))
+            .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.VANTAA, sourceTypes.NEWS_SV))
+            .then(this.persistIntoDb)
+            .catch(error => this.logger.error(`Failed to fetch Rss_News_SV :${error}`));
+        parser.parseURL(sources.stories)
+            .then(this.addSourceAndType(sourceNames.VANTAA, sourceTypes.STORIES))
+            .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.VANTAA, sourceTypes.STORIES))
+            .then(this.persistIntoDb)
+            .catch(error => this.logger.error(`Failed to fetch Rss_Stories :${error}`));
+        parser.parseURL(sources.aikuisopisto)
+            .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.AIKUISOPISTO))
+            .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.SIVISTYSVANTAA, sourceTypes.AIKUISOPISTO))
+            .then(this.persistIntoDb)
+            .catch(error => this.logger.error(`Failed to fetch Rss_Aikuisopisto :${error}`));
+        parser.parseURL(sources.nuorten)
+            .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.NUORTEN))
+            .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.SIVISTYSVANTAA, sourceTypes.NUORTEN))
+            .then(this.persistIntoDb)
+            .catch(error => this.logger.error(`Failed to fetch Rss_Nuorten :${error}`));
+        parser.parseURL(sources.kaupunginmuseo)
+            .then(this.addSourceAndType(sourceNames.SIVISTYSVANTAA, sourceTypes.KAUPUNGINMUSEO))
+            .then(feeds => this.filterAlreadyExistingFeeds(feeds, sourceNames.SIVISTYSVANTAA, sourceTypes.KAUPUNGINMUSEO))
+            .then(this.persistIntoDb)
+            .catch(error => this.logger.error(`Failed to fetch Rss_Kaupunginmuseo :${error}`));
+        this.logger.log('Fetching Rss feeds Completed');
     }
 
     persistIntoDb = data => this.feedService.saveFeeds(data.items);
@@ -101,6 +111,10 @@ export class RssFeedService {
                             .replace(/"/g, "")
                         : null;
                 }
+
+                const language = type === sourceTypes.NEWS_EN
+                    ? 'EN'
+                    : (type === sourceTypes.NEWS_SV ? 'SV' : 'FI')
                 return {
                     ...item,
                     source: name,
@@ -108,7 +122,8 @@ export class RssFeedService {
                     page_link: item.link,
                     description,
                     detailed_description,
-                    image_url: image
+                    image_url: image,
+                    language
                 }
             });
             return data;

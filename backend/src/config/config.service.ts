@@ -55,6 +55,14 @@ export class ConfigService {
     return this.envConfig.VANTAA_NEWS_PATH;
   }
 
+  get vantaaNewsPathEn(): string {
+    return this.envConfig.VANTAA_NEWS_PATH_EN;
+  }
+
+  get vantaaNewsPathSv(): string {
+    return this.envConfig.VANTAA_NEWS_PATH_SV;
+  }
+
   get vantaaStoriesPath(): string {
     return this.envConfig.VANTAA_STORIES_PATH;
   }
