@@ -47,6 +47,12 @@ $events-source-bg: #db3db0;
             position: relative;
             margin: 1.2rem 1.2rem 0.6rem 1.2rem;
 
+            &:active {
+                text-decoration: none;
+            }
+            &:focus {
+                text-decoration: none;
+            }
 
             div {
                 margin: auto 0 auto 0.8rem;
@@ -121,8 +127,11 @@ $events-source-bg: #db3db0;
             background-color: $facebook-source-bg;
         }
 
-        .content-source img {
+        .content-source {
+            width: calc(100% - 8.5rem);
+            img {
             @include avatar_dim(3.2rem);
+            }
         }
     }
 

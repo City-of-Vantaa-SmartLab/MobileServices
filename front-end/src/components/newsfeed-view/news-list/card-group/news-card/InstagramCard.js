@@ -25,7 +25,12 @@ class InstagramCard extends React.Component {
             <div className={`${styles['social-media-card']} ${styles['instagram']}`}>
                 <div className={styles['service-source']}>{data.source}</div>
                 <div className={styles['content']}>
-                    <a href={data.page_link} className={styles['content-source']}>
+                    <a
+                        href={data.page_link}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className={styles['content-source']}
+                    >
                         <img src={data.author_thumbnail} alt="Instagram thumbnail" />
                         <div>{data.author}</div>
                     </a>

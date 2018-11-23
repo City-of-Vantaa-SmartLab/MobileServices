@@ -60,7 +60,7 @@ const getLang = () => {
 
     if (lang && lang !== 'undefined') {
         return lang;
-    } else return 'en';
+    } else return 'fi';
 };
 
 const saveLang = (data) => {

@@ -49,7 +49,7 @@ class NewsList extends Component {
     };
 
     fixedPosition = {
-        position: 'fixed',
+        //position: 'fixed',
         top: 0,
         height: '100%',
         overflow: 'scroll',

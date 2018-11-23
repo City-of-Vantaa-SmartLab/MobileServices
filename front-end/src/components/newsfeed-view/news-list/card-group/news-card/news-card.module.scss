@@ -58,6 +58,12 @@ $content-author-font-size: 1.2rem;
                 font-weight: 600;
                 color: #4a4a4a;
             }
+            &:active {
+                text-decoration: none;
+            }
+            &:focus {
+                text-decoration: none;
+            }
         }
     }
 
