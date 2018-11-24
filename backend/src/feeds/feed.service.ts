@@ -13,11 +13,11 @@ export class FeedService {
         this.logger = new Logger('FeedService');
     }
 
-    async getFeeds(sourceTypes: string, limit: number, skip: number) {
+    async getFeeds(sourceTypes: string, limit: number, skip: number, language: number) {
         try {
             const feeds = sourceTypes ?
-                await this.getMoreBySourceAndDate(sourceTypes, limit, skip)
-                : await this.getMoreByDate(limit, skip)
+                await this.getMoreBySourceAndDate(sourceTypes, limit, skip, language)
+                : await this.getMoreByDate(limit, skip, language)
 
             return feeds.slice(0, ((limit && limit <= feeds.length) ? limit : feeds.length));
         } catch (error) {
@@ -26,10 +26,13 @@ export class FeedService {
         }
     }
 
-    async getAll(limit: number) {
+    async getAll(limit: number, language: number) {
         try {
             return await this.feedRepository.find(
                 {
+                    where: {
+                        language
+                    },
                     order: { pub_date: 'DESC' },
                     take: limit,
                 })
@@ -39,16 +42,17 @@ export class FeedService {
         }
     }
 
-    async getMoreByDate(limit: number, skip: number) {
+    async getMoreByDate(limit: number, skip: number, language: number) {
         try {
             if (!skip) {
-                return this.getAll(limit);
+                return this.getAll(limit, language);
             }
             const feed = await this.feedRepository.findOne(skip);
             return await this.feedRepository.find(
                 {
                     where: {
                         pub_date: LessThan(feed.pub_date),
+                        language
                     },
                     order: { pub_date: 'DESC' },
                     take: limit,
@@ -59,17 +63,18 @@ export class FeedService {
         }
     }
 
-    async getMoreBySourceAndDate(sourceTypes: string, limit: number, skip: number) {
+    async getMoreBySourceAndDate(sourceTypes: string, limit: number, skip: number, language: number) {
         try {
             if (!skip) {
-                return await this.getFeedsBySource(sourceTypes, limit);
+                return await this.getFeedsBySource(sourceTypes, limit, language);
             }
             const feed = await this.feedRepository.findOne(skip);
             return await this.feedRepository.find(
                 {
                     where: {
                         pub_date: LessThan(feed.pub_date),
-                        source: In(sourceTypes.toLowerCase().split(','))
+                        source: In(sourceTypes.toLowerCase().split(',')),
+                        language
                     },
                     order: { pub_date: 'DESC' },
                     take: limit,
@@ -80,12 +85,13 @@ export class FeedService {
         }
     }
 
-    async getFeedsBySource(sourceTypes: string, limit: number) {
+    async getFeedsBySource(sourceTypes: string, limit: number, language: number) {
         try {
             return await this.feedRepository.find({
                 where:
                     {
-                        source: In(sourceTypes.toLowerCase().split(','))
+                        source: In(sourceTypes.toLowerCase().split(',')),
+                        language
                     },
                 order: { pub_date: 'DESC' },
                 take: limit

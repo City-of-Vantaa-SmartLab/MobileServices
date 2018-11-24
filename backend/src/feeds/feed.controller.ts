@@ -32,8 +32,9 @@ export class FeedController {
             + `3. events`
             + `4. Facebook`
             + `5. Youtube`
-            + `6. Twitter`,
-        type: String,
+            + `6. Twitter`
+            + `7. Instagram`,
+        type: Array,
     })
     @ApiImplicitQuery({
         name: 'limit',
@@ -47,13 +48,20 @@ export class FeedController {
         description: 'Number of feeds to be skipped while fetching more data based on pagination.',
         type: Number,
     })
+    @ApiImplicitQuery({
+        name: 'lang',
+        required: false,
+        description: 'Language type for the feeds.[EN|FI|SV]',
+        type: String,
+    })
     @ApiResponse({ status: 200, description: 'List of feeds as response.' })
     @ApiResponse({ status: 500, description: 'Server error.' })
     async getFeeds(@Res() response, @Req() request) {
         try {
             const limit = request.query.limit || config.numberOfFeeds;
             const skip = request.query.skip;
-            const feeds = await this.feedService.getFeeds(request.query.type, limit, skip);
+            const lang = request.query.lang || 'FI';
+            const feeds = await this.feedService.getFeeds(request.query.type, limit, skip, lang);
             return response.status(200).json(feeds);
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
