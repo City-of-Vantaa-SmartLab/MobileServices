@@ -13,8 +13,9 @@ export class FeedService {
         this.logger = new Logger('FeedService');
     }
 
-    async getFeeds(sourceTypes: string, limit: number, skip: number, language: number) {
+    async getFeeds(sourceTypes: string, limit: number, skip: number, language: string) {
         try {
+            language = language.toUpperCase();
             const feeds = sourceTypes ?
                 await this.getMoreBySourceAndDate(sourceTypes, limit, skip, language)
                 : await this.getMoreByDate(limit, skip, language)
@@ -26,7 +27,7 @@ export class FeedService {
         }
     }
 
-    async getAll(limit: number, language: number) {
+    async getAll(limit: number, language: string) {
         try {
             return await this.feedRepository.find(
                 {
@@ -42,7 +43,7 @@ export class FeedService {
         }
     }
 
-    async getMoreByDate(limit: number, skip: number, language: number) {
+    async getMoreByDate(limit: number, skip: number, language: string) {
         try {
             if (!skip) {
                 return this.getAll(limit, language);
@@ -63,7 +64,7 @@ export class FeedService {
         }
     }
 
-    async getMoreBySourceAndDate(sourceTypes: string, limit: number, skip: number, language: number) {
+    async getMoreBySourceAndDate(sourceTypes: string, limit: number, skip: number, language: string) {
         try {
             if (!skip) {
                 return await this.getFeedsBySource(sourceTypes, limit, language);
@@ -85,7 +86,7 @@ export class FeedService {
         }
     }
 
-    async getFeedsBySource(sourceTypes: string, limit: number, language: number) {
+    async getFeedsBySource(sourceTypes: string, limit: number, language: string) {
         try {
             return await this.feedRepository.find({
                 where:
