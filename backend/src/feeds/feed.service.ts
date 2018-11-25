@@ -112,8 +112,8 @@ export class FeedService {
         const sources = "'" + sourceTypes.join("','") + "'";
         const sourceTypesWithoutVantaa = "'" + sourceTypes.filter(item => item !== 'vantaa').join("','") + "'";
         if (sourceTypes.includes('vantaa')) {
-            return "(feed.source = :vantaa AND feed.language = :lang) " +
-                " OR (feed.source IN (" + sourceTypesWithoutVantaa + "))"
+            return "((feed.source = :vantaa AND feed.language = :lang) " +
+                " OR (feed.source IN (" + sourceTypesWithoutVantaa + ")))"
         } else {
             return "feed.source IN (" + sources + ")";
         }
