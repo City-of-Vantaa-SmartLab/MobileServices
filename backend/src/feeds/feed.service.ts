@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Feed } from './feed.entity';
-import { Repository, LessThan, In } from 'typeorm';
+import { Repository, getRepository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -29,14 +29,13 @@ export class FeedService {
 
     async getAll(limit: number, language: string) {
         try {
-            return await this.feedRepository.find(
-                {
-                    where: {
-                        language
-                    },
-                    order: { pub_date: 'DESC' },
-                    take: limit,
-                })
+            return await getRepository(Feed)
+                .createQueryBuilder("feed")
+                .where(this.getQueryStringBasedOnLanguage(),
+                    { lang: language, vantaa: 'vantaa' })
+                .orderBy("feed.pub_date", "DESC")
+                .take(limit)
+                .getMany();
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
@@ -49,15 +48,14 @@ export class FeedService {
                 return this.getAll(limit, language);
             }
             const feed = await this.feedRepository.findOne(skip);
-            return await this.feedRepository.find(
-                {
-                    where: {
-                        pub_date: LessThan(feed.pub_date),
-                        language
-                    },
-                    order: { pub_date: 'DESC' },
-                    take: limit,
-                });
+            return await getRepository(Feed)
+                .createQueryBuilder("feed")
+                .where("feed.pub_date < :date " +
+                    " AND " + this.getQueryStringBasedOnLanguage(),
+                    { date: feed.pub_date, lang: language, vantaa: 'vantaa' })
+                .orderBy("feed.pub_date", "DESC")
+                .take(limit)
+                .getMany();
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
@@ -70,16 +68,19 @@ export class FeedService {
                 return await this.getFeedsBySource(sourceTypes, limit, language);
             }
             const feed = await this.feedRepository.findOne(skip);
-            return await this.feedRepository.find(
-                {
-                    where: {
-                        pub_date: LessThan(feed.pub_date),
-                        source: In(sourceTypes.toLowerCase().split(',')),
-                        language
-                    },
-                    order: { pub_date: 'DESC' },
-                    take: limit,
-                });
+            return await getRepository(Feed)
+                .createQueryBuilder("feed")
+                .where("feed.pub_date < :date AND " + this.getQueryStringBasedOnSource(sourceTypes.toLowerCase().split(',')),
+                    {
+                        date: feed.pub_date,
+                        lang: language,
+                        sourceTypes: sourceTypes.toLowerCase().split(','),
+                        vantaa: 'vantaa',
+                        sourceTypesWithoutVantaa: sourceTypes.toLowerCase().split(',').filter(item => item !== 'vantaa')
+                    })
+                .orderBy("feed.pub_date", "DESC")
+                .take(limit)
+                .getMany();
         } catch (error) {
             this.logger.error(`Failed to get feeds: ${error}`);
             throw error;
@@ -88,19 +89,36 @@ export class FeedService {
 
     async getFeedsBySource(sourceTypes: string, limit: number, language: string) {
         try {
-            return await this.feedRepository.find({
-                where:
+            return await getRepository(Feed)
+                .createQueryBuilder("feed")
+                .where(this.getQueryStringBasedOnSource(sourceTypes.toLowerCase().split(',')),
                     {
-                        source: In(sourceTypes.toLowerCase().split(',')),
-                        language
-                    },
-                order: { pub_date: 'DESC' },
-                take: limit
-            })
+                        lang: language,
+                        vantaa: 'vantaa',
+                        sourceTypes: sourceTypes.toLowerCase().split(','),
+                        sourceTypesWithoutVantaa: sourceTypes.toLowerCase().split(',').filter(item => item !== 'vantaa')
+                    })
+                .orderBy("feed.pub_date", "DESC")
+                .take(limit)
+                .getMany();
         } catch (error) {
             this.logger.error(`Failed to get feeds for type: ${sourceTypes}: ${error}`);
             throw error;
         }
+    }
+
+    getQueryStringBasedOnSource = (sourceTypes: string[]) => {
+        if (sourceTypes.includes('vantaa')) {
+            return "(feed.source = :vantaa AND feed.language = :lang) " +
+                " OR (feed.source IN (:sourceTypesWithoutVantaa))"
+        } else {
+            return "feed.source IN (:sourceTypes)";
+        }
+    }
+
+    getQueryStringBasedOnLanguage = () => {
+        return "(feed.source = :vantaa AND feed.language = :lang) " +
+            " OR (feed.source != :vantaa)";
     }
 
     fetchFeedsBySource(sourceType: string) {
