@@ -74,9 +74,9 @@ export class FeedService {
                     {
                         date: feed.pub_date,
                         lang: language,
-                        sourceTypes: sourceTypes.toLowerCase().split(','),
+                        sourceTypes: "'" + sourceTypes.toLowerCase().split(',').join("','") + "'",
                         vantaa: 'vantaa',
-                        sourceTypesWithoutVantaa: sourceTypes.toLowerCase().split(',').filter(item => item !== 'vantaa')
+                        sourceTypesWithoutVantaa: "'" + sourceTypes.toLowerCase().split(',').filter(item => item !== 'vantaa').join("','") + "'"
                     })
                 .orderBy("feed.pub_date", "DESC")
                 .take(limit)
@@ -89,14 +89,15 @@ export class FeedService {
 
     async getFeedsBySource(sourceTypes: string, limit: number, language: string) {
         try {
+
             return await getRepository(Feed)
                 .createQueryBuilder("feed")
                 .where(this.getQueryStringBasedOnSource(sourceTypes.toLowerCase().split(',')),
                     {
                         lang: language,
                         vantaa: 'vantaa',
-                        sourceTypes: sourceTypes.toLowerCase().split(','),
-                        sourceTypesWithoutVantaa: sourceTypes.toLowerCase().split(',').filter(item => item !== 'vantaa')
+                        sourceTypes: "'" + sourceTypes.toLowerCase().split(',').join("','") + "'",
+                        sourceTypesWithoutVantaa: "'" + sourceTypes.toLowerCase().split(',').filter(item => item !== 'vantaa').join("','") + "'"
                     })
                 .orderBy("feed.pub_date", "DESC")
                 .take(limit)
@@ -108,11 +109,13 @@ export class FeedService {
     }
 
     getQueryStringBasedOnSource = (sourceTypes: string[]) => {
+        const sources = "'" + sourceTypes.join("','") + "'";
+        const sourceTypesWithoutVantaa = "'" + sourceTypes.filter(item => item !== 'vantaa').join("','") + "'";
         if (sourceTypes.includes('vantaa')) {
             return "(feed.source = :vantaa AND feed.language = :lang) " +
-                " OR (feed.source IN (:sourceTypesWithoutVantaa))"
+                " OR (feed.source IN (" + sourceTypesWithoutVantaa + "))"
         } else {
-            return "feed.source IN (:sourceTypes)";
+            return "feed.source IN (" + sources + ")";
         }
     }
 
