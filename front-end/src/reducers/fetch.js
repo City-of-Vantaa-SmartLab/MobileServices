@@ -30,6 +30,8 @@ export function feed(state = initialState.feeds, action) {
             return { ...state, loading: false, error: action.payload };
         case actions.TOGGLE_FEED:
             return { ...state, data: [], last: null };
+        case actions.CHANGE_LANGUAGE:
+            return { ...state, data: [], last: null };
         default:
             return state;
     }

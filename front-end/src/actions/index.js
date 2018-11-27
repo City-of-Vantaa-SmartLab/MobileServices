@@ -33,12 +33,13 @@ export function* watcher() {
 
 function* fetchFeed() {
     try {
-        let filter, last_id;
+        let filter, last_id, lang;
         yield select((state) => {
             filter = Object.keys(state.feedTypes).filter((key) => state.feedTypes[key]);
             last_id = state.feed.last;
+            lang = state.i18n.locale;
         });
-        const response = yield call(get, '/api/feeds', { type: filter, skip: last_id });
+        const response = yield call(get, '/api/feeds', { type: filter, skip: last_id, lang: lang });
         const feed = yield response.json();
 
         if (feed.length !== 0) {
