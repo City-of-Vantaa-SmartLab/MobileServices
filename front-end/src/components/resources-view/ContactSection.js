@@ -14,20 +14,16 @@ class ContactSection extends Component {
             <section className={styles['section']}>
                 <SectionHeader header={i18n.contactHeader} />
                 <div className={styles['card-row']}>
+                    <ContactCard title={i18n.contacts.chat.title} icon={chatIcon} link={i18n.contacts.chat.link} />
                     <ContactCard
-                        title={i18n.chat}
-                        icon={chatIcon}
-                        link="http://www.vantaa.fi/hallinto_ja_talous/tietoa_vantaasta/vantaa-info"
-                    />
-                    <ContactCard
-                        title={i18n.contact}
+                        title={i18n.contacts.contact.title}
                         icon={contactIcon}
-                        link="http://www.vantaa.fi/hallinto_ja_talous/tietoa_vantaasta/yhteystiedot"
+                        link={i18n.contacts.contact.link}
                     />
                     <ContactCard
-                        title={i18n.feedback}
+                        title={i18n.contacts.feedback.title}
                         icon={feedbackIcon}
-                        link="https://asiointi.vantaa.fi/anna-palautetta#/"
+                        link={i18n.contacts.feedback.link}
                     />
                 </div>
             </section>

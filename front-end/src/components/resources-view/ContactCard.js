@@ -3,7 +3,7 @@ import styles from './resources.module.scss';
 import PropTypes from 'prop-types';
 
 const ContactCard = ({ title, icon, link }) => (
-    <a href={link} className={styles['contact-card']}>
+    <a href={link} rel="noopener noreferrer" target="_blank" className={styles['contact-card']}>
         <div className={styles['contact-card-icon']}>
             <img src={icon} alt={title} />
         </div>
