@@ -76,7 +76,6 @@ export class FeedService {
                         lang: language,
                         sourceTypes: "'" + sourceTypes.toLowerCase().split(',').join("','") + "'",
                         vantaa: 'vantaa',
-                        sourceTypesWithoutVantaa: "'" + sourceTypes.toLowerCase().split(',').filter(item => item !== 'vantaa').join("','") + "'"
                     })
                 .orderBy("feed.pub_date", "DESC")
                 .take(limit)
@@ -97,7 +96,6 @@ export class FeedService {
                         lang: language,
                         vantaa: 'vantaa',
                         sourceTypes: "'" + sourceTypes.toLowerCase().split(',').join("','") + "'",
-                        sourceTypesWithoutVantaa: "'" + sourceTypes.toLowerCase().split(',').filter(item => item !== 'vantaa').join("','") + "'"
                     })
                 .orderBy("feed.pub_date", "DESC")
                 .take(limit)
@@ -110,18 +108,15 @@ export class FeedService {
 
     getQueryStringBasedOnSource = (sourceTypes: string[]) => {
         const sources = "'" + sourceTypes.join("','") + "'";
-        const sourceTypesWithoutVantaa = "'" + sourceTypes.filter(item => item !== 'vantaa').join("','") + "'";
         if (sourceTypes.includes('vantaa')) {
-            return "((feed.source = :vantaa AND feed.language = :lang) " +
-                " OR (feed.source IN (" + sourceTypesWithoutVantaa + ")))"
+            return "((feed.source = :vantaa AND feed.language = :lang) OR (feed.language = 'FI'))"
         } else {
             return "feed.source IN (" + sources + ")";
         }
     }
 
     getQueryStringBasedOnLanguage = () => {
-        return "(feed.source = :vantaa AND feed.language = :lang) " +
-            " OR (feed.source != :vantaa)";
+        return "((feed.source = :vantaa AND feed.language = :lang) OR (feed.language = 'FI'))";
     }
 
     fetchFeedsBySource(sourceType: string) {
