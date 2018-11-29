@@ -109,7 +109,7 @@ export class FeedService {
     getQueryStringBasedOnSource = (sourceTypes: string[]) => {
         const sources = "'" + sourceTypes.join("','") + "'";
         if (sourceTypes.includes('vantaa')) {
-            return "((feed.source = :vantaa AND feed.language = :lang) OR (feed.language = 'FI'))"
+            return "((feed.source = :vantaa AND feed.language = :lang) OR (feed.language = 'FI' && feed.source IN (" + sources + ")))"
         } else {
             return "feed.source IN (" + sources + ")";
         }
