@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { withCookies } from 'react-cookie';
 import { connect } from 'react-redux';
 import NewsfeedView from './newsfeed-view/NewsfeedView';
 import ResourcesView from './resources-view/ResourcesView';
@@ -43,4 +42,4 @@ const AppContainer = connect(
     mapDispatchToProps
 )(App);
 
-export default withCookies(AppContainer);
+export default AppContainer;
