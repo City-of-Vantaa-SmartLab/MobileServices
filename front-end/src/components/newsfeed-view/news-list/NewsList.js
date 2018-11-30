@@ -30,7 +30,7 @@ class NewsList extends Component {
     }
 
     handleOuterScroll = () => {
-        const top = window.scrollY > this.newsFeedRef.current.offsetTop;
+        const top = window.scrollY + 100 > this.newsFeedRef.current.offsetTop;
         if (top && !this.props.activated) {
             this.props.feedActivated();
         }
