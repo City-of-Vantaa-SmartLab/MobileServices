@@ -102,18 +102,17 @@ export class RssFeedService {
                 sourceTypes.NEWS_SV].includes(type)) {
                     const root = parse(item.content);
                     detailed_description = root.childNodes[1]
-                        ? root.childNodes[1].rawText.replace(/[\t\r]/g, ' ')
+                        ? (root.childNodes[1].rawText ? root.childNodes[1].rawText.replace(/[\t\r]/g, ' ') : null)
                         : null;
                     description = root.querySelector('p')
-                        ? root.querySelector('p').rawText.replace(/[\t\r\n]/g, '')
+                        ? (root.querySelector('p').rawText ? root.querySelector('p').rawText.replace(/[\t\r\n]/g, '') : null)
                         : null;
                     image = root.querySelector('.imagewrapper');
-                    image = image
+                    const imageNode = image
                         ? config.vantaaImagePrefix + image.childNodes[0]
                             .rawAttrs.split(" ")[0]
-                            .split("src=")[1]
-                            .replace(/"/g, "")
-                        : null;
+                            .split("src=")[1] : null;
+                    image = imageNode ? imageNode.replace(/"/g, "") : null;
                 }
 
                 const language = type === sourceTypes.NEWS_EN
