@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { withCookies } from 'react-cookie';
 import { connect } from 'react-redux';
-
-import CookieView from './cookie/CookieView';
 import NewsfeedView from './newsfeed-view/NewsfeedView';
 import ResourcesView from './resources-view/ResourcesView';
 import SettingsView from './settings-view/SettingsView';
@@ -25,7 +22,6 @@ class App extends Component {
                     <Route path="/settings" component={SettingsView} />
                     <Route exact path="/" render={() => <Redirect to="/newsfeed" />} />
                 </Switch>
-                <CookieView cookies={this.props.cookies} />
                 <NavigationPanel />
             </div>
         );
@@ -46,4 +42,4 @@ const AppContainer = connect(
     mapDispatchToProps
 )(App);
 
-export default withCookies(AppContainer);
+export default AppContainer;
