@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import NewsfeedView from './newsfeed-view/NewsfeedView';
 import ResourcesView from './resources-view/ResourcesView';
@@ -42,4 +42,4 @@ const AppContainer = connect(
     mapDispatchToProps
 )(App);
 
-export default AppContainer;
+export default withRouter(AppContainer);
