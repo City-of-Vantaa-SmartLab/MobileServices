@@ -7,7 +7,7 @@ $content-author-font-size: 1.2rem;
 $twitter-source-bg: #007b5f;
 $instagram-source-bg: #450099;
 $facebook-source-bg: #ba0d2e;
-$youtube-source-bg: #FF8F1C;
+$youtube-source-bg: #FF4F00;
 $events-source-bg: #db3db0;
 
 @mixin avatar_dim($size) {
@@ -91,7 +91,7 @@ $events-source-bg: #db3db0;
             }
     
             :global(.LinesEllipsis-ellipsis) {
-                color: rgba(74, 74, 74, 0.5);
+                color: rgba(74, 74, 74, 1);
             }
 
         }
@@ -104,7 +104,7 @@ $events-source-bg: #db3db0;
             justify-content: space-between;
     
             h5 {
-                opacity: 0.5;
+                opacity: 1;
                 font-weight: normal;
             }
         }
@@ -161,7 +161,7 @@ $events-source-bg: #db3db0;
 
     &.events {
         .service-source {
-            background-color: $youtube-source-bg;
+            background-color: $events-source-bg;
         }
 
         .content {
