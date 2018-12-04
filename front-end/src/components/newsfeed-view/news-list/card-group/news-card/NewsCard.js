@@ -28,7 +28,7 @@ class NewsCard extends React.Component {
                 <div className={styles['content']}>
                     <div
                         className={styles['image']}
-                        style={{ backgroundImage: data.image_url ? `url(http://${data.image_url})` : `url(${img})` }}
+                        style={{ backgroundImage: data.image_url ? `url(https://${data.image_url})` : `url(${img})` }}
                     />
                     <a href={data.page_link} rel="noopener noreferrer" target="_blank" className={styles['title']}>
                         <div>
