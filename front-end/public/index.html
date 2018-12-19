@@ -44,6 +44,17 @@
     // Set default value of custom dimension 1 to 'online'
     ga('set', 'cd1', 'online');
     ga('send', 'pageview');
+
+    // Setup a listener to track Add to Homescreen events.
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.userChoice.then((choiceResult) => {
+        ga('send', 'event', 'A2H', choiceResult.outcome);
+      });
+    });
+
+    window.addEventListener('appinstalled', (evt) => {
+      ga('send', 'event', 'A2H', 'appinstalled');
+    });
   </script>
 
 </head>

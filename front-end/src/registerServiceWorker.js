@@ -7,12 +7,6 @@
 
 // To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js');
-workbox.googleAnalytics.initialize({
-    parameterOverrides: {
-        cd1: 'offline',
-    },
-});
 
 const isLocalhost = Boolean(
     window.location.hostname === 'localhost' ||
@@ -32,17 +26,6 @@ export default function register() {
             // serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
             return;
         }
-
-        // Setup a listener to track Add to Homescreen events.
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.userChoice.then((choiceResult) => {
-                ga('send', 'event', 'A2H', choiceResult.outcome);
-            });
-        });
-
-        window.addEventListener('appinstalled', (evt) => {
-            ga('send', 'event', 'A2H', 'appinstalled');
-        });
 
         window.addEventListener('load', () => {
             const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
