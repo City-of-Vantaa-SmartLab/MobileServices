@@ -6,7 +6,7 @@ import ResourcesView from './resources-view/ResourcesView';
 import SettingsView from './settings-view/SettingsView';
 import NavigationPanel from './navigation/NavigationPanel';
 import AppLoader from './app-loader';
-import { SOURCES_FETCH_REQUEST, FACTS_FETCH_REQUEST } from 'actions/actionTypes';
+import { SOURCES_FETCH_REQUEST } from 'actions/actionTypes';
 
 class App extends Component {
     componentDidMount() {
@@ -32,7 +32,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onLoad: () => {
             dispatch({ type: SOURCES_FETCH_REQUEST });
-            dispatch({ type: FACTS_FETCH_REQUEST });
         },
     };
 };

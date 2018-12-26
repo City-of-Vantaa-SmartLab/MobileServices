@@ -1,15 +1,4 @@
-@font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Thin.otf') format('opentype');
-    font-weight: 200;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Light.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-  }
+
   @font-face {
     font-family: 'GT-Walsheim';
     src: url('./assets/fonts/GT-Walsheim-Regular.otf') format('opentype');
@@ -17,19 +6,6 @@
     font-style: normal;
   }
   
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Medium.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Bold-Oblique.otf') format('opentype');
-    font-weight: 700;
-    font-style: italic;
-  }
   
   @font-face {
     font-family: 'GT-Walsheim';
@@ -38,12 +14,6 @@
     font-style: normal;
   }
   
-  @font-face {
-    font-family: 'GT-Walsheim';
-    src: url('./assets/fonts/GT-Walsheim-Ultra-Bold.otf') format('opentype');
-    font-weight: 800;
-    font-style: normal;
-  }
   
   @font-face {
     font-family: 'GT-Walsheim';
@@ -59,33 +29,6 @@
     font-style: normal;
   }
 
-  @font-face {
-    font-family: 'OpenSans';
-    src: url('./assets/fonts/OpenSans-BoldItalic.ttf') format('truetype');
-    font-weight: 700;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'OpenSans';
-    src: url('./assets/fonts/OpenSans-ExtraBold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'OpenSans';
-    src: url('./assets/fonts/OpenSans-ExtraBoldItalic.ttf') format('truetype');
-    font-weight: 800;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'OpenSans';
-    src: url('./assets/fonts/OpenSans-Italic.ttf') format('truetype');
-    font-weight: 400;
-    font-style: italic;
-  }
 
   @font-face {
     font-family: 'OpenSans';
@@ -94,19 +37,6 @@
     font-style: normal;
   }
 
-  @font-face {
-    font-family: 'OpenSans';
-    src: url('./assets/fonts/OpenSans-Light.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'OpenSans';
-    src: url('./assets/fonts/OpenSans-LightItalic.ttf') format('truetype');
-    font-weight: 200;
-    font-style: italic;
-  }
 
   @font-face {
     font-family: 'OpenSans';
@@ -114,11 +44,3 @@
     font-weight: 600;
     font-style: normal;
   }
-
-  @font-face {
-    font-family: 'OpenSans';
-    src: url('./assets/fonts/OpenSans-SemiBoldItalic.ttf') format('truetype');
-    font-weight: 600;
-    font-style: italic;
-  }
-

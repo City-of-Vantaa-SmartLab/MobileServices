@@ -3,6 +3,9 @@ import { createPortal } from 'react-dom';
 import posed, { PoseGroup } from 'react-pose';
 import styled, { injectGlobal } from 'react-emotion';
 import logoIcon from 'assets/images/vantaa-logo.svg';
+import { connect } from 'react-redux';
+import { PRELOAD_IMAGES } from 'actions/actionTypes';
+import { preloadImages } from 'utils/utils';
 
 const CoordinatorBase = posed.div({
     enter: {
@@ -38,6 +41,10 @@ const Wrapper = styled(CoordinatorBase)`
     top: 0;
 `;
 class AppLoader extends Component {
+    constructor(props) {
+        super(props);
+        this.randomImages = [];
+    }
     state = {
         show: true,
         visible: false,
@@ -55,6 +62,12 @@ class AppLoader extends Component {
         `;
     }
     render() {
+        //preload images for carousel
+        if (this.randomImages.length === 0) {
+            this.randomImages = preloadImages(this.props.images);
+            this.props.updateLoadedImages(this.randomImages);
+        }
+
         return createPortal(
             <PoseGroup>
                 {this.state.show && (
@@ -70,4 +83,22 @@ class AppLoader extends Component {
     }
 }
 
-export default AppLoader;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateLoadedImages: (images) => {
+            dispatch({
+                type: PRELOAD_IMAGES,
+                payload: images,
+            });
+        },
+    };
+};
+
+const mapStateToProps = (state) => ({
+    images: state.carousel.images,
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AppLoader);

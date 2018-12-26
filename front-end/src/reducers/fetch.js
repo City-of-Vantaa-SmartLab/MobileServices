@@ -9,8 +9,27 @@ const initialState = {
     },
     carousel: {
         loading: false,
-        facts: [],
-        images: [],
+        images: [
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/AG_Tikkurilan_kirjasto4.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/AG_lukukoira9.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/AHa_Hakunilan Skeittipuisto-9164.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/AHa_tiksiblockparty-9491.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/FS_Pitkakoski-18.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/Lentokenttakallio-8842.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SLI-4500.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SLi-0418.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SLi-9655.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SM-Vantaa_kuvia-6003.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SMa_Hakunila-7701.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SMa_Kuusijarvi-1274.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SMa_Lentokone-0079.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SMa_Robolukio-9968.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SMa_Rockfest-6295.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/SMa_Tikkurilan_tori_semmarit-6262.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/martinlaakso_MG_7597.png',
+            'https://s3-eu-west-1.amazonaws.com/vantaa-mobiili-carousel/myyrmaki_MG_2778.png',
+        ],
+        preloaded: [],
         error: null,
     },
 };
@@ -39,17 +58,11 @@ export function feed(state = initialState.feeds, action) {
 
 export function carousel(state = initialState.carousel, action) {
     switch (action.type) {
-        case actions.FACTS_FETCH_REQUEST:
-            return { ...state, loading: true, error: null };
-        case actions.FACTS_FETCH_SUCCESS:
+        case actions.PRELOAD_IMAGES:
             return {
                 ...state,
-                loading: false,
-                facts: action.payload.facts,
-                images: action.payload.images,
+                preloaded: action.payload,
             };
-        case actions.FACTS_FETCH_FAILED:
-            return { ...state, loading: false, error: action.payload };
         default:
             return state;
     }

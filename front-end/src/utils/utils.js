@@ -2,6 +2,7 @@ import { format, distanceInWordsStrict, differenceInDays, getYear } from 'date-f
 import en from 'date-fns/locale/en';
 import fi from 'date-fns/locale/fi';
 import sv from 'date-fns/locale/sv';
+import sampleSize from 'lodash/sampleSize';
 
 const locales = { en, fi, sv };
 
@@ -67,4 +68,13 @@ const saveLang = (data) => {
     return localStorage.setItem('lang', data);
 };
 
-export { formatDate, getTimeDelta, getEventsTime, copyToClipboard, share, getLang, saveLang };
+const preloadImages = (images) => {
+    const preloaded = sampleSize(images, 3);
+    preloaded.forEach((src) => {
+        const img = document.createElement('img');
+        img.src = src;
+    });
+    return preloaded;
+};
+
+export { formatDate, getTimeDelta, getEventsTime, copyToClipboard, share, getLang, saveLang, preloadImages };
