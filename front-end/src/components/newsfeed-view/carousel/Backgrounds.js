@@ -3,6 +3,7 @@ import styles from './backgrounds.module.scss';
 import Hammer from 'hammerjs';
 import { connect } from 'react-redux';
 import sampleSize from 'lodash/sampleSize';
+import { preloadImages } from 'utils/utils';
 
 class Backgrounds extends Component {
     constructor(props) {
@@ -35,31 +36,23 @@ class Backgrounds extends Component {
     };
 
     render() {
-        let { loading, error, images, facts } = this.props;
-
-        if (
-            (!this.randomImages || this.randomImages.length === 0) &&
-            (!this.randomFacts || this.randomFacts.length === 0)
-        ) {
-            this.randomImages = sampleSize(images, 3);
+        let { images, facts, preloaded } = this.props;
+        if (!this.randomImages || this.randomImages.length === 0) {
+            if (preloaded.length === 0) {
+                this.randomImages = preloadImages(images);
+            } else {
+                this.randomImages = preloaded;
+            }
+        }
+        if (!this.randomFacts || this.randomFacts.length === 0) {
             this.randomFacts = sampleSize(facts, 3);
-
-            // Pre-fetch images and cache them automatically
-            this.randomImages.forEach((src) => {
-                const img = document.createElement('img');
-                img.src = src;
-            });
         }
 
         return (
             <div
                 ref={(el) => (this.node = el)}
                 className={styles['backgrounds']}
-                style={
-                    !loading && !error
-                        ? { backgroundImage: `url(${this.randomImages[this.state.randomImageIndex]})` }
-                        : {}
-                }
+                style={{ backgroundImage: `url(${this.randomImages[this.state.randomImageIndex]})` }}
             >
                 <div className={styles['random-facts']}>{this.randomFacts[this.state.randomFactIndex]}</div>
             </div>
@@ -68,10 +61,9 @@ class Backgrounds extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.feed.loading,
     images: state.carousel.images,
-    facts: state.carousel.facts,
-    error: state.feed.error,
+    preloaded: state.carousel.preloaded,
+    facts: state.i18n.facts,
 });
 
 export default connect(mapStateToProps)(Backgrounds);
