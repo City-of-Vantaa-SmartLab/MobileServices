@@ -108,10 +108,11 @@ export class RssFeedService {
                         ? (root.querySelector('p').rawText ? root.querySelector('p').rawText.replace(/[\t\r\n]/g, '') : null)
                         : null;
                     image = root.querySelector('.imagewrapper');
-                    const imageNode = image
-                        ? config.vantaaImagePrefix + image.childNodes[0]
+                    let imageNode = image && image.childNodes[0]
+                        ? image.childNodes[0]
                             .rawAttrs.split(" ")[0]
                             .split("src=")[1] : null;
+                    imageNode = imageNode ? config.vantaaImagePrefix + imageNode : null;
                     image = imageNode ? imageNode.replace(/"/g, "") : null;
                 }
 
