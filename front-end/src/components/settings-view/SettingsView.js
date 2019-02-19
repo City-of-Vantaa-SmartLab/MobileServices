@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styles from './settings.module.scss';
 import LanguageSection from './LanguageSection';
 import FeedsSection from './FeedsSection';
+import AboutSection from './AboutSection';
 
 class SettingsView extends Component {
     render() {
@@ -12,6 +13,7 @@ class SettingsView extends Component {
                 <h1>{i18n.settings.header}</h1>
                 <LanguageSection />
                 <FeedsSection />
+                <AboutSection />
             </div>
         );
     }

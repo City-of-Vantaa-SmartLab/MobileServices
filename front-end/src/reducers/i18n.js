@@ -75,6 +75,9 @@ const translations = {
             languageHeader: 'My language',
             feedHeader: 'My feed',
             notificationsHeader: 'Push notifications',
+            aboutHeader: 'About the app',
+            about:
+                'Web analytics \nGoogle Analytics collects data on visitors to the mobiili.vantaa.fi website. The data are available to the maintainers of the mobiili.vantaa.fi website.',
             langButtons: {
                 fi: 'Suomi',
                 sv: 'Svenska',
@@ -179,6 +182,10 @@ const translations = {
             languageHeader: 'Kieli',
             feedHeader: 'Oma uutisvirta',
             notificationsHeader: 'Push notifications',
+            aboutHeader: 'Tietoa Sovelluksesta',
+            about:
+                'Kävijäseuranta \nMobiili.vantaa.fi-verkkosivustolla Google Analytics kerää tietoa kävijöistä. Tiedot ovat mobiili.vantaa.fi-verkkosivuston ylläpitäjien käytettävissä.',
+
             langButtons: {
                 fi: 'Suomi',
                 sv: 'Svenska',
@@ -287,6 +294,10 @@ const translations = {
             languageHeader: 'Språk',
             feedHeader: 'Eget flöde',
             notificationsHeader: 'Push notifications',
+            aboutHeader: 'Information om applikationen',
+            about:
+                'Besökaruppföljning \nGoogle Analytics samlar in information om besökare på webbplatsen mobiili.vantaa.fi. Informationen kan användas av dem som upprätthåller webbplatsen mobiili.vantaa.fi.',
+
             langButtons: {
                 fi: 'Suomi',
                 sv: 'Svenska',
