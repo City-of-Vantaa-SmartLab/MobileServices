@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './settings.module.scss';
 
-class LanguageSection extends Component {
+class AboutSection extends Component {
     render() {
         const { i18n } = this.props;
         return (
@@ -22,4 +22,4 @@ const mapStateToProps = (state) => ({
     i18n: state.i18n.settings,
 });
 
-export default connect(mapStateToProps)(LanguageSection);
+export default connect(mapStateToProps)(AboutSection);
