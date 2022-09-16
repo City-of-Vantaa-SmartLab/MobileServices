@@ -4,7 +4,7 @@
     "private": true,
     "proxy": "http://localhost:5000",
     "dependencies": {
-        "bootstrap": "^3.3.7",
+        "bootstrap": "^3.4.1",
         "date-fns": "^1.29.0",
         "emotion": "^9.2.12",
         "emotion-theming": "^9.2.9",
